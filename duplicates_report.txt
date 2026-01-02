@@ -1,0 +1,30 @@
+Total prompts: 164
+Duplicate count: 27
+Duplicates found:
+ID: 05C, Title: Dispose Parcel (After 3 days), Codes: /05C//06C
+ID: 05B, Title: Hold Parcel (Wrong Recipient), Codes: /05B//06B
+ID: 71, Title: Any Help Question, Codes: /71//72
+ID: 73, Title: Closing Chat, Codes: /73//74
+ID: 05, Title: Does Not Belong to Recipient, Codes: /05//06
+ID: 03, Title: Seller Contact Hotline, Codes: /03//04
+ID: 49, Title: No Pick Up Service, Codes: /49//50
+ID: 51, Title: USPS Tracking Number, Codes: /51//52
+ID: 55, Title: Question About The Product, Codes: /55//56
+ID: 03B, Title: More than 10 Tracking Numbers, Codes: /03B//04B
+ID: 39, Title: DNR: Can See POD, Codes: /39//40
+ID: 09, Title: Left Sorting Center, Codes: /09//10
+ID: 11F, Title: Out for Delivery Day 6, Codes: /11F//12F
+ID: 11B, Title: Out for Delivery Day 2, Codes: /11B//12B
+ID: 11D, Title: Out for Delivery Day 4, Codes: /11D//12D
+ID: 11E, Title: Out for Delivery Day 5, Codes: /11E//12E
+ID: 11A, Title: Out for Delivery Day 1, Codes: /11A//12A
+ID: 11C, Title: Out for Delivery Day 3, Codes: /11C//12C
+ID: 17G, Title: No Update (Other Case), Codes: /17G//18G
+ID: 67, Title: Return to the Load, Codes: /67//68
+ID: 31B, Title: Modify During Delivery, Codes: /31B//32B
+ID: 43B, Title: Have Evidence, Codes: /43B//44B
+ID: 43C, Title: No Evidence, Codes: /43C//44C
+ID: 57, Title: Resolved Claim, Codes: /57//58
+ID: 59, Title: Resolved Not Claimable, Codes: /59//60
+ID: 65, Title: In Process > 14 Days, Codes: /65//66
+ID: 01E, Title: Incorrect Tracking Number, Codes: /01E//02E

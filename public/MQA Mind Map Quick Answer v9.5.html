@@ -1,0 +1,1250 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MQA Mind Map Quick Answer</title>
+    
+    <!-- Tailwind CSS (v3.4) -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Iconos Lucide (Latest) -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Markdown Parser (Latest) -->
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap');
+        
+        body { 
+            font-family: 'Inter', sans-serif; 
+            background-color: #f3f4f6; 
+            overflow: hidden; /* Evita doble scrollbar */
+        }
+        
+        /* Efectos de Tarjeta */
+        .card-hover { 
+            transition: all 0.2s ease-in-out; 
+        }
+        .card-hover:hover { 
+            transform: translateY(-2px); 
+            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05); 
+        }
+        
+        /* Bordes Superiores por Categoría */
+        .cat-tracking { border-top: 4px solid #3b82f6; }      /* Blue */
+        .cat-delivery { border-top: 4px solid #10b981; }      /* Emerald */
+        .cat-return { border-top: 4px solid #f59e0b; }        /* Amber */
+        .cat-complaint { border-top: 4px solid #ef4444; }     /* Red */
+        .cat-security { border-top: 4px solid #000000; }      /* Black */
+        .cat-modification { border-top: 4px solid #8b5cf6; }  /* Purple */
+        .cat-admin { border-top: 4px solid #6366f1; }         /* Indigo */
+        .cat-general { border-top: 4px solid #64748b; }       /* Slate */
+
+        /* Scrollbar Personalizado */
+        ::-webkit-scrollbar { width: 6px; height: 6px; }
+        ::-webkit-scrollbar-track { background: #f1f1f1; }
+        ::-webkit-scrollbar-thumb { background: #c7c7c7; border-radius: 3px; }
+        ::-webkit-scrollbar-thumb:hover { background: #94a3b8; }
+        
+        /* Ocultar scrollbar en navegación pero permitir scroll */
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+
+        /* Animaciones */
+        @keyframes slideIn { from { transform: translateY(20px); opacity: 0; } to { transform: translateY(0); opacity: 1; } }
+        @keyframes fadeOut { from { opacity: 1; } to { opacity: 0; } }
+        .toast { animation: slideIn 0.3s ease-out forwards; }
+        .toast.hiding { animation: fadeOut 0.3s ease-out forwards; }
+        .chat-enter { animation: slideIn 0.3s ease-out forwards; }
+
+        /* Estilos Markdown (Chat) */
+        .prose p { margin-bottom: 0.5em; }
+        .prose ul { list-style-type: disc; padding-left: 1.2em; margin-bottom: 0.5em; }
+        .prose strong { font-weight: 700; color: #111827; }
+        
+        /* Modos de Idioma */
+        .lang-en-only { display: none !important; }
+        
+        body.english-mode .lang-es { display: none !important; }
+        body.english-mode .lang-en-only { display: inline-block !important; } 
+        body.english-mode .es-content { display: none !important; }
+        body.english-mode .script-grid { grid-template-columns: 1fr !important; }
+        
+        /* Editor de Texto */
+        .editable-script {
+            resize: none; width: 100%; background: transparent; border: none; outline: none;
+            font-family: inherit; font-size: inherit; line-height: inherit; color: inherit;
+            height: 100%; min-height: 80px;
+        }
+        .editable-script:focus { background-color: rgba(255, 255, 255, 0.5); border-radius: 4px; }
+
+        /* Layout Fix */
+        #mainContainer { height: calc(100vh - 80px); }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-800 h-screen flex flex-col overflow-hidden">
+
+    <!-- HEADER -->
+    <header class="bg-white shadow-sm z-20 relative flex-shrink-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 flex flex-col md:flex-row justify-between items-center gap-3">
+            <!-- Logo & Title -->
+            <div class="flex items-center gap-3 w-full md:w-auto">
+                <div class="bg-indigo-600 p-2 rounded-lg shadow-lg shadow-indigo-200 relative overflow-hidden group flex-shrink-0">
+                    <div class="absolute inset-0 bg-gradient-to-tr from-purple-500 to-indigo-500 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+                    <!-- Logo SVG -->
+                    <img src="https://res.cloudinary.com/dfcash/image/upload/v1709345668/logo_white_gofo_k2.png" alt="GOFO Logo" class="h-6 w-auto relative z-10 object-contain" onerror="this.style.display='none'; this.nextElementSibling.style.display='block';">
+                    <i data-lucide="box" class="text-white w-6 h-6 relative z-10 hidden"></i>
+                </div>
+                <div class="min-w-0">
+                    <h1 class="text-lg md:text-xl font-bold text-gray-900 tracking-tight flex items-center gap-2 flex-wrap">
+                        <span class="lang-es whitespace-nowrap">MQA Mind Map Quick Answer</span>
+                        <span class="lang-en-only whitespace-nowrap">MQA Mind Map Quick Answer</span>
+                        <span class="px-2 py-0.5 rounded-full bg-gradient-to-r from-indigo-500 to-purple-500 text-white text-[10px] font-bold uppercase tracking-wider flex-shrink-0">AI v9.5</span>
+                    </h1>
+                    <p class="text-xs text-gray-500 font-medium truncate">Proof of Loss • <span class="text-green-600">Updated</span></p>
+                </div>
+            </div>
+            
+            <!-- Controls -->
+            <div class="flex items-center gap-2 w-full md:w-auto justify-between md:justify-end">
+                <div class="flex items-center bg-gray-100 rounded-lg p-1 border border-gray-200 flex-shrink-0">
+                    <button onclick="setLanguage('bilingual')" id="btnBi" class="px-3 py-1.5 text-xs font-medium rounded-md bg-white text-gray-900 shadow-sm transition-all">Bilingüe</button>
+                    <button onclick="setLanguage('english')" id="btnEn" class="px-3 py-1.5 text-xs font-medium rounded-md text-gray-500 hover:text-gray-900 transition-all">English Only</button>
+                </div>
+                
+                <div class="relative flex-1 md:flex-none md:w-[200px] group">
+                    <div class="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                        <i data-lucide="search" class="text-gray-400 w-4 h-4 group-focus-within:text-indigo-500 transition-colors"></i>
+                    </div>
+                    <input type="text" id="searchInput" 
+                        class="block w-full pl-9 pr-3 py-1.5 border border-gray-300 rounded-lg leading-5 bg-gray-50 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-indigo-500 focus:ring-2 focus:ring-indigo-200 sm:text-sm transition shadow-sm"
+                        placeholder="Buscar / Search...">
+                </div>
+                
+                <button onclick="openSettings()" class="flex-shrink-0 bg-white border border-gray-300 text-gray-700 hover:bg-gray-50 hover:text-indigo-600 px-2 py-2 rounded-lg text-sm font-medium shadow-sm transition flex items-center gap-2" title="Configurar API">
+                    <i data-lucide="key" class="w-4 h-4"></i>
+                </button>
+            </div>
+        </div>
+        
+        <!-- Category Filter Bar -->
+        <div class="border-t border-gray-100 bg-gray-50/50 backdrop-blur-sm">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-2 flex gap-2 overflow-x-auto no-scrollbar">
+                <button onclick="filterCategory('all')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition active-filter shadow-sm" data-filter="all">
+                    <span class="lang-es">Todos</span><span class="lang-en-only">All</span>
+                </button>
+                <button onclick="filterCategory('Tracking')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-blue-50 border border-blue-100 text-blue-700 hover:bg-blue-100 transition" data-filter="Tracking">
+                    <span class="lang-es">Rastreo</span><span class="lang-en-only">Tracking</span>
+                </button>
+                <button onclick="filterCategory('Delivery')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-green-50 border border-green-100 text-green-700 hover:bg-green-100 transition" data-filter="Delivery">
+                    <span class="lang-es">Entrega</span><span class="lang-en-only">Delivery</span>
+                </button>
+                <button onclick="filterCategory('Return')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-orange-50 border border-orange-100 text-orange-700 hover:bg-orange-100 transition" data-filter="Return">
+                    <span class="lang-es">Retornos</span><span class="lang-en-only">Returns</span>
+                </button>
+                <button onclick="filterCategory('Modification')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-purple-50 border border-purple-100 text-purple-700 hover:bg-purple-100 transition" data-filter="Modification">
+                    <span class="lang-es">Cambios</span><span class="lang-en-only">Mods</span>
+                </button>
+                <button onclick="filterCategory('Complaint')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-red-50 border border-red-100 text-red-700 hover:bg-red-100 transition" data-filter="Complaint">
+                    <span class="lang-es">Quejas</span><span class="lang-en-only">Complaints</span>
+                </button>
+                <button onclick="filterCategory('Security')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-gray-800 border border-gray-700 text-white hover:bg-gray-700 transition" data-filter="Security">
+                    <span class="lang-es">Seguridad</span><span class="lang-en-only">Security</span>
+                </button>
+                <button onclick="filterCategory('Admin')" class="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-50 border border-indigo-100 text-indigo-700 hover:bg-indigo-100 transition" data-filter="Admin">
+                    <span class="lang-es">Admin</span><span class="lang-en-only">Admin</span>
+                </button>
+            </div>
+        </div>
+    </header>
+
+    <!-- MAIN CONTENT -->
+    <main class="flex-1 overflow-y-auto p-4 md:p-6 bg-gray-100/50 relative" id="mainContainer">
+        <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4 md:gap-6 max-w-8xl mx-auto pb-24">
+            <!-- Cards injected via JS -->
+        </div>
+        
+        <!-- Empty State -->
+        <div id="emptyState" class="hidden flex flex-col items-center justify-center h-full mt-10 text-gray-400">
+            <i data-lucide="search-x" class="w-16 h-16 text-gray-200 mb-4"></i>
+            <h3 class="text-lg font-medium text-gray-900"><span class="lang-es">No se encontraron resultados</span><span class="lang-en-only">No results found</span></h3>
+            <button onclick="resetSearch()" class="mt-4 text-indigo-600 hover:text-indigo-800 text-sm font-medium hover:underline"><span class="lang-es">Limpiar filtros</span><span class="lang-en-only">Clear filters</span></button>
+        </div>
+    </main>
+
+    <!-- CHAT FLOATING BUTTON -->
+    <button onclick="toggleChat()" class="fixed bottom-6 right-6 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-700 hover:to-purple-700 text-white p-4 rounded-full shadow-2xl transition-all transform hover:scale-105 active:scale-95 z-40 flex items-center justify-center group">
+        <i data-lucide="sparkles" class="w-6 h-6 animate-pulse"></i>
+        <span class="absolute right-16 bg-gray-900 text-white text-xs px-2 py-1 rounded opacity-0 group-hover:opacity-100 transition-opacity whitespace-nowrap shadow-lg pointer-events-none"><span class="lang-es">Consultar IA</span><span class="lang-en-only">Ask AI</span></span>
+    </button>
+
+    <!-- CHAT PANEL -->
+    <div id="chatPanel" class="fixed bottom-24 right-6 w-80 md:w-96 h-[450px] md:h-[500px] bg-white rounded-2xl shadow-2xl border border-gray-200 flex flex-col hidden z-40 overflow-hidden chat-enter">
+        <div class="bg-indigo-600 p-4 flex justify-between items-center text-white shadow-md">
+            <div class="flex items-center gap-2"><i data-lucide="bot" class="w-5 h-5"></i><h3 class="font-bold text-sm"><span class="lang-es">Asistente Operativo</span><span class="lang-en-only">Ops Assistant</span></h3></div>
+            <button onclick="toggleChat()" class="hover:bg-indigo-700 p-1 rounded transition"><i data-lucide="x" class="w-4 h-4"></i></button>
+        </div>
+        <div id="chatMessages" class="flex-1 overflow-y-auto p-4 space-y-4 bg-gray-50">
+            <div class="flex gap-3">
+                <div class="w-8 h-8 rounded-full bg-indigo-100 flex items-center justify-center flex-shrink-0"><i data-lucide="bot" class="w-4 h-4 text-indigo-600"></i></div>
+                <div class="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-gray-100 text-sm text-gray-700">
+                    <span class="lang-es">Hola. Tengo acceso a todos los SOPs y scripts oficiales. Pregúntame lo que necesites.</span>
+                    <span class="lang-en-only">Hello. I have access to all SOPs and official scripts. Ask me anything.</span>
+                </div>
+            </div>
+        </div>
+        <div class="p-4 bg-white border-t border-gray-100">
+            <div class="flex gap-2">
+                <input type="text" id="chatInput" placeholder="..." class="flex-1 border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-indigo-500" onkeypress="handleChatKey(event)">
+                <button onclick="sendChatMessage()" id="sendBtn" class="bg-indigo-600 hover:bg-indigo-700 text-white p-2 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"><i data-lucide="send" class="w-4 h-4"></i></button>
+            </div>
+            <p class="text-[10px] text-gray-400 mt-2 text-center">Powered by Gemini AI</p>
+        </div>
+    </div>
+
+    <!-- SETTINGS MODAL -->
+    <div id="settingsModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onclick="closeSettings()"></div>
+        <div class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex min-h-full items-center justify-center p-4">
+                <div class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all w-full max-w-md">
+                    <div class="bg-gray-50 px-4 py-4 border-b border-gray-100 flex justify-between items-center">
+                        <h3 class="text-lg font-bold text-gray-900"><span class="lang-es">Configuración IA</span><span class="lang-en-only">AI Settings</span></h3>
+                        <button onclick="closeSettings()"><i data-lucide="x" class="w-5 h-5 text-gray-400"></i></button>
+                    </div>
+                    <div class="p-6">
+                        <label class="block text-sm font-medium text-gray-700 mb-2">Gemini API Key</label>
+                        <input type="password" id="apiKeyInput" placeholder="AIza..." class="w-full border border-gray-300 rounded-lg px-3 py-2 focus:ring-2 focus:ring-indigo-500 focus:outline-none mb-2">
+                        <button onclick="saveApiKey()" class="w-full bg-indigo-600 text-white py-2 rounded-lg font-medium hover:bg-indigo-700 transition mt-4"><span class="lang-es">Guardar</span><span class="lang-en-only">Save</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- DETAIL MODAL -->
+    <div id="detailModal" class="fixed inset-0 z-50 hidden" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="fixed inset-0 bg-gray-900/50 backdrop-blur-sm transition-opacity" onclick="closeModal()"></div>
+        <div class="fixed inset-0 z-50 overflow-y-auto">
+            <div class="flex min-h-full items-end justify-center p-4 text-center sm:items-center sm:p-0">
+                <div class="relative transform overflow-hidden rounded-xl bg-white text-left shadow-2xl transition-all sm:my-8 sm:w-full sm:max-w-4xl border border-gray-100">
+                    <!-- Modal Header -->
+                    <div class="bg-gray-50 px-4 py-4 sm:px-6 border-b border-gray-100 flex justify-between items-center sticky top-0 z-10">
+                        <div class="flex items-center gap-3 text-left">
+                            <div id="modalIconBg" class="flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full bg-indigo-100"><i id="modalIcon" data-lucide="info" class="h-5 w-5 text-indigo-600"></i></div>
+                            <div>
+                                <h3 class="text-lg font-bold leading-6 text-gray-900 line-clamp-1" id="modalTitle">Title</h3>
+                                <span id="modalTag" class="inline-flex items-center px-2 py-0.5 rounded text-xs font-medium bg-gray-100 text-gray-600 mt-1">Cat</span>
+                            </div>
+                        </div>
+                        <button onclick="closeModal()" class="text-gray-400 hover:text-gray-500 bg-white rounded-full p-1 hover:bg-gray-100 transition flex-shrink-0"><i data-lucide="x" class="w-5 h-5"></i></button>
+                    </div>
+                    
+                    <!-- Modal Content -->
+                    <div class="px-4 py-5 sm:p-6 space-y-6 max-h-[70vh] overflow-y-auto text-left">
+                        
+                        <!-- Condition -->
+                        <div class="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-md">
+                            <div class="flex">
+                                <div class="flex-shrink-0"><i data-lucide="alert-circle" class="h-5 w-5 text-amber-400"></i></div>
+                                <div class="ml-3"><h3 class="text-sm font-bold text-amber-800 uppercase tracking-wide"><span class="lang-es">Condición</span><span class="lang-en-only">Condition</span></h3><div class="mt-1 text-sm text-amber-700" id="modalCondition">...</div></div>
+                            </div>
+                        </div>
+
+                        <!-- CRM Config -->
+                        <div>
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2"><i data-lucide="sliders" class="w-3 h-3"></i> <span class="lang-es">Configuración CRM</span><span class="lang-en-only">CRM Config</span></h4>
+                            <div class="bg-white rounded-lg border border-gray-200 shadow-sm overflow-hidden">
+                                <div class="grid grid-cols-1 sm:grid-cols-2 divide-y sm:divide-y-0 sm:divide-x divide-gray-200">
+                                    <div class="p-3"><span class="block text-xs text-gray-500 mb-1">Work Order Type</span><span class="font-mono text-sm text-indigo-600 font-medium" id="modalType">...</span></div>
+                                    <div class="p-3"><span class="block text-xs text-gray-500 mb-1">Detailed Type</span><span class="font-mono text-sm text-indigo-600 font-medium" id="modalDetailed">...</span></div>
+                                </div>
+                                
+                                <!-- Dynamic Attempts Input -->
+                                <div id="attemptsInputContainer" class="hidden border-t border-gray-200 p-3 bg-yellow-50">
+                                    <label class="block text-xs font-bold text-gray-700 mb-1"><span class="lang-es">Intentos de Entrega Fallidos:</span><span class="lang-en-only">Failed Delivery Attempts:</span></label>
+                                    <div class="flex items-center gap-2">
+                                        <input type="number" id="deliveryAttemptsInput" value="0" min="0" class="w-20 border border-gray-300 rounded px-2 py-1 text-sm focus:ring-2 focus:ring-indigo-500 focus:outline-none" onchange="updateDynamicFlow()">
+                                        <span class="text-xs text-gray-500 italic"><span class="lang-es">(0-1 = Queja SÍ, 2+ = Queja NO)</span><span class="lang-en-only">(0-1 = Complaint YES, 2+ = Complaint NO)</span></span>
+                                    </div>
+                                </div>
+
+                                <div class="border-t border-gray-200 p-3 flex items-center justify-between bg-gray-50"><div><span class="block text-xs text-gray-500">Complaint?</span><span class="text-sm font-bold" id="modalComplaint">...</span></div></div>
+                                <div class="border-t border-gray-200 p-3 bg-gray-50/50">
+                                    <span class="block text-xs text-gray-500 mb-1">Remark Template <span class="text-red-500 font-bold text-[10px] ml-1">(OBLIGATORIO/REQUIRED)</span></span>
+                                    <div id="remarkContainer" class="space-y-2">
+                                        <!-- Clickable Remark Block -->
+                                        <div id="simpleRemarkBlock" class="relative group cursor-pointer transition hover:bg-gray-50 rounded-md" onclick="copyFromElement('modalRemark')">
+                                            <p class="text-sm text-gray-800 italic bg-white border border-gray-200 p-2 rounded font-mono text-xs break-words hover:border-indigo-300 hover:shadow-sm transition" id="modalRemark">...</p>
+                                            <button class="absolute top-1 right-1 text-gray-400 hover:text-indigo-600 p-1 bg-white rounded border border-gray-200 shadow-sm opacity-0 group-hover:opacity-100 transition-opacity"><i data-lucide="copy" class="w-3 h-3"></i></button>
+                                        </div>
+                                        <div id="templatesBlock" class="hidden">
+                                            <p class="text-xs text-gray-500 mb-2 italic"><span class="lang-es">Selecciona el caso específico para copiar la etiqueta:</span><span class="lang-en-only">Select specific case to copy tag:</span></p>
+                                            <div class="grid grid-cols-1 gap-2" id="templatesList"></div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Scripts Tabs -->
+                        <div id="scriptSection">
+                            <h4 class="text-xs font-bold text-gray-400 uppercase tracking-wider mb-3 flex items-center gap-2">
+                                <i data-lucide="message-circle" class="w-3 h-3"></i> <span class="lang-es">Scripts de Respuesta</span><span class="lang-en-only">Reply Scripts</span>
+                            </h4>
+                            
+                            <!-- ENGLISH -->
+                            <div class="mb-4">
+                                <div class="flex items-center justify-between mb-1"><span class="text-xs font-bold text-gray-500 ml-1">🇺🇸 ENGLISH</span></div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 script-grid">
+                                    <!-- Clickable Formal Script -->
+                                    <div class="relative group h-full">
+                                        <div onclick="copyScript('en')" class="bg-slate-800 text-slate-300 rounded-lg p-3 text-xs leading-relaxed shadow-inner border border-slate-700 h-full min-h-[100px] cursor-pointer hover:ring-2 hover:ring-indigo-400 transition active:scale-[0.98]">
+                                            <span class="block text-[10px] font-bold text-slate-500 mb-1 uppercase flex justify-between items-center">
+                                                Formal / Oficial <i data-lucide="copy" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                            </span>
+                                            <div id="modalScriptEn">...</div>
+                                        </div>
+                                    </div>
+                                    <!-- Editable Friendly Script -->
+                                    <div class="relative group h-full">
+                                        <div class="bg-gradient-to-br from-indigo-50 to-white text-indigo-900 rounded-lg p-3 text-xs leading-relaxed shadow-sm border border-indigo-100 h-full min-h-[100px] focus-within:ring-2 focus-within:ring-indigo-300 transition">
+                                            <span class="block text-[10px] font-bold text-indigo-400 mb-1 uppercase flex items-center gap-1"><i data-lucide="heart" class="w-3 h-3"></i> Friendly (Editable)</span>
+                                            <textarea id="modalScriptEmpEn" class="editable-script" spellcheck="false"></textarea>
+                                        </div>
+                                        <button onclick="copyFromElement('modalScriptEmpEn')" class="absolute top-2 right-2 bg-white text-indigo-600 border border-indigo-200 p-1.5 rounded hover:bg-indigo-50 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Copy Edited"><i data-lucide="copy" class="w-3 h-3"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- SPANISH -->
+                            <div class="es-content">
+                                <div class="flex items-center justify-between mb-1"><span class="text-xs font-bold text-gray-500 ml-1">🇪🇸 ESPAÑOL</span></div>
+                                <div class="grid grid-cols-1 md:grid-cols-2 gap-3 script-grid">
+                                    <!-- Clickable Formal Script -->
+                                    <div class="relative group h-full">
+                                        <div onclick="copyScript('es')" class="bg-white text-gray-600 rounded-lg p-3 text-xs leading-relaxed shadow-sm border border-gray-200 h-full min-h-[100px] cursor-pointer hover:border-indigo-400 hover:shadow-md transition active:scale-[0.98]">
+                                            <span class="block text-[10px] font-bold text-gray-400 mb-1 uppercase flex justify-between items-center">
+                                                Formal / Oficial <i data-lucide="copy" class="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity"></i>
+                                            </span>
+                                            <div id="modalScriptEs">...</div>
+                                        </div>
+                                    </div>
+                                    <!-- Editable Friendly Script -->
+                                    <div class="relative group h-full">
+                                        <div class="bg-gradient-to-br from-emerald-50 to-white text-emerald-900 rounded-lg p-3 text-xs leading-relaxed shadow-sm border border-emerald-100 h-full min-h-[100px] focus-within:ring-2 focus-within:ring-emerald-300 transition">
+                                            <span class="block text-[10px] font-bold text-emerald-500 mb-1 uppercase flex items-center gap-1"><i data-lucide="heart" class="w-3 h-3"></i> Empático / Amable (Editable)</span>
+                                            <textarea id="modalScriptEmpEs" class="editable-script" spellcheck="false"></textarea>
+                                        </div>
+                                        <button onclick="copyFromElement('modalScriptEmpEs')" class="absolute top-2 right-2 bg-white text-emerald-600 border border-emerald-200 p-1.5 rounded hover:bg-emerald-50 transition opacity-0 group-hover:opacity-100 shadow-sm" title="Copiar Editado"><i data-lucide="copy" class="w-3 h-3"></i></button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Modal Footer -->
+                    <div class="bg-gray-50 px-4 py-3 sm:px-6 flex flex-row-reverse gap-2 rounded-b-xl sticky bottom-0 z-10 border-t border-gray-200 bg-white">
+                        <button type="button" onclick="closeModal()" class="w-full inline-flex justify-center rounded-lg border border-transparent shadow-sm px-4 py-2 bg-indigo-600 text-base font-medium text-white hover:bg-indigo-700 sm:ml-3 sm:w-auto sm:text-sm transition"><span class="lang-es">Entendido</span><span class="lang-en-only">Understood</span></button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- TOAST NOTIFICATIONS -->
+    <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 pointer-events-none"></div>
+
+    <!-- MAIN SCRIPT -->
+    <script>
+        // --- DATA CONSTANTS ---
+        const scriptRedeliveryEn = "We are sorry that there is a failed delivery attempt. Let me verify the information first... We have updated the info. We will request redelivery for you. It will be redelivered within 3 days.";
+        const scriptRedeliveryEs = "Siento mucho que hubo un intento fallido de entrega. Permítame verificar la información... Hemos actualizado los datos. Solicitaremos un nuevo intento de entrega, que se realizará en los próximos 3 días.";
+        const scriptRedeliveryEmpEn = "I am so sorry about the failed delivery! Let's get this fixed. I've verified your info and requested a redelivery. You should receive your package within 3 days. Thanks for your patience!";
+        const scriptRedeliveryEmpEs = "¡Siento mucho lo del intento fallido! Vamos a solucionarlo. Ya verifiqué su información y pedí un reenvío. Debería recibir su paquete en 3 días. ¡Gracias por su paciencia!";
+
+        // --- FLOWS DATABASE (ALL CASES MERGED) ---
+        const flows = [
+            // --- TIER 1: DELIVERY & REDELIVERY ---
+            { 
+                id: 'redel-general', category: 'Delivery', refCode: '117H / 118H',
+                title: 'Reenvío (General)', titleEn: 'Redelivery (General)',
+                keywords: 'reenvío redelivery address updated changed notes gate code business ups coordinates', 
+                condition: 'Intento fallido. Agente actualiza info/notas.', 
+                conditionEn: 'Failed attempt. Agent updates info/notes.',
+                crm: { 
+                    type: 'Redelivery', detailed: 'Verified failure reason, redelivery can be arranged', complaint: 'YES', remark: null,
+                    templates: [
+                        { label: 'Dirección Actualizada', tag: '<Verified deliverable address - address updated>' },
+                        { label: 'Solo Notas', tag: '<Verified deliverable address - remarks added>' },
+                        { label: 'Ambos', tag: '<Verified deliverable address - address updated and remarks added>' },
+                        { label: 'Negocio', tag: '<Verified deliverable address - business address, only open on weekday>' },
+                        { label: 'Nada Cambió', tag: '<Verified deliverable address - nothing changed>' },
+                        { label: 'Dirección UPS', tag: '<Verified deliverable address - UPS>' },
+                        { label: 'Coordenadas', tag: '<Verified deliverable address - Coordinates updated>' },
+                        { label: 'Nada + Teléfono', tag: '<Verified deliverable address - nothing changed> phone number updated' }
+                    ]
+                }, 
+                scriptEn: scriptRedeliveryEn, scriptEs: scriptRedeliveryEs, scriptEmpEn: scriptRedeliveryEmpEn, scriptEmpEs: scriptRedeliveryEmpEs 
+            },
+            { 
+                id: 'redel-pudo', category: 'Delivery', refCode: '13 / 14',
+                title: 'Reenvío: PUDO', titleEn: 'Redelivery: PUDO',
+                keywords: 'reenvío redelivery pudo pickup point punto recogida phone telefono', 
+                condition: 'Reenvío a punto de recogida (PUDO). Requiere actualizar teléfono.', conditionEn: 'Redelivery to Pick Up Drop Off (PUDO). Requires phone update.',
+                crm: { type: 'Redelivery', detailed: 'Verified failure reason, redelivery can be arranged', complaint: 'NO', remark: '<updated phone number, redeliver to PUDO>' }, 
+                scriptEn: "We have updated your phone number. You will receive a message to pick up your package at the PUDO point.", 
+                scriptEs: "Hemos actualizado su número de teléfono. Recibirá un mensaje para recoger su paquete en el punto PUDO.",
+                scriptEmpEn: "All set! I've updated your number. Look out for a text message soon with details on how to pick up your package.",
+                scriptEmpEs: "¡Listo! He actualizado su número. Esté atento a un mensaje de texto pronto con los detalles para recoger su paquete."
+            },
+            {
+                id: 'wrong-package', category: 'Delivery', refCode: 'NEW',
+                title: 'Paquete Ajeno (Recibido por Error)', titleEn: 'Wrong Package Received', keywords: 'wrong package paquete ajeno incorrecto pickup',
+                condition: 'El cliente recibió un paquete que no le pertenece (Según US CS Works).', conditionEn: 'Customer received a package that does not belong to them (According to US CS Works).',
+                crm: { type: 'Other Questions', detailed: 'Received Package that doesn\'t belong to recipients', complaint: 'YES', remark: 'Customer received a package not belongs to him, please let driver go pick it up. Contact number is xxxxxxxxxx. The full address is: xxxxx' },
+                scriptEn: "Thank you for letting us know. May I have your current address? ... [If address provided by customer is not the one on file] We will notify the driver to pick up in three days.",
+                scriptEs: "Gracias por informarnos. ¿Podría confirmarme su dirección actual? ... [Si la dirección es diferente] Notificaremos al conductor para que pase a recogerlo en tres días.",
+                scriptEmpEn: "Thank you so much for your honesty! I apologize for the mix-up. I'll arrange for a driver to pick up that package from you within 3 days. Could you just confirm your pickup address?",
+                scriptEmpEs: "¡Muchas gracias por su honestidad! Siento la confusión. Organizaré que un conductor pase a recoger ese paquete en los próximos 3 días. ¿Podría confirmarme la dirección de recogida?"
+            },
+
+            // --- TIER 2: TRACKING & NTU (UPDATED LOGIC v8.5) ---
+            { 
+                id: 'ntu-general', category: 'Tracking', refCode: '17E / 18E',
+                title: 'NTU General (< 3 días)', titleEn: 'Minor NTU (< 3 days)', keywords: 'retraso delay wait espera tracking rastreo general', 
+                condition: 'Paquete sin movimiento reciente (0-3 días).', conditionEn: 'Package with no recent movement (0-3 days).', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'NO', remark: 'General query, tracking shows movement within last 3 days.' }, 
+                scriptEn: "Great news! Your parcel has left our sorting center and is on its way to your local warehouse. Once it arrives, it will be delivered within 3 days. Thank you very much for your patience we truly appreciate it!", 
+                scriptEs: "¡Buenas noticias! Su paquete ha salido de nuestro centro de clasificación y se encuentra en camino a su almacén local. Una vez que llegue, será entregado dentro de los 3 días siguientes. Muchas gracias por su paciencia, lo apreciamos sinceramente.", 
+                scriptEmpEn: "Good news! Your package is moving normally. It should arrive at your local warehouse soon, and from there, it's just 3 days to your door. Thanks for waiting!", 
+                scriptEmpEs: "¡Buenas noticias! Su paquete se mueve con normalidad. Debería llegar pronto al almacén local, y de ahí son solo 3 días hasta su puerta. ¡Gracias por esperar!" 
+            },
+            { 
+                id: 'ntu-3-5-days', category: 'Tracking', refCode: '17E / 18E',
+                title: 'NTU (3-5 Días) - Suspected Loss', titleEn: 'NTU (3-5 Days) - Suspected Loss', keywords: '3 days 5 days tracking ntu lost', 
+                condition: 'Sin movimiento por 3-5 días. Se pide esperar hasta el día 5.', conditionEn: 'No movement for 3-5 days. Ask to wait until day 5.', 
+                crm: { type: 'No Tracking Update', detailed: 'No tracking update for 3-5 days(suspected loss)', complaint: 'NO', remark: 'No tracking update for 3-5 days. Advised customer to wait.' }, 
+                scriptEn: "We're sorry that your parcel didn't have a tracking update since [Date]. It may take up to 5 days to update. Please don't hesitate to reach out to us again if it is not updated in 5 days.", 
+                scriptEs: "Lamentamos que su paquete no haya tenido actualizaciones de rastreo desde [Fecha]. Puede tardar hasta 5 días en actualizarse. Por favor, no dude en contactarnos nuevamente si no se actualiza en 5 días.", 
+                scriptEmpEn: "I see the tracking hasn't updated recently, and I'm sorry about that. Sometimes there's a small lag in the system. It usually updates within 5 days. If you don't see any movement by then, please let us know immediately!", 
+                scriptEmpEs: "Veo que el rastreo no se ha actualizado recientemente, lo siento. A veces hay un pequeño retraso en el sistema. Usualmente se actualiza en 5 días. Si no ve movimiento para entonces, ¡avísenos de inmediato!" 
+            },
+            { 
+                id: 'in-warehouse', category: 'Tracking', refCode: '17E / 18E',
+                title: 'En Almacén (In Warehouse)', titleEn: 'In Warehouse', keywords: 'arrived warehouse local almacen', 
+                condition: 'El paquete ya llegó al almacén local.', conditionEn: 'Package arrived at local warehouse.', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'NO', remark: 'Package in warehouse.' }, 
+                scriptEn: "It has arrived in the local warehouse, it will be delivered within 3 days.", 
+                scriptEs: "Ha llegado al almacén local, será entregado dentro de los 3 días.", 
+                scriptEmpEn: "Great news! Your package has arrived at our local warehouse. Our drivers will pick it up and get it to your door within the next 3 days!", 
+                scriptEmpEs: "¡Buenas noticias! Su paquete ha llegado a nuestro almacén local. Nuestros conductores lo recogerán y se lo entregarán en los próximos 3 días." 
+            },
+            { 
+                id: 'en-route-warehouse', category: 'Tracking', refCode: '17E / 18E',
+                title: 'En Camino a Almacén', titleEn: 'En Route to Warehouse', keywords: 'sorting center sorting camino', 
+                condition: 'Paquete salió del Sorting Center pero no ha llegado al Almacén Local.', conditionEn: 'Package left Sorting Center but has not arrived at Local Warehouse.', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'NO', remark: 'En route to warehouse.' }, 
+                scriptEn: "Once it arrives in the local warehouse, it will be delivered within 3 days.", 
+                scriptEs: "Una vez que llegue al almacén local, será entregado dentro de los 3 días.", 
+                scriptEmpEn: "It's on its way! Once it lands at your local warehouse, we'll have it delivered to you within 3 days.", 
+                scriptEmpEs: "¡Va en camino! Una vez que aterrice en su almacén local, se lo entregaremos en un plazo de 3 días." 
+            },
+            { 
+                id: 'ofd-normal', category: 'Tracking', refCode: '17E / 18E',
+                title: 'Out for Delivery (0-2 días)', titleEn: 'Out for Delivery (0-2 days)', keywords: 'out for delivery reparto hoy ayer today yesterday', 
+                condition: 'En reparto hoy, ayer o hace 2 días.', conditionEn: 'Out for delivery today, yesterday or 2 days ago.', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'NO', remark: 'OFD 0-2 days.' }, 
+                scriptEn: "Your package is out for delivery today and will be delivered within 3 days/ 2 days/today.", 
+                scriptEs: "Su paquete ha salido a reparto hoy y será entregado en un plazo de 3 días / 2 días / hoy.", 
+                scriptEmpEn: "Exciting news! Your package is out for delivery. You should have it in your hands very soon (today or within the next couple of days)!", 
+                scriptEmpEs: "¡Noticias emocionantes! Su paquete está en reparto. ¡Debería tenerlo en sus manos muy pronto (hoy o en los próximos días)!" 
+            },
+            { 
+                id: 'ofd-delayed', category: 'Tracking', refCode: '17E / 18E',
+                title: 'Out for Delivery (> 3 días)', titleEn: 'Out for Delivery (> 3 days)', keywords: 'out for delivery delayed retraso 3 days 4 days', 
+                condition: 'En reparto hace 3 o 4 días (Posible problema). Reembolso al día 5.', conditionEn: 'Out for delivery 3 or 4 days ago (Potential issue). Refund on day 5.', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'YES', remark: 'OFD > 3 days. Advised wait till day 5.' }, 
+                scriptEn: "We're sorry for the inconvenience, and thank you for your patience. If It is still not delivered by the end of tmr (today), please call us back and we will start the investigation process right away. If you need further assistance, please don't hesitate to reach out to us again.", 
+                scriptEs: "Sentimos las molestias y agradecemos su paciencia. Si no se entrega al final de mañana (o hoy), por favor llámenos y comenzaremos el proceso de investigación de inmediato. Si necesita más ayuda, no dude en contactarnos.", 
+                scriptEmpEn: "I'm really sorry it hasn't arrived yet, and I appreciate your patience. If you don't see it by the end of tomorrow, please let us know so we can launch an immediate investigation for you.", 
+                scriptEmpEs: "Siento mucho que aún no haya llegado y agradezco su paciencia. Si no lo ve para el final de mañana, avísenos para que podamos iniciar una investigación inmediata por usted." 
+            },
+            { 
+                id: 'ntu-confirmed', category: 'Tracking', refCode: '17F / 18F',
+                title: 'NTU Crítico (> 7 días)', titleEn: 'Critical NTU (> 7 days)', keywords: 'confirmed loss perdida confirmada ntu reembolso refund 7 days', 
+                condition: 'Más de 7 días SIN ninguna actualización.', conditionEn: 'More than 7 days WITHOUT any tracking update.', 
+                crm: { type: 'No Tracking Update', detailed: 'No tracking update', complaint: 'NO', remark: 'No tracking update for over 7 days (confirmed loss)' }, 
+                scriptEn: "We sincerely regret that your package has not had any updates for more than 7 days. We kindly recommend that you contact your seller to request a refund. Please accept our deepest apologies for the inconvenience caused.", 
+                scriptEs: "Lamentamos sinceramente que su paquete no haya tenido actualizaciones por más de 7 días. Le recomendamos amablemente ponerse en contacto con su vendedor para solicitar un reembolso. Le ofrecemos nuestras más sinceras disculpas por los inconvenientes.", 
+                scriptEmpEn: "I'm really sorry about the delay. Please contact the seller to process your refund immediately.", 
+                scriptEmpEs: "Siento mucho el retraso. Por favor contacte al vendedor para procesar su reembolso de inmediato." 
+            },
+            { 
+                id: 'system-lost', category: 'Tracking', refCode: '123 / 124',
+                title: 'Perdido/Robado (Sistema)', titleEn: 'Lost/Robbed (System)', keywords: 'system lost robbed sistema perdido robado tracking', 
+                condition: 'El rastreo dice explícitamente "LOST" o "ROBBED".', conditionEn: 'Tracking explicitly says "LOST" or "ROBBED".', 
+                crm: { type: 'Parcel Status Request', detailed: 'LOST/ROBBED', complaint: 'NO', remark: 'Tracking confirms Lost/Robbed.' }, 
+                scriptEn: "We sincerely apologize for the issue with your package. Our investigation has determined that the package has been lost. Please contact the seller directly for a refund.", 
+                scriptEs: "Lamentamos sinceramente el problema con su paquete. Nuestra investigación determina que el paquete está perdido. Por favor contacte al vendedor directamente para un reembolso.", 
+                scriptEmpEn: "I'm afraid the system confirms your package is lost. I'm so sorry. Please contact the seller—they will issue your refund immediately.", 
+                scriptEmpEs: "Me temo que el sistema confirma que su paquete se perdió. Lo siento mucho. Por favor contacte al vendedor; ellos emitirán su reembolso de inmediato." 
+            },
+            { 
+                id: 'pre-transit', category: 'Tracking', refCode: '169 / 170',
+                title: 'Pre-Tránsito (GOFO no recibió)', titleEn: 'Pre-Transit (GOFO not received)', keywords: 'not received no recibido gofo seller vendedor', 
+                condition: 'El rastreo indica que GOFO aún no ha recibido el paquete del vendedor (Order info received but not parcel).', conditionEn: 'Tracking indicates GOFO has not received the parcel yet.', 
+                crm: { type: 'Parcel Status Request', detailed: 'General query', complaint: 'NO', remark: 'GOFO has not received this parcel. Status: Order Info Received.' }, 
+                scriptEn: "We sincerely apologize, but at this moment we have only received this order in our system. The package has not yet arrived at our facility. For more information, we kindly recommend contacting the seller directly.", 
+                scriptEs: "Lamentamos sinceramente que, por el momento, solo tenemos registrado este pedido en nuestro sistema. El paquete aún no ha llegado a nuestra instalación. Para más información, le recomendamos contactar directamente con el vendedor.", 
+                scriptEmpEn: "I've checked our records and it looks like we haven't received the parcel yet. I recommend contacting the seller directly!", 
+                scriptEmpEs: "He revisado nuestros registros y parece que aún no hemos recibido el paquete. Le sugiero contactar al vendedor directamente." 
+            },
+
+            // --- TIER 3: DNR & ISSUES ---
+            { 
+                id: 'dnr-saw-pod', category: 'Delivery', refCode: '139 / 140',
+                title: 'DNR: Cliente Vio POD', titleEn: 'DNR: Customer Saw POD', keywords: 'dnr saw pod wrong address not my house stolen robo lobby mailroom Delivery not receive no recibido', 
+                condition: 'Cliente vio el POD y dice que no es su dirección o fue robado del lobby.', conditionEn: 'Customer saw POD and says it\'s wrong address or stolen from lobby.', 
+                crm: { type: 'Delivered Not Received', detailed: 'First-time recipient inbound', complaint: 'YES', remark: 'Customer saw the POD and said it\'s not her/his address.' }, 
+                scriptEn: "We are sorry about that. We are going to submit a ticket to our investigation team. They will contact you about the investigation results in 5-10 business days.", 
+                scriptEs: "Lo sentimos mucho. Vamos a enviar un ticket a nuestro equipo de investigación. Ellos le contactarán con los resultados en 5-10 días hábiles.", 
+                scriptEmpEn: "I'm really sorry to hear this happened. I'm opening an investigation ticket right now. Our team will look into this and get back to you within 5-10 business days.", 
+                scriptEmpEs: "Siento mucho que esto haya pasado. Estoy abriendo un ticket de investigación ahora mismo. Nuestro equipo revisará esto y le contactará en 5-10 días hábiles." 
+            },
+            { 
+                id: 'dnr-cant-see-pod', category: 'Delivery', refCode: '139 / 140',
+                title: 'DNR: No Puede Ver POD', titleEn: 'DNR: Can\'t See POD', keywords: 'dnr cant see pod no access website Delivery not receive no recibido foto', 
+                condition: 'Cliente no tiene acceso o no sabe cómo ver el POD.', conditionEn: 'Customer cannot access or doesn\'t know how to see POD.', 
+                crm: { type: 'Delivered Not Received', detailed: 'First-time recipient inbound', complaint: 'YES', remark: 'Customer can\'t see POD. please email POD.' }, 
+                scriptEn: "No worries. We will submit a ticket to the investigation team. Then they will send you the Picture of Delivery within 3 business days.", 
+                scriptEs: "No se preocupe. Enviaremos un ticket al equipo de investigación para que le envíen la Foto de Entrega en 3 días hábiles.", 
+                scriptEmpEn: "No problem at all! I'll request the delivery photo for you. Our team will email it to you within 3 business days so you can check it.", 
+                scriptEmpEs: "¡No hay problema! Solicitaré la foto de entrega para usted. Nuestro equipo se la enviará por correo en 3 días hábiles para que pueda revisarla." 
+            },
+            { 
+                id: 'fake-pod', category: 'Delivery', refCode: '127 / 128',
+                title: 'Fake POD (Sistema)', titleEn: 'Fake POD (System)', keywords: 'fake pod', 
+                condition: 'Rastreo dice "Fake POD".', conditionEn: 'Tracking says "Fake POD".', 
+                crm: { type: 'Delivered Not Received', detailed: 'First-time recipient inbound', complaint: 'NO', remark: 'Tracking update shows the package is DNR with fake pod' }, 
+                scriptEn: "We regret to inform you that this delivery did not meet our standards. This package has already been confirmed refundable, you can contact the seller for a refund.", 
+                scriptEs: "Lamentamos informarle que esta entrega no cumplió con nuestros estándares. El paquete ya ha sido confirmado como reembolsable, puede contactar al vendedor para su reembolso.", 
+                scriptEmpEn: "I've checked the system and I'm very sorry to say the delivery didn't meet our standards. The good news is your package is already confirmed for a refund. Please contact the seller—they will process that for you right away!",
+                scriptEmpEs: "He revisado el sistema y siento mucho decirle que la entrega no cumplió nuestros estándares. La buena noticia es que su paquete ya está confirmado para reembolso. ¡Contacte al vendedor y ellos lo procesarán de inmediato!"
+            },
+            { 
+                id: 'damaged-system', category: 'Delivery', title: 'Paquete Dañado (Sistema)', titleEn: 'Damaged Package (System)', keywords: 'damaged roto dañado sistema', refCode: '125 / 126',
+                condition: 'Rastreo dice "Package Damaged". REEMBOLSO AUTOMÁTICO.', conditionEn: 'Tracking says "Package Damaged". AUTO REFUND.', 
+                crm: { type: 'Damaged/missing parcel', detailed: 'damage package with missing item', complaint: 'NO', remark: 'Tracking update shows the package is damaged' }, 
+                scriptEn: "We're sorry to inform you that the package received was reported as damaged. We are currently awaiting a response from the seller. You can also contact the seller directly.", 
+                scriptEs: "Lamentamos informarle que su paquete llegó al almacén dañado. Actualmente estamos a la espera de la respuesta del vendedor. También puede contactar al vendedor directamente.", 
+                scriptEmpEn: "I am so sorry to inform you that your package was reported as damaged during transit. We've already flagged it. Please contact the seller directly—they can arrange a replacement or refund for you immediately.", 
+                scriptEmpEs: "Siento mucho informarle que su paquete fue reportado como dañado durante el tránsito. Ya lo hemos marcado. Por favor contacte al vendedor directamente; ellos pueden gestionar un reemplazo o reembolso para usted de inmediato." 
+            },
+            { 
+                id: 'damage-late', category: 'Delivery', refCode: '125B / 126B',
+                title: 'Daño > 48h (Reporte Tardío)', titleEn: 'Damage > 48h (Late Report)', keywords: 'late damage 48 hours report',
+                condition: 'Cliente reporta daño más de 48h después de entrega.', conditionEn: 'Customer reports damage > 48h after delivery.',
+                crm: { type: 'Damaged/missing package', detailed: 'Over 48 hours after delivery', complaint: 'NO', remark: 'Over 48 hours. Customer reason: [Insert Reason].' }, 
+                scriptEn: "We completely understand your concern. According to our system, no damage was reported within 48 hours. However, may we kindly ask the reason for the delay? Once we receive this information, we can create a special case to assist you further.",
+                scriptEs: "Comprendemos completamente su preocupación. Según nuestro sistema, no se reportó daño en 48 horas. Sin embargo, ¿podría indicarnos la razón de la demora? Con esta información podremos crear un caso especial para asistirle.",
+                scriptEmpEn: "I totally understand how you feel. Unfortunately, since no damage was reported within 48 hours, this case is technically outside our supervision. However, I can submit a report for you. May I know the reason for the delay?",
+                scriptEmpEs: "Entiendo perfectamente cómo se siente. Desafortunadamente, al no haber reporte en 48 horas, el caso sale de nuestra supervisión estándar. Sin embargo, puedo ingresar el reporte por usted. ¿Podría indicarme la razón de la demora?"
+            },
+            {
+                id: 'damage-box-only', category: 'Delivery', refCode: '25D / 26D',
+                title: 'Solo Caja Dañada', titleEn: 'Damaged Box Only', keywords: 'box broken product intact caja rota producto bien',
+                condition: 'La caja está dañada pero el producto está intacto.', conditionEn: 'Box is damaged but product is intact.',
+                crm: { type: 'Damaged/missing package', detailed: 'Damaged pacakge, intact items', complaint: 'NO', remark: 'Damaged package, intact items.' },
+                scriptEn: "Thank you very much for your feedback. We will forward this to our investigation team to review with the driver. If something like this happens again, the necessary action will be taken.",
+                scriptEs: "Muchas gracias por sus comentarios. Remitiremos esto a nuestro equipo de investigación para revisarlo con el conductor. Si vuelve a ocurrir, tomaremos las medidas necesarias.",
+                scriptEmpEn: "I'm so glad to hear the products are okay! I will definitely forward this feedback to our team to improve handling. If this happens again, we will take stricter action.",
+                scriptEmpEs: "¡Me alegra mucho saber que los productos están bien! Definitivamente pasaré sus comentarios a nuestro equipo para mejorar el manejo. Si esto vuelve a pasar, tomaremos medidas más estrictas."
+            },
+            {
+                id: 'damage-missing-items', category: 'Delivery', refCode: '125E / 126E',
+                title: 'Daño/Faltante (< 48h)', titleEn: 'Damage/Missing (< 48h)', keywords: 'missing items parts broken faltante roto partes',
+                condition: 'Productos dañados o faltantes reportados a tiempo.', conditionEn: 'Damaged or missing products reported on time.',
+                crm: { type: 'Damaged/missing package', detailed: 'Damaged package with missing items', complaint: 'NO', remark: 'Less than 48 hours: [Description].' },
+                scriptEn: "For investigation purposes, may we kindly ask you to provide a detailed description of what happened? For example, which part of the product is damaged or missing.",
+                scriptEs: "Para fines de investigación, ¿podemos pedirle amablemente una descripción detallada de lo ocurrido? Por ejemplo, qué parte del producto está dañada o falta.",
+                scriptEmpEn: "I totally understand. Please provide the following evidence to cs@mail.gofoexpress.com: 1. Photos of outer box (6 sides). 2. Inner packaging. 3. Photo of damaged items. 4. Order confirmation.",
+                scriptEmpEs: "Entiendo perfectamente. Por favor envíe la siguiente evidencia a cs@mail.gofoexpress.com: 1. Fotos de la caja exterior (6 lados). 2. Empaque interior. 3. Foto de los artículos dañados. 4. Confirmación del pedido."
+            },
+            { 
+                id: 'refund-delivered', category: 'Delivery', title: 'Solicitud Reembolso (Entregado)', titleEn: 'Refund Request (Delivered)', keywords: 'reembolso refund delivered entregado', refCode: '107 / 108',
+                condition: 'Paquete entregado exitosamente pero cliente pide reembolso.', conditionEn: 'Package delivered successfully but customer wants refund.', 
+                crm: { type: 'Other Questions', detailed: 'General query', complaint: 'NO', remark: 'Package successfully delivered. Customer asking for refund.' }, 
+                scriptEn: "According to our system, your package has been marked as delivered. If you haven't received it, please check around your property.", 
+                scriptEs: "Según nuestro sistema, tu paquete ha sido entregado. Si no lo has recibido, te recomendamos revisar los alrededores de tu propiedad.", 
+                scriptEmpEn: "Great news! Our records show the package has been successfully delivered. Please double-check around your property. If you're looking for a refund or return, the seller will be the best person to help you with that process.", 
+                scriptEmpEs: "¡Buenas noticias! Nuestros registros muestran que el paquete fue entregado exitosamente. Por favor revise bien en su propiedad. Si busca un reembolso o devolución, el vendedor será la mejor persona para ayudarle con ese proceso." 
+            },
+
+            // --- TIER 4: COMPLAINTS & SECURITY ---
+            { 
+                id: 'courier-theft', category: 'Complaint', refCode: '143 / 144',
+                title: 'Robo (Con Evidencia)', titleEn: 'Theft (With Evidence)', keywords: 'robo theft video photo timestamp stolen', 
+                condition: 'Evidencia de robo.', conditionEn: 'Theft evidence.', 
+                crm: { type: 'Complaints About Couriers', detailed: 'Courier Theft', complaint: 'NO', remark: 'Video evidence. Send to email.' }, 
+                scriptEn: "Could you please provide us the video/photo evidence with a timestamp that can show the driver taking the package or taking something from the package to our email address cs@mail.gofoexpress.com along with tracking number? Once we receive your email with evidence, we will start the internal investigation right away. We will reply the investigation results to your email in 5-10 business days.",
+                scriptEs: "¿Podría enviarnos video/foto con marca de tiempo que muestre al conductor tomando el paquete a cs@mail.gofoexpress.com junto con su número de rastreo? Una vez recibamos su correo con la evidencia, iniciaremos la investigación interna de inmediato. Le enviaremos los resultados de la investigación a su correo en 5-10 días hábiles.",
+                scriptEmpEn: "I am so sorry to hear about this. We take these matters very seriously. Could you please share the video or photo evidence with us at cs@mail.gofoexpress.com along with your tracking number? As soon as we receive your email with evidence, we will start an immediate investigation and reply with the results in 5-10 business days.",
+                scriptEmpEs: "Siento mucho escuchar esto. Tomamos estos asuntos con mucha seriedad. ¿Podría compartirnos la evidencia en video o foto a cs@mail.gofoexpress.com junto con su número de rastreo? En cuanto recibamos su correo, iniciaremos una investigación inmediata y le enviaremos los resultados en 5-10 días hábiles."
+            },
+            { 
+                id: 'conflict-verbal-physical', category: 'Complaint', title: 'Conflicto Verbal/Físico', titleEn: 'Verbal/Physical Conflict', keywords: 'agresion fight pelea verbal physical', refCode: '143 / 144',
+                condition: 'Agresión física o verbal por parte del conductor.', conditionEn: 'Physical or verbal aggression by the driver.', 
+                crm: { type: 'Complaints About Couriers', detailed: 'Verbal/Physical Conflict', complaint: 'NO', remark: 'Customer reports conflict. Evidence requested.' }, 
+                scriptEn: "Could you please provide us the video/photo evidence with a timestamp (for physical case) or screenshot of the conversation with the driver (for verbal case) to cs@mail.gofoexpress.com along with tracking number? Once we receive your email with evidence, we will start the internal investigation right away. We will reply with the investigation results to your email in 5-10 business days.",
+                scriptEs: "¿Podría enviarnos video con marca de tiempo (caso físico) o captura de pantalla de la conversación (caso verbal) a cs@mail.gofoexpress.com junto con su número de rastreo? Una vez recibida la evidencia, iniciaremos la investigación de inmediato. Responderemos en 5-10 días hábiles.",
+                scriptEmpEn: "I am terrible sorry you had this experience. Your safety and respect are our priority. Please send us any video or screenshots to cs@mail.gofoexpress.com along with your tracking number so we can take immediate action and investigate this fully. We will reply with the results in 5-10 business days.",
+                scriptEmpEs: "Lamento profundamente que haya pasado por esto. Su seguridad y respeto son nuestra prioridad. Por favor envíenos cualquier video o captura a cs@mail.gofoexpress.com junto con su número de rastreo para que podamos tomar medidas inmediatas e investigar a fondo. Le responderemos con los resultados en 5-10 días hábiles."
+            },
+            { 
+                id: 'courier-harassment', category: 'Complaint', title: 'Acoso (Harassment)', titleEn: 'Harassment', keywords: 'acoso harassment telefono mensajes sms', refCode: '143 / 144',
+                condition: 'Conductor acosa por teléfono o mensajes.', conditionEn: 'Driver harasses via phone or messages.', 
+                crm: { type: 'Complaints About Couriers', detailed: 'Harassment', complaint: 'NO', remark: 'Harassment reported. Logs requested.' }, 
+                scriptEn: "Could you please provide us the screenshot/video of the conversation with the driver regarding timestamps and Call Logs/SMS received records to cs@mail.gofoexpress.com along with tracking number? Once we receive your email with evidence, we will start the internal investigation right away. We will reply the investigation results to your email in 5-10 business days.",
+                scriptEs: "¿Podría enviarnos capturas de pantalla de la conversación y registros de llamadas/SMS con hora visible a cs@mail.gofoexpress.com junto con su número de rastreo? Iniciaremos la investigación de inmediato. Responderemos en 5-10 días hábiles.",
+                scriptEmpEn: "I'm so sorry you're going through this; we do not tolerate harassment. Please send any screenshots or call logs to cs@mail.gofoexpress.com along with your tracking number. We will investigate this immediately to ensure it stops and reply with our findings in 5-10 business days.",
+                scriptEmpEs: "Siento mucho que esté pasando por esto; no toleramos el acoso. Por favor envíe cualquier captura o registro de llamadas a cs@mail.gofoexpress.com junto con su número de rastreo. Investigaremos esto de inmediato para asegurarnos de que se detenga y le responderemos con nuestros hallazgos en 5-10 días hábiles."
+            },
+            { 
+                id: 'property-damage', category: 'Complaint', title: 'Daños a Propiedad', titleEn: 'Property Damage', keywords: 'propiedad buzon jardin damage property', refCode: '143 / 144',
+                condition: 'Conductor dañó casa, buzón o jardín.', conditionEn: 'Driver damaged house, mailbox, or garden.', 
+                crm: { type: 'Complaints About Couriers', detailed: 'Property Damage', complaint: 'NO', remark: 'Property damage reported. Receipts requested.' }, 
+                scriptEn: "Could you please provide us the video/photo evidence with a timestamp that can show the improper behavior of the driver? Also, as well as the receipt of the damaged items or receipt/tag of the cost of repairing the damaged items to our email address cs@mail.gofoexpress.com along with tracking number? Once we receive your email with evidence, we will start the internal investigation right away. We will reply with the investigation results to your email in 5-10 business days.",
+                scriptEs: "¿Podría enviarnos video/foto que muestre la conducta inapropiada, junto con los recibos de los artículos dañados o costos de reparación a cs@mail.gofoexpress.com junto con su número de rastreo? Iniciaremos la investigación inmediatamente. Responderemos en 5-10 días hábiles.",
+                scriptEmpEn: "I apologize for the damage caused to your property. We want to make this right. Please send us photos/videos of the damage and any repair receipts to cs@mail.gofoexpress.com along with your tracking number. We will start an investigation and reply with the results in 5-10 business days.",
+                scriptEmpEs: "Le pido disculpas por el daño causado a su propiedad. Queremos arreglar esto. Por favor envíenos fotos o videos del daño y cualquier recibo de reparación a cs@mail.gofoexpress.com junto con su número de rastreo. Iniciaremos una investigación y le responderemos con los resultados en 5-10 días hábiles."
+            },
+            { 
+                id: 'other-cases', category: 'Complaint', title: 'Otros Casos (Conducta)', titleEn: 'Other Cases (Conduct)', keywords: 'other behavior conducta uniforme rude', refCode: '143 / 144',
+                condition: 'Cualquier otra conducta inapropiada sin categoría específica.', conditionEn: 'Any other inappropriate behavior.', 
+                crm: { type: 'Complaints About Couriers', detailed: 'Other', complaint: 'NO', remark: 'Other complaint. Evidence requested.' }, 
+                scriptEn: "Could you please send any evidence like video/screenshot with timestamp along with tracking number to cs@mail.gofoexpress.com to initiate the investigation process. Once we receive your email with evidence, we will start the internal investigation right away. We will reply the investigation results to your email in 5-10 business days.",
+                scriptEs: "¿Podría enviar cualquier evidencia como video/captura con marca de tiempo y su número de rastreo a cs@mail.gofoexpress.com para iniciar la investigación? Responderemos en 5-10 días hábiles.",
+                scriptEmpEn: "I understand your concern regarding the driver's conduct. We'd like to look into this. Could you please send any evidence you have to cs@mail.gofoexpress.com along with your tracking number? We will start an investigation and reply to you in 5-10 business days.",
+                scriptEmpEs: "Entiendo su preocupación sobre la conducta del conductor. Nos gustaría revisar esto. ¿Podría enviar cualquier evidencia que tenga a cs@mail.gofoexpress.com junto con su número de rastreo? Iniciaremos una investigación y le responderemos en 5-10 días hábiles."
+            },
+            { 
+                id: 'no-evidence', category: 'Complaint', title: 'Sin Evidencia (General)', titleEn: 'No Evidence (General)', keywords: 'no evidence sospecha suspicion', refCode: '143C / 144C',
+                condition: 'Cliente reporta problema con conductor pero NO tiene pruebas visuales.', conditionEn: 'Customer reports issue but has NO visual evidence.', 
+                crm: { type: 'Complaints About Couriers', detailed: '(Select Category)', complaint: 'NO', remark: 'Customer has NO evidence. Dispute rejected.' }, 
+                scriptEn: "We sincerely apologize for the experience you had with our delivery. However, without video/photo evidence, we cannot start the investigation process. This means that there is no evidence for dispute, and we stick to current job express scan.", 
+                scriptEs: "Nos disculpamos sinceramente. Sin embargo, sin evidencia visual, no podemos iniciar una investigación formal. Debemos apegarnos al escaneo de entrega actual.", 
+                scriptEmpEn: "I completely understand your frustration and I apologize for the experience. We really want to help, but strictly per our policy, we need visual evidence to open a formal investigation. Without it, we have to rely on the delivery scan status.", 
+                scriptEmpEs: "Entiendo completamente su frustración y me disculpo por la experiencia. Realmente queremos ayudar, pero estrictamente por nuestra política, necesitamos evidencia visual para abrir una investigación formal. Sin ella, debemos basarnos en el estado del escaneo de entrega." 
+            },
+            { 
+                id: 'police', category: 'Security', refCode: '175 / 176',
+                title: 'Escalada Policial', titleEn: 'Police Escalation', keywords: 'police policia', 
+                condition: 'Reporte policial.', conditionEn: 'Police report.', 
+                crm: { type: 'ESCALATION', detailed: 'Police', complaint: 'N/A', remark: 'POLICE INVOLVED' }, 
+                scriptEn: "We take this matter very seriously. To escalate this case immediately, please provide: Has a police report been filed?", 
+                scriptEs: "Tomamos esto muy en serio. Para escalar el caso, indique: ¿Hay reporte policial?",
+                scriptEmpEn: "Your safety is our top priority and we take this extremely seriously. To help us escalate this immediately to our security team, could you please share the Police Report Number or Officer's Name?",
+                scriptEmpEs: "Su seguridad es nuestra máxima prioridad y tomamos esto extremadamente en serio. Para ayudarnos a escalar esto de inmediato con nuestro equipo de seguridad, ¿podría compartirme el Número de Reporte Policial o el Nombre del Oficial?"
+            },
+
+            // --- TIER 5: MODIFICATIONS & ADMIN (UPDATED WITH NEW PDF & FLOWCHART CASES) ---
+            {
+                id: 'followup-pending', category: 'Admin', refCode: 'FLOW-01',
+                title: 'Seguimiento: En Proceso (Pending < 14 días)', titleEn: 'Follow-up: Pending (< 14 days)', keywords: 'follow up pending investigation investigation 5-10 days',
+                condition: 'Cliente consulta por ticket previo "Pending Processed" (menos de 14 días). Según US CS Works.', conditionEn: 'Customer asks about previous "Pending Processed" ticket (< 14 days). According to US CS Works.',
+                crm: { type: 'SAME AS PREVIOUS', detailed: 'SAME AS PREVIOUS', complaint: 'YES', remark: 'No results from previous record. Customer will contact seller for refunds if there is no reply within 14 business days (x means first inbound is x days ago).' },
+                scriptEn: "We are sorry that the previous ticket for this package is still under investigation. Our investigation team will get back to you within 5-10 business days.",
+                scriptEs: "Lamentamos que el ticket anterior siga bajo investigación. Nuestro equipo le responderá en 5-10 días hábiles.",
+                scriptEmpEn: "I know waiting is tough, but your case is still being actively investigated. Our team needs a bit more time and will email you with an update within 5-10 business days.",
+                scriptEmpEs: "Sé que esperar es difícil, pero su caso sigue bajo investigación activa. Nuestro equipo necesita un poco más de tiempo y le enviará una actualización por correo en 5-10 días hábiles."
+            },
+            {
+                id: 'followup-delayed', category: 'Admin', refCode: 'FLOW-02',
+                title: 'Seguimiento: Demora (> 14 días)', titleEn: 'Follow-up: Delayed (> 14 days)', keywords: 'follow up delayed 14 days refund late investigation',
+                condition: 'Cliente consulta por ticket previo "Pending Processed" (MÁS de 14 días). Según US CS Works.', conditionEn: 'Customer asks about previous "Pending Processed" ticket (> 14 days). According to US CS Works.',
+                crm: { type: 'SAME AS PREVIOUS', detailed: 'SAME AS PREVIOUS', complaint: 'YES', remark: 'No results from previous ticket for over 14 days. Already let customer contact seller for refunds.' },
+                scriptEn: "We are sorry that the investigation process took longer than usual. You can now contact seller for a refund. We apologize again for the inconvenience.",
+                scriptEs: "Lamentamos que la investigación haya tardado más de lo habitual. Ya puede contactar al vendedor para su reembolso. Nos disculpamos nuevamente.",
+                scriptEmpEn: "I am so sorry this has taken so long. Since it's been over 14 days without a resolution, please go ahead and contact the seller for a full refund immediately.",
+                scriptEmpEs: "Siento mucho que esto haya tardado tanto. Como han pasado más de 14 días sin resolución, por favor contacte al vendedor para su reembolso completo de inmediato."
+            },
+            {
+                id: 'followup-inprogress', category: 'Admin', refCode: 'FLOW-03',
+                title: 'Seguimiento: En Progreso (In Progress)', titleEn: 'Follow-up: In Progress', keywords: 'follow up in progress investigation',
+                condition: 'Ticket previo en estado "In Progress". Según US CS Works.', conditionEn: 'Previous ticket status "In Progress". According to US CS Works.',
+                crm: { 
+                    type: 'SAME AS PREVIOUS', detailed: 'SAME AS PREVIOUS', complaint: 'YES', remark: 'No Template; Let Inv team know if there\'s update from the customer',
+                    templates: [
+                        { label: 'Contacto Cliente', tag: 'We have contacted the customer for verification. Please let recipient check email and wait for the verification result.' },
+                        { label: 'Involucrar DSP', tag: 'We need to involve the DSP (Delivery Service Provider) to investigate; results will be provided within 5-14 days.' }
+                    ]
+                },
+                scriptEn: "Provide information based on the remarks from investigation team. Let customers know if inv team need something.",
+                scriptEs: "Proporcione información basada en los comentarios del equipo de investigación. Informe al cliente si se requiere algo más.",
+                scriptEmpEn: "I've checked your case and it's currently in progress. [Check Remarks for details]. I'll update the team that you called.",
+                scriptEmpEs: "He revisado su caso y está en progreso. [Revise comentarios para detalles]. Informaré al equipo que usted llamó."
+            },
+            {
+                id: 'return-duplicate', category: 'Return', refCode: 'GEN-01',
+                title: 'Retorno: Tracking Duplicado', titleEn: 'Return: Duplicate Tracking', keywords: 'duplicate tracking return seller',
+                condition: 'Devolución por número de rastreo duplicado. Según US CS Works.', conditionEn: 'Return due to duplicate tracking number. According to US CS Works.',
+                crm: { type: 'Parcel Status Request', detailed: 'Package returned to seller', complaint: 'NO', remark: 'Duplicate tracking number. Returned to sender.' },
+                scriptEn: "The package will be returned to seller due to a duplicate tracking number. Please ask seller for help.",
+                scriptEs: "El paquete será devuelto al vendedor debido a un número de rastreo duplicado. Por favor contacte al vendedor.",
+                scriptEmpEn: "It looks like there was a duplicate tracking error. The package is heading back to the seller, so please contact them for a quick resolution.",
+                scriptEmpEs: "Parece que hubo un error de rastreo duplicado. El paquete está regresando al vendedor, así que por favor contáctelos para una solución rápida."
+            },
+            {
+                id: 'return-size', category: 'Return', refCode: 'GEN-02',
+                title: 'Retorno: Excede Tamaño', titleEn: 'Return: Exceeds Size Limit', keywords: 'size limit large return',
+                condition: 'Paquete excede límite de tamaño. No entregable. Según US CS Works.', conditionEn: 'Package exceeds size limit. Not deliverable. According to US CS Works.',
+                crm: { type: 'Parcel Status Request', detailed: 'Package returned to seller', complaint: 'NO', remark: 'Exceeds size limit. Returned to sender.' },
+                scriptEn: "The package will be returned to seller because exceeding the size limit. Please ask seller for help.",
+                scriptEs: "El paquete será devuelto al vendedor por exceder el límite de tamaño. Por favor contacte al vendedor.",
+                scriptEmpEn: "Unfortunately, the package is too large for our delivery service and is being returned. Please reach out to the seller for assistance.",
+                scriptEmpEs: "Desafortunadamente, el paquete es demasiado grande para nuestro servicio y está siendo devuelto. Por favor contacte al vendedor para recibir ayuda."
+            },
+            {
+                id: 'return-forcemajeure', category: 'Return', refCode: 'GEN-03',
+                title: 'Retorno: Daño (Fuerza Mayor)', titleEn: 'Return: Damage (Force Majeure)', keywords: 'damage force majeure return outer packaging',
+                condition: 'Embalaje dañado por fuerza mayor. Retorno. Según US CS Works.', conditionEn: 'Packaging damaged by force majeure. Return. According to US CS Works.',
+                crm: { type: 'Damaged/missing package', detailed: 'Damaged package', complaint: 'NO', remark: 'Force majeure damage. Returned.' },
+                scriptEn: "I am sorry that the package was confirmed damage. Please ask seller for refund.",
+                scriptEs: "Lamento informar que se confirmó el daño del paquete. Por favor solicite reembolso al vendedor.",
+                scriptEmpEn: "I am so sorry to hear this, but the package was damaged due to unforeseen circumstances. Please contact the seller immediately for your refund.",
+                scriptEmpEs: "Siento mucho escuchar esto, pero el paquete se dañó debido a circunstancias imprevistas. Por favor contacte al vendedor inmediatamente para su reembolso."
+            },
+            {
+                id: 'redel-wrong-warehouse', category: 'Delivery', refCode: 'RED-02',
+                title: 'Reenvío: Almacén Incorrecto', titleEn: 'Redelivery: Wrong Warehouse', keywords: 'wrong warehouse 5-7 days redelivery',
+                condition: 'Entró a almacén incorrecto. Reenvío tomará 5-7 días. Según US CS Works.', conditionEn: 'Entered wrong warehouse. Redelivery takes 5-7 days. According to US CS Works.',
+                crm: { type: 'Redelivery', detailed: 'Verified failure reason, redelivery can be arranged', complaint: 'NO', remark: 'Wrong warehouse. Rerouting (5-7 days).' },
+                scriptEn: "The package has entered the wrong warehouse and needs to be returned to the correct corresponding warehouse before it can be delivered. Please inform the customer that it will take 5-7 days to resend it.",
+                scriptEs: "El paquete entró en el almacén equivocado y debe ser redirigido. Tomará 5-7 días para reenviarlo.",
+                scriptEmpEn: "It looks like the package went to the wrong warehouse by mistake. We're rerouting it now, but it will take about 5-7 days to get to you. Thanks for your patience!",
+                scriptEmpEs: "Parece que el paquete fue al almacén equivocado por error. Lo estamos redirigiendo, pero tomará unos 5-7 días en llegar. ¡Gracias por su paciencia!"
+            },
+            { 
+                id: 'modify-during', category: 'Modification', refCode: '131B / 132B',
+                title: 'Modificar Info (En Reparto)', titleEn: 'Modify Info (Out for Delivery)', keywords: 'modify change address changing during delivery out for delivery modificar', 
+                condition: 'Paquete en reparto. ADVERTENCIA: Puede que no se actualice a tiempo. NO USPS/MILITAR.', 
+                conditionEn: 'Package out for delivery. WARNING: Might not update in time. NO USPS/MILITARY.', 
+                crm: { type: 'Modify Info', detailed: 'Changing the shipping information during delivery', complaint: 'NO', remark: '//Describe what\'s the update (e.g., Customer added gate code)' }, 
+                scriptEn: "The package is currently out for delivery. We can leave a note for the driver, however, the package may still go to the original address. Do you still want to modify it?", 
+                scriptEs: "El paquete está actualmente en reparto. Podemos dejar una nota para el conductor, sin embargo, es posible que el paquete aún vaya a la dirección original. ¿Aún desea modificarlo?", 
+                scriptEmpEn: "I see the package is already out for delivery! I can certainly leave a note for the driver, but just a heads-up: it might still go to the original address since it's already on the way. Do you still want to proceed with the change?", 
+                scriptEmpEs: "Veo que el paquete ya está en reparto. Puedo dejar una nota para el conductor, pero tenga en cuenta que podría entregarse en la dirección original ya que está en camino. ¿Desea que proceda con el cambio?" 
+            },
+             { 
+                id: 'modify-before', category: 'Modification', refCode: '131 / 132',
+                title: 'Modificar Info (Antes Entrega)', titleEn: 'Modify Info (Before Delivery)', keywords: 'modify change address cambiar direccion antes', 
+                condition: 'Cliente quiere cambiar dirección ANTES del intento de entrega.', conditionEn: 'Customer wants to change address BEFORE delivery attempt.', 
+                crm: { type: 'Modify Info', detailed: 'Change of shipping information before delivery', complaint: 'NO', remark: 'Verified address. Updated for delivery.' }, 
+                scriptEn: "We have updated the info. Once it's in our warehouse, we will deliver it within 3 days.", 
+                scriptEs: "Hemos actualizado la información. Una vez llegue a nuestro almacén, lo entregaremos en 3 días.", 
+                scriptEmpEn: "I've successfully updated your information! Once the package arrives at our warehouse, we'll get it to you within 3 days. Thanks for letting us know!", 
+                scriptEmpEs: "¡He actualizado su información exitosamente! Una vez que el paquete llegue a nuestro almacén, se lo entregaremos en 3 días. ¡Gracias por avisarnos!" 
+            },
+            { 
+                id: 'modify-restricted', category: 'Return',
+                title: 'Modificar a Dir. Restringida', titleEn: 'Modify to Restricted Addr', keywords: 'modify restricted usps military pmb po box state', 
+                condition: 'Cliente quiere cambiar a dirección prohibida (USPS/Militar/Otro Estado).', 
+                conditionEn: 'Customer wants to change to restricted address (USPS/Military/Other State).', 
+                crm: { type: 'Return to Seller', detailed: 'Undeliverable address with no alternative', complaint: 'YES', remark: 'Customer\'s address is USPS/Military/PO BOX/... and no other address' }, 
+                scriptEn: "We are sorry that we are not allowed to deliver the package to this address. We will stop delivering the package and return to seller.", 
+                scriptEs: "Lo sentimos, no tenemos permitido entregar en este tipo de dirección. Detendremos la entrega y devolveremos el paquete al vendedor.",
+                scriptEmpEn: "I'd love to update that for you, but unfortunately, our couriers don't have access to deliver to those addresses. We'll have to return it to the seller so they can help you with a new shipment.", 
+                scriptEmpEs: "Me encantaría actualizar eso, pero lamentablemente nuestros conductores no tienen acceso a esas direcciones. Tendremos que devolverlo al vendedor para que le ayuden con un nuevo envío." 
+            },
+            { 
+                id: 'proof-of-loss-general', category: 'Admin', refCode: 'POL-01',
+                title: 'Proof of Loss: Compensación Previa', titleEn: 'Proof of Loss: Comp Needed', keywords: 'proof of loss compensation certificado perdida insurance', 
+                condition: 'Ticket previo mostró necesidad de compensación. Cliente pide documento.', conditionEn: 'Previous ticket showed need for compensation. Customer requests document.', 
+                crm: { type: 'Request proof of lost', detailed: 'Lost/Robbed', complaint: 'YES', remark: 'Previous ticket has showed need compensation. Customer request proof of lost.' }, 
+                scriptEn: "We will request the proof of lost from inv team. They will send out within 3 business days. May I have your email address?", 
+                scriptEs: "Solicitaremos el certificado de pérdida al equipo de inventario. Se enviará en 3 días hábiles. ¿Me podría dar su correo?", 
+                scriptEmpEn: "I can certainly help with that. I'll request the official Proof of Loss document from our inventory team, and they'll email it to you within 3 business days.", 
+                scriptEmpEs: "Con gusto le ayudo. Solicitaré el Certificado de Pérdida oficial a nuestro equipo de inventario y se lo enviarán por correo en 3 días hábiles." 
+            },
+            { 
+                id: 'proof-of-loss-ntu', category: 'Admin', refCode: 'POL-02',
+                title: 'Proof of Loss: NTU (Sin Rastreo)', titleEn: 'Proof of Loss: NTU (No Tracking)', keywords: 'proof of loss ntu no tracking update', 
+                condition: 'Claimable NTU (Sin actualizaciones). Cliente solicita documento.', conditionEn: 'Claimable NTU (No updates). Customer requests document.', 
+                crm: { type: 'Proof of lost', detailed: 'no tracking updated', complaint: 'YES', remark: 'Claimable NTU. Customer request proof of loss.' }, 
+                scriptEn: "We will request the proof of lost from inv team. They will send out within 3 business days. May I have your email address?", 
+                scriptEs: "Solicitaremos el certificado de pérdida al equipo de inventario. Se enviará en 3 días hábiles. ¿Me podría dar su correo?", 
+                scriptEmpEn: "Since there have been no tracking updates, I'll request the Proof of Loss document for you. Expect it in your email within 3 business days.", 
+                scriptEmpEs: "Dado que no ha habido actualizaciones de rastreo, solicitaré el documento de Certificado de Pérdida para usted. Espérelo en su correo en 3 días hábiles." 
+            },
+
+            // --- TIER 6: EXCEPTIONS & RETURNS ---
+            { 
+                id: 'off-shelves-return', category: 'Return', refCode: '167 / 168',
+                title: 'Off-Shelves / Return to Load', titleEn: 'Off-Shelves / Return to Load', keywords: 'off-shelves return to load 退回客户 psr no redelivery returned to customer', 
+                condition: 'Estado: "off-shelves for 退回客户", "return to load" o "Returned to customer".', conditionEn: 'Status: "off-shelves for 退回客户", "return to load" or "Returned to customer".',
+                crm: { type: 'Parcel Status Request', detailed: 'Return to seller', complaint: 'DYNAMIC', remark: 'There have been {n} failed delivery attempts. Package status is off-shelves/return to load. Cannot request redelivery.' }, 
+                scriptEn: "The package is already in the return process to the seller and redelivery cannot be requested. Please contact the seller.", 
+                scriptEs: "El paquete ya está en proceso de devolución al vendedor y no es posible solicitar un reenvío. Por favor contacte al vendedor.",
+                scriptEmpEn: "I see that the package is already making its way back to the seller, so we can't reschedule delivery at this point. Please contact the seller directly so they can help you arrange a new shipment or refund.",
+                scriptEmpEs: "Veo que el paquete ya está en camino de regreso al vendedor, por lo que no podemos reprogramar la entrega ahora. Por favor contacte al vendedor para que le ayuden con un nuevo envío o reembolso."
+            },
+            { 
+                id: 'return-customer', category: 'Tracking', refCode: '121 / 122',
+                title: 'Return to Customer (Normal)', titleEn: 'Return to Customer (Normal)', keywords: 'vendedor seller origen devuelto return', 
+                condition: 'Tracking dice "Return to sender\'s warehouse". Retorno normal tras varios intentos.', conditionEn: 'Tracking says "Return to sender\'s warehouse". Normal return after attempts.',
+                crm: { type: 'Parcel Status Request', detailed: 'Package returned to seller', complaint: 'NO', remark: 'Package has been returned to our sender\'s warehouse.' }, 
+                scriptEn: "Unfortunately, the delivery attempts for your parcel were unsuccessful, and it has been returned to the seller. Please contact the seller directly for more information.", 
+                scriptEs: "Lamentablemente, los intentos de entrega de su paquete no tuvieron éxito y ha sido devuelto al vendedor. Por favor, comuníquese directamente con el vendedor para más información.", 
+                scriptEmpEn: "It appears this package has been returned to the sender's warehouse. To get this resolved quickly, please reach out to the seller—they can assist you with the next steps.",
+                scriptEmpEs: "Parece que el paquete ha sido devuelto al almacén del remitente. Para resolver esto rápido, le sugiero contactar al vendedor, quien podrá ayudarle con los siguientes pasos."
+            },
+            { 
+                id: 'return-error', category: 'Tracking', refCode: '121B / 122B',
+                title: 'Return to Customer (ERROR)', titleEn: 'Return to Customer (ERROR)', keywords: 'return error 1 attempt intento fallido', 
+                condition: 'Retorno al vendedor pero SOLO hubo 1 intento de entrega (Error Operativo).', conditionEn: 'Return to seller but ONLY 1 delivery attempt made (Operational Error).',
+                crm: { type: 'Parcel Status Request', detailed: 'Package returned to seller', complaint: 'YES', remark: 'Package returned to seller, only one failed delivery attempt' }, 
+                scriptEn: "We apologize. The package was returned prematurely. Please contact the seller.", 
+                scriptEs: "Nos disculpamos. El paquete fue devuelto prematuramente. Por favor contacte al vendedor.",
+                scriptEmpEn: "I am so sorry, it looks like we returned your package too early by mistake. Please contact the seller so they can resend it or refund you.", 
+                scriptEmpEs: "Lo siento muchísimo, parece que devolvimos su paquete antes de tiempo por error. Por favor contacte al vendedor para que puedan reenviarlo o reembolsarle." 
+            },
+            { 
+                id: 'recipient-refusal', category: 'Return',
+                title: 'Rechazo por Cliente (< 1 mes)', titleEn: 'Client Refusal (< 1 month)', keywords: 'refusal rechazo no quiere', 
+                condition: 'Cliente rechaza el paquete (menos de 1 mes).', conditionEn: 'Customer refuses package (less than 1 month).', 
+                crm: { type: 'Return to Seller', detailed: 'Recipient refusal (Recipient\'s reason)', complaint: 'YES', remark: 'Customer refuses delivery. TL to add to Interception Management. Reason: [Explain]' }, 
+                scriptEn: "We apologize for the inconvenience. We will create a work order to stop the delivery and have the package returned.", 
+                scriptEs: "Nos disculpamos por los inconvenientes. Crearemos una orden para detener la entrega y devolver el paquete.", 
+                scriptEmpEn: "I apologize for the inconvenience this has caused. As you requested, I'll put a stop to the delivery immediately and send the package back. You can reach out to the seller for your refund now.", 
+                scriptEmpEs: "Me disculpo por los inconvenientes causados. Como solicitó, detendré la entrega de inmediato y devolveré el paquete. Ya puede contactar al vendedor para su reembolso." 
+            },
+            { 
+                id: 'month-rule', category: 'Return',
+                title: 'Regla del Mes (>30 días)', titleEn: 'Month Rule (>30 days)', keywords: 'demora excesiva 30 dias mes', 
+                condition: 'Más de 30 días desde el primer scan.', conditionEn: 'More than 30 days since first scan.', 
+                crm: { type: 'Return to Seller', detailed: 'Recipient refusal (exceeding the delivery time limit)', complaint: 'YES', remark: 'Customer wants return due to >30 days delay. TL to add to Interception Management.' }, 
+                scriptEn: "We sincerely apologize for the inconvenience and the delay. We will create a work order to stop the delivery.", 
+                scriptEs: "Nos disculpamos por la demora. Crearemos una orden para detener la entrega y devolver el paquete.", 
+                scriptEmpEn: "I am incredibly sorry for the excessive delay with your package. This isn't the experience we want for you. I've issued a return order so you don't have to wait any longer. Please contact the seller for your full refund.", 
+                scriptEmpEs: "Siento muchísimo la demora excesiva con su paquete. Esta no es la experiencia que queremos para usted. He emitido una orden de devolución para que no espere más. Por favor contacte al vendedor para su reembolso completo." 
+            },
+            { 
+                id: 'undeliverable', category: 'Return', refCode: '17D / 18D',
+                title: 'Dirección No Entregable', titleEn: 'Undeliverable Address', keywords: 'military po box', 
+                condition: 'Dirección Militar/PO Box.', conditionEn: 'Military/PO Box Address.', 
+                crm: { type: 'Return to Seller', detailed: 'Undeliverable address', complaint: 'YES', remark: 'BLOCK USPS/Military address: [Address] - [Tracking]. @TL' }, 
+                scriptEn: "We are sorry that we are not allowed to deliver the package to this address. We will stop delivering the package and return to seller.", 
+                scriptEs: "No estamos autorizados a entregar en esta dirección. Detendremos la entrega y devolveremos el paquete al vendedor.",
+                scriptEmpEn: "I'm sorry, but we are unable to deliver to Military or PO Box addresses directly. To make sure you get your refund, we are returning the package to the seller. Please contact them for the next steps.",
+                scriptEmpEs: "Lo siento, pero no podemos entregar directamente en direcciones Militares o Apartados Postales. Para asegurar que reciba su reembolso, estamos devolviendo el paquete al vendedor. Por favor contáctelos para los siguientes pasos."
+            }
+        ];
+
+        let currentFlowId = null;
+        let apiKey = localStorage.getItem('gemini_api_key') || '';
+
+        // --- CORE FUNCTIONS ---
+
+        function setLanguage(lang) {
+            const body = document.body;
+            const btnBi = document.getElementById('btnBi');
+            const btnEn = document.getElementById('btnEn');
+            
+            if (lang === 'english') {
+                body.classList.add('english-mode');
+                btnEn.classList.replace('text-gray-500', 'text-gray-900'); btnEn.classList.replace('bg-transparent', 'bg-white'); btnEn.classList.add('shadow-sm');
+                btnBi.classList.replace('bg-white', 'bg-transparent'); btnBi.classList.remove('shadow-sm'); btnBi.classList.replace('text-gray-900', 'text-gray-500');
+            } else {
+                body.classList.remove('english-mode');
+                btnBi.classList.replace('text-gray-500', 'text-gray-900'); btnBi.classList.replace('bg-transparent', 'bg-white'); btnBi.classList.add('shadow-sm');
+                btnEn.classList.replace('bg-white', 'bg-transparent'); btnEn.classList.remove('shadow-sm'); btnEn.classList.replace('text-gray-900', 'text-gray-500');
+            }
+        }
+
+        function escapeHtml(text) {
+            if (!text) return text;
+            return text.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;").replace(/'/g, "&#039;");
+        }
+
+        // Categoría Colores (Re-inyectados en render)
+        const catColors = { 
+            'Tracking': 'cat-tracking', 
+            'Delivery': 'cat-delivery', 
+            'Return': 'cat-return', 
+            'Complaint': 'cat-complaint', 
+            'Security': 'cat-security', 
+            'Modification': 'cat-modification', 
+            'Admin': 'cat-admin', 
+            'General': 'cat-general' 
+        };
+        
+        const catBadgeColors = { 
+            'Tracking': 'bg-blue-100 text-blue-800', 
+            'Delivery': 'bg-green-100 text-green-800', 
+            'Return': 'bg-orange-100 text-orange-800', 
+            'Complaint': 'bg-red-100 text-red-800', 
+            'Security': 'bg-gray-800 text-white', 
+            'Modification': 'bg-purple-100 text-purple-800', 
+            'Admin': 'bg-indigo-100 text-indigo-800', 
+            'General': 'bg-gray-100 text-gray-800' 
+        };
+
+        function renderCards(filterText = '', categoryFilter = 'all') {
+            const grid = document.getElementById('cardsGrid');
+            const emptyState = document.getElementById('emptyState');
+            grid.innerHTML = ''; 
+            let hasResults = false; 
+            const lowerFilter = filterText.toLowerCase();
+            
+            flows.forEach(flow => {
+                const searchableText = `${flow.title} ${flow.titleEn} ${flow.keywords} ${flow.condition} ${flow.conditionEn}`.toLowerCase();
+                const matchesSearch = searchableText.includes(lowerFilter);
+                const matchesCategory = categoryFilter === 'all' || flow.category === categoryFilter;
+                
+                if (matchesSearch && matchesCategory) {
+                    hasResults = true;
+                    const card = document.createElement('div');
+                    // Use catColors map for border class
+                    card.className = `bg-white rounded-xl shadow-sm border border-gray-200 p-5 cursor-pointer card-hover transition-all relative overflow-hidden ${catColors[flow.category] || 'cat-general'}`;
+                    card.onclick = () => openModal(flow);
+                    
+                    const copyBtn = document.createElement('button'); 
+                    copyBtn.innerHTML = '<i data-lucide="copy" class="w-4 h-4"></i>';
+                    copyBtn.className = "absolute top-4 right-4 p-2 rounded-full hover:bg-gray-100 text-gray-400 hover:text-indigo-600 transition z-10 bg-white border border-gray-100 shadow-sm es-content";
+                    copyBtn.title = "Copiar Script Español (Empático)";
+                    copyBtn.onclick = (e) => { 
+                        e.stopPropagation(); 
+                        copyToClipboard(flow.scriptEmpEs); 
+                    };
+                    
+                    const badgeClass = catBadgeColors[flow.category] || 'bg-gray-100 text-gray-800';
+
+                    card.innerHTML = `
+                        <div class="flex justify-between items-start mb-3">
+                            <div><span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-[10px] font-bold uppercase tracking-wider ${badgeClass}">${flow.category}</span></div>
+                        </div>
+                        <h3 class="text-lg font-bold text-gray-900 mb-2 pr-8 leading-tight">
+                            <span class="lang-es">${flow.title}</span><span class="lang-en-only">${flow.titleEn}</span>
+                        </h3>
+                        <p class="text-sm text-gray-500 line-clamp-3 mb-4">
+                            <span class="lang-es">${flow.condition}</span><span class="lang-en-only">${flow.conditionEn}</span>
+                        </p>
+                        <div class="mt-auto pt-3 border-t border-gray-100 flex items-center justify-between">
+                            <div class="flex items-center text-xs font-medium text-gray-400 gap-1.5">
+                                <i data-lucide="settings-2" class="w-3.5 h-3.5"></i>
+                                <span class="lang-es">Config CRM</span><span class="lang-en-only">CRM Config</span>
+                            </div>
+                            <i data-lucide="arrow-right" class="w-4 h-4 text-gray-300 -ml-1"></i>
+                        </div>
+                    `;
+                    card.appendChild(copyBtn); 
+                    grid.appendChild(card);
+                }
+            });
+            
+            if (!hasResults) emptyState.classList.remove('hidden'); 
+            else emptyState.classList.add('hidden');
+            
+            if (window.lucide) lucide.createIcons();
+        }
+
+        function filterCategory(category) {
+            document.querySelectorAll('button[data-filter]').forEach(btn => {
+                if(btn.dataset.filter === category) {
+                    btn.className = "flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-indigo-600 text-white shadow-md transform scale-105 transition active-filter";
+                } else {
+                    btn.className = "flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-semibold bg-white border border-gray-200 text-gray-700 hover:bg-gray-100 transition shadow-sm";
+                }
+            });
+            renderCards(document.getElementById('searchInput').value, category);
+        }
+
+        function resetSearch() { 
+            document.getElementById('searchInput').value = ''; 
+            filterCategory('all'); 
+        }
+
+        document.getElementById('searchInput').addEventListener('input', (e) => { 
+            renderCards(e.target.value, document.querySelector('.active-filter')?.dataset.filter || 'all'); 
+        });
+
+        // --- MODAL LOGIC ---
+        const modal = document.getElementById('detailModal');
+        let currentScripts = {};
+        
+        function openModal(flow) {
+            currentFlowId = flow.id;
+            currentScripts = { en: flow.scriptEn, es: flow.scriptEs, empEn: flow.scriptEmpEn, empEs: flow.scriptEmpEs };
+            
+            document.getElementById('modalTitle').innerHTML = `<span class="lang-es">${flow.title}</span><span class="lang-en-only">${flow.titleEn}</span>`;
+            document.getElementById('modalTag').innerText = flow.category;
+            
+            document.getElementById('modalCondition').innerHTML = `<span class="lang-es">${flow.condition}</span><span class="lang-en-only">${flow.conditionEn}</span>`;
+            document.getElementById('modalType').innerText = flow.crm.type;
+            document.getElementById('modalDetailed').innerText = flow.crm.detailed;
+            
+            const compEl = document.getElementById('modalComplaint');
+            const attemptsContainer = document.getElementById('attemptsInputContainer');
+            
+            if (flow.crm.complaint === 'DYNAMIC') {
+                 attemptsContainer.classList.remove('hidden');
+                 document.getElementById('deliveryAttemptsInput').value = 0;
+                 updateDynamicFlow(); 
+            } else {
+                attemptsContainer.classList.add('hidden');
+                if (flow.crm.complaint === 'YES') compEl.innerHTML = '<span class="text-red-600 font-bold">YES</span>';
+                else if (flow.crm.complaint === 'N/A') compEl.innerHTML = '<span class="text-gray-600">N/A</span>';
+                else if (flow.crm.complaint.startsWith('DEP')) compEl.innerHTML = '<span class="text-orange-600 font-bold">DEP</span>';
+                else compEl.innerHTML = '<span class="text-green-600 font-bold">NO</span>';
+            }
+
+            const simpleBlock = document.getElementById('simpleRemarkBlock');
+            const templatesBlock = document.getElementById('templatesBlock');
+            const templatesList = document.getElementById('templatesList');
+            const remarkEl = document.getElementById('modalRemark');
+
+            if (flow.crm.templates) {
+                simpleBlock.classList.add('hidden');
+                templatesBlock.classList.remove('hidden');
+                templatesList.innerHTML = '';
+                flow.crm.templates.forEach(temp => {
+                    const btn = document.createElement('button');
+                    btn.className = "w-full text-left p-3 rounded-lg border border-gray-200 transition bg-white hover:border-indigo-300 hover:shadow-sm group flex justify-between items-start gap-3 mb-2";
+                    const safeTag = escapeHtml(temp.tag);
+                    btn.innerHTML = `
+                        <div class="flex-1 min-w-0">
+                            <span class="block text-xs font-bold text-gray-900 mb-1">${temp.label}</span>
+                            <span class="block text-xs text-indigo-600 font-mono bg-indigo-50 px-2 py-1.5 rounded break-all whitespace-normal border border-indigo-100">${safeTag}</span>
+                        </div>
+                        <div class="p-1.5 bg-gray-50 rounded-full group-hover:bg-indigo-50 transition-colors">
+                            <i data-lucide="copy" class="w-4 h-4 text-gray-400 group-hover:text-indigo-600"></i>
+                        </div>
+                    `;
+                    btn.onclick = () => copyToClipboard(temp.tag);
+                    templatesList.appendChild(btn);
+                });
+            } else {
+                templatesBlock.classList.add('hidden');
+                simpleBlock.classList.remove('hidden');
+                if (flow.crm.complaint !== 'DYNAMIC') {
+                    remarkEl.innerText = flow.crm.remark;
+                }
+            }
+
+            document.getElementById('modalScriptEn').innerText = flow.scriptEn;
+            document.getElementById('modalScriptEs').innerText = flow.scriptEs;
+            document.getElementById('modalScriptEmpEn').value = flow.scriptEmpEn;
+            document.getElementById('modalScriptEmpEs').value = flow.scriptEmpEs;
+            
+            // Modal Icon Color Logic
+            const icon = document.getElementById('modalIcon'), iconBg = document.getElementById('modalIconBg');
+            icon.className = "h-5 w-5"; 
+            iconBg.className = "flex-shrink-0 flex items-center justify-center h-10 w-10 rounded-full";
+            
+            if (flow.category === 'Complaint' || flow.category === 'Security') { 
+                icon.setAttribute('data-lucide', 'alert-triangle'); 
+                icon.classList.add('text-red-600'); 
+                iconBg.classList.add('bg-red-100'); 
+            } else if (flow.category === 'Return') { 
+                icon.setAttribute('data-lucide', 'corner-up-left'); 
+                icon.classList.add('text-orange-600'); 
+                iconBg.classList.add('bg-orange-100'); 
+            } else if (flow.category === 'Modification') { 
+                icon.setAttribute('data-lucide', 'edit-3'); 
+                icon.classList.add('text-purple-600'); 
+                iconBg.classList.add('bg-purple-100'); 
+            } else { 
+                icon.setAttribute('data-lucide', 'check-circle-2'); 
+                icon.classList.add('text-indigo-600'); 
+                iconBg.classList.add('bg-indigo-100'); 
+            }
+
+            modal.classList.remove('hidden'); 
+            if (window.lucide) lucide.createIcons();
+        }
+        
+        function updateDynamicFlow() {
+            const attempts = parseInt(document.getElementById('deliveryAttemptsInput').value) || 0;
+            const compEl = document.getElementById('modalComplaint');
+            const remarkEl = document.getElementById('modalRemark');
+            
+            if (attempts < 2) {
+                compEl.innerHTML = '<span class="text-red-600 font-bold">YES</span>';
+            } else {
+                compEl.innerHTML = '<span class="text-green-600 font-bold">NO</span>';
+            }
+            
+            remarkEl.innerText = `There have been ${attempts} failed delivery attempts. Package status is off-shelves/return to load. Cannot request redelivery.`;
+        }
+
+        function closeModal() { modal.classList.add('hidden'); }
+        
+        function copyScript(type) { 
+            let text = "";
+            if (type === 'en') text = currentScripts.en; 
+            else if (type === 'es') text = currentScripts.es;
+            copyToClipboard(text); 
+        }
+        
+        function copyFromElement(elementId) { 
+            const element = document.getElementById(elementId); 
+            if (element) {
+                const text = element.value || element.innerText;
+                copyToClipboard(text); 
+            }
+        }
+        
+        function copyToClipboard(text) {
+            if (!text) return;
+            if (navigator.clipboard && window.isSecureContext) {
+                navigator.clipboard.writeText(text).then(() => showToast("Copiado!", "success")).catch(() => fallbackCopy(text));
+            } else {
+                fallbackCopy(text);
+            }
+        }
+
+        function fallbackCopy(text) {
+            const textArea = document.createElement("textarea"); 
+            textArea.value = text; 
+            textArea.style.position = "fixed"; 
+            textArea.style.left = "-9999px"; 
+            document.body.appendChild(textArea); 
+            textArea.focus(); 
+            textArea.select();
+            try { 
+                document.execCommand('copy');
+                showToast("Copiado!", "success");
+            } catch (e) { 
+                showToast("Error al copiar", "error"); 
+            }
+            document.body.removeChild(textArea);
+        }
+
+        function showToast(message, type = 'success') {
+            const container = document.getElementById('toastContainer');
+            const toast = document.createElement('div');
+            const bgClass = type === 'success' ? 'bg-gray-900' : 'bg-red-600';
+            const iconName = type === 'success' ? 'check' : 'alert-circle';
+            
+            toast.className = `toast ${bgClass} text-white px-4 py-3 rounded-lg shadow-lg flex items-center gap-3 pointer-events-auto`;
+            toast.innerHTML = `<i data-lucide="${iconName}" class="w-4 h-4"></i><span class="text-sm font-medium">${message}</span>`;
+            
+            container.appendChild(toast); 
+            if (window.lucide) lucide.createIcons();
+            
+            setTimeout(() => { 
+                toast.classList.add('hiding'); 
+                toast.addEventListener('animationend', () => toast.remove()); 
+            }, 3000);
+        }
+
+        // --- GEMINI AI INTEGRATION ---
+        function openSettings() { 
+            document.getElementById('settingsModal').classList.remove('hidden'); 
+            if(apiKey) document.getElementById('apiKeyInput').value = apiKey; 
+        }
+        
+        function closeSettings() { document.getElementById('settingsModal').classList.add('hidden'); }
+        
+        function saveApiKey() { 
+            const input = document.getElementById('apiKeyInput').value.trim(); 
+            if(input) { 
+                localStorage.setItem('gemini_api_key', input); 
+                apiKey = input; 
+                showToast("API Key guardada", "success"); 
+                closeSettings(); 
+            } else {
+                showToast("Llave inválida", "error"); 
+            }
+        }
+        
+        function toggleChat() { 
+            const panel = document.getElementById('chatPanel'); 
+            panel.classList.toggle('hidden'); 
+            if(!panel.classList.contains('hidden')) {
+                document.getElementById('chatInput').focus();
+                const container = document.getElementById('chatMessages');
+                container.scrollTop = container.scrollHeight;
+            }
+        }
+        
+        function handleChatKey(e) { if(e.key === 'Enter') sendChatMessage(); }
+        
+        async function sendChatMessage() {
+            const inputEl = document.getElementById('chatInput'); 
+            const message = inputEl.value.trim(); 
+            if(!message) return;
+
+            if(!apiKey) { 
+                appendMessage('bot', '⚠️ Configura tu API Key primero.'); 
+                openSettings(); 
+                return; 
+            }
+
+            appendMessage('user', message); 
+            inputEl.value = ''; 
+            const loadingId = appendMessage('bot', 'Thinking...');
+
+            const context = JSON.stringify(flows.map(f => ({
+                title: f.title,
+                condition: f.condition,
+                scriptEmpEn: f.scriptEmpEn,
+                scriptEmpEs: f.scriptEmpEs
+            })));
+            
+            const systemPrompt = `You are a Senior Logistics Ops Specialist. Use ONLY this data: ${context}. Provide short, direct answers.`;
+            
+            try {
+                const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key=${apiKey}`, { 
+                    method: 'POST', 
+                    headers: { 'Content-Type': 'application/json' }, 
+                    body: JSON.stringify({ 
+                        contents: [{ 
+                            role: "user", 
+                            parts: [{ text: systemPrompt + "\n\nUser: " + message }] 
+                        }] 
+                    }) 
+                });
+                
+                const data = await response.json();
+                const aiText = data.candidates?.[0]?.content?.parts?.[0]?.text || "Error de respuesta.";
+                document.getElementById(loadingId).innerHTML = marked.parse(aiText);
+                
+            } catch (error) { 
+                document.getElementById(loadingId).innerHTML = `<span class="text-red-500">Error de conexión.</span>`; 
+            }
+        }
+
+        function appendMessage(sender, text) {
+            const container = document.getElementById('chatMessages'); 
+            const div = document.createElement('div'); 
+            div.className = "flex gap-3 " + (sender === 'user' ? 'flex-row-reverse' : '');
+            
+            const icon = sender === 'user' ? 'user' : 'bot'; 
+            const bgClass = sender === 'user' ? 'bg-indigo-600 text-white rounded-tr-none' : 'bg-white border border-gray-100 text-gray-700 rounded-tl-none';
+            const iconBg = sender === 'user' ? 'bg-indigo-100 hidden' : 'bg-indigo-100 flex items-center justify-center flex-shrink-0 w-8 h-8 rounded-full';
+            const id = 'msg-' + Date.now();
+            
+            div.innerHTML = `
+                ${sender === 'bot' ? `<div class="${iconBg}"><i data-lucide="${icon}" class="w-4 h-4 text-indigo-600"></i></div>` : ''}
+                <div id="${id}" class="p-3 rounded-lg shadow-sm text-sm ${bgClass} prose prose-sm max-w-none">
+                    ${sender === 'bot' && text === 'Thinking...' ? '<span class="animate-pulse">...</span>' : (sender === 'user' ? text : (window.marked ? marked.parse(text) : text))}
+                </div>
+            `;
+            
+            container.appendChild(div); 
+            container.scrollTop = container.scrollHeight; 
+            if (window.lucide) lucide.createIcons(); 
+            return id;
+        }
+
+        // Initial Render
+        document.addEventListener('DOMContentLoaded', () => {
+            renderCards();
+        });
+    </script>
+</body>
+</html>

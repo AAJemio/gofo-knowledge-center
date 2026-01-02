@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Guía WhatsApp Prompts 2025 (Final)</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- React & ReactDOM -->
+    <script crossorigin src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+    
+    <!-- Babel para JSX -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    
+    <style>
+        .no-scrollbar::-webkit-scrollbar { display: none; }
+        .no-scrollbar { -ms-overflow-style: none; scrollbar-width: none; }
+        body { font-family: system-ui, -apple-system, sans-serif; }
+        html { scroll-behavior: smooth; }
+        
+        /* Animaciones */
+        @keyframes highlight {
+            0% { box-shadow: 0 0 0 4px rgba(34, 197, 94, 0.5); transform: scale(1.02); }
+            100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); transform: scale(1); }
+        }
+        .highlight-card { animation: highlight 1s ease-out; }
+    </style>
+</head>
+<body class="bg-slate-100">
+    <div id="root"></div>
+
+    <script type="text/babel">
+        const { useState, useEffect, useRef } = React;
+
+        // --- FUNCIÓN DE COPIADO ROBUSTA ---
+        const copyToClipboardRobust = (text, onSuccess) => {
+            try {
+                const textArea = document.createElement("textarea");
+                textArea.value = text;
+                textArea.style.position = "fixed";
+                textArea.style.left = "-9999px";
+                textArea.style.top = "0";
+                document.body.appendChild(textArea);
+                textArea.focus();
+                textArea.select();
+                const successful = document.execCommand('copy');
+                document.body.removeChild(textArea);
+                if (successful) { if (onSuccess) onSuccess(); return; }
+            } catch (err) { console.warn("Fallback copy failed", err); }
+            if (navigator.clipboard && navigator.clipboard.writeText) {
+                navigator.clipboard.writeText(text).then(() => { if (onSuccess) onSuccess(); }).catch(err => alert("Error al copiar."));
+            }
+        };
+
+        // --- ICONOS INTEGRADOS ---
+        const IconBase = ({ children, size = 24, className = "" }) => (
+            <svg xmlns="http://www.w3.org/2000/svg" width={size} height={size} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>{children}</svg>
+        );
+        const Icons = {
+            Search: (p) => <IconBase {...p}><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></IconBase>,
+            Copy: (p) => <IconBase {...p}><rect width="14" height="14" x="8" y="8" rx="2" ry="2"/><path d="M4 16c-1.1 0-2-.9-2-2V4c0-1.1.9-2 2-2h10c1.1 0 2 .9 2 2"/></IconBase>,
+            Check: (p) => <IconBase {...p}><polyline points="20 6 9 17 4 12"/></IconBase>,
+            Truck: (p) => <IconBase {...p}><path d="M14 18V6a2 2 0 0 0-2-2H4a2 2 0 0 0-2 2v11a1 1 0 0 0 1 1h2"/><path d="M15 18H9"/><path d="M19 18h2a1 1 0 0 0 1-1v-3.65a1 1 0 0 0-.22-.624l-3.48-4.35A1 1 0 0 0 17.52 8H14"/><circle cx="17" cy="18" r="2"/><circle cx="7" cy="18" r="2"/></IconBase>,
+            Zap: (p) => <IconBase {...p}><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></IconBase>,
+            CornerUpLeft: (p) => <IconBase {...p}><polyline points="9 14 4 9 9 4"/><path d="M20 20v-7a4 4 0 0 0-4-4H4"/></IconBase>,
+            Edit3: (p) => <IconBase {...p}><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></IconBase>,
+            AlertTriangle: (p) => <IconBase {...p}><path d="m21.73 18-8-14a2 2 0 0 0-3.48 0l-8 14A2 2 0 0 0 4 21h16a2 2 0 0 0 1.73-3Z"/><line x1="12" x2="12" y1="9" y2="13"/><line x1="12" x2="12.01" y1="17" y2="17"/></IconBase>,
+            Shield: (p) => <IconBase {...p}><path d="M20 13c0 5-3.5 7.5-7.66 8.95a1 1 0 0 1-.67-.01C7.5 20.5 4 18 4 13V6a1 1 0 0 1 1-1c2 0 4.5-1.2 6.24-2.72a1.17 1.17 0 0 1 1.52 0C14.51 3.81 17 5 19 5a1 1 0 0 1 1 1z"/></IconBase>,
+            UserCog: (p) => <IconBase {...p}><circle cx="18" cy="15" r="3"/><circle cx="9" cy="7" r="4"/><path d="M10 15H6a4 4 0 0 0-4 4v2"/><path d="m21.7 16.4.9-.9"/><path d="m15.2 13.9-.9-.9"/><path d="m16.6 18.7.3-.9"/><path d="m19.1 12.2.3-.9"/><path d="m19.6 18.7.4-1"/><path d="m16.8 12.3.4-1"/><path d="m14.3 16.6 1-.4"/><path d="m20.7 13.8 1-.4"/></IconBase>,
+            MessageCircle: (p) => <IconBase {...p}><path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z"/></IconBase>,
+            Moon: (p) => <IconBase {...p}><path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"/></IconBase>,
+            Sun: (p) => <IconBase {...p}><circle cx="12" cy="12" r="4"/><path d="M12 2v2"/><path d="M12 20v2"/><path d="m4.93 4.93 1.41 1.41"/><path d="m17.66 17.66 1.41 1.41"/><path d="M2 12h2"/><path d="M20 12h2"/><path d="m6.34 17.66-1.41-1.41"/><path d="m19.07 4.93-1.41 1.41"/></IconBase>,
+            List: (p) => <IconBase {...p}><line x1="8" x2="21" y1="6" y2="6"/><line x1="8" x2="21" y1="12" y2="12"/><line x1="8" x2="21" y1="18" y2="18"/><line x1="3" x2="3.01" y1="6" y2="6"/><line x1="3" x2="3.01" y1="12" y2="12"/><line x1="3" x2="3.01" y1="18" y2="18"/></IconBase>,
+            Grid: (p) => <IconBase {...p}><rect width="7" height="7" x="3" y="3" rx="1"/><rect width="7" height="7" x="14" y="3" rx="1"/><rect width="7" height="7" x="14" y="14" rx="1"/><rect width="7" height="7" x="3" y="14" rx="1"/></IconBase>
+        };
+        const { Search, Copy, Check, Truck, Zap, CornerUpLeft, Edit3, AlertTriangle, Shield, UserCog, MessageCircle, Moon, Sun, List, Grid } = Icons;
+
+        // --- CATEGORÍAS ---
+        const CATEGORIES = {
+            GENERAL: { id: 'General', label: 'General / Inicio', color: 'border-slate-400', bg: 'bg-slate-50', text: 'text-slate-700', icon: MessageCircle },
+            TRACKING: { id: 'Tracking', label: 'Rastreo (Tracking)', color: 'border-blue-500', bg: 'bg-blue-50', text: 'text-blue-700', icon: Truck },
+            DELIVERY: { id: 'Delivery', label: 'Entrega (Delivery)', color: 'border-emerald-500', bg: 'bg-emerald-50', text: 'text-emerald-700', icon: Zap },
+            RETURN: { id: 'Return', label: 'Retornos / Fallidos', color: 'border-amber-500', bg: 'bg-amber-50', text: 'text-amber-700', icon: CornerUpLeft },
+            MODIFICATION: { id: 'Modification', label: 'Cambios (Modify)', color: 'border-purple-500', bg: 'bg-purple-50', text: 'text-purple-700', icon: Edit3 },
+            COMPLAINT: { id: 'Complaint', label: 'Quejas (Complaints)', color: 'border-red-500', bg: 'bg-red-50', text: 'text-red-700', icon: AlertTriangle },
+            SECURITY: { id: 'Security', label: 'Seguridad / Policía', color: 'border-gray-800', bg: 'bg-gray-800', text: 'text-white', icon: Shield },
+            ADMIN: { id: 'Admin', label: 'Admin / Resolución', color: 'border-indigo-500', bg: 'bg-indigo-50', text: 'text-indigo-700', icon: UserCog },
+        };
+
+        // --- BASE DE DATOS EXACTA DEL PDF 'PROMPTS PRUEBA.PDF' (IDs CORREGIDOS) ---
+        const promptsData = [
+            // GENERAL
+            { id: "01E", category: "General", title: "Incorrect Tracking Number", titleEs: "Número de Rastreo Incorrecto", codeEn: "/01E", codeEs: "/02E", 
+              english: "It appears that the tracking number you provided may contain an error or is not formatted correctly. Could you kindly verify the number and provide us with the correct one?\nOnce we receive the accurate tracking number, we will be able to track your package properly and provide you with the most up-to-date information.\nThank you very much for your cooperation and understanding. We truly appreciate your patience!", 
+              spanish: "Aparentemente el número de rastreo que nos proporcionó podría contener un error o no estar escrito correctamente. ¿Podría verificarlo amablemente y enviarnos el número correcto?\nUna vez que recibamos el número de rastreo correcto, podremos realizar el seguimiento de su paquete de manera adecuada y proporcionarle la información más actualizada.\nMuchas gracias por su cooperación y comprensión! Apreciamos sinceramente su paciencia." },
+            { id: "01F", category: "General", title: "While Customer Waits", titleEs: "Mientras Cliente Espera", codeEn: "/01F", codeEs: "/02F", 
+              english: "At this moment, I am verifying your information. I will get back to you as soon as possible. Thank you for your patience and understanding.", 
+              spanish: "En este momento estoy verificando su información. Me comunicaré con usted lo antes posible. Gracias por su paciencia y comprensión." },
+            { id: "01G", category: "General", title: "Ask Confirm Address", titleEs: "Solicitar Confirmar Dirección", codeEn: "/01G", codeEs: "/02G", 
+              english: "We kindly ask for your name and address so we can confirm that you are the owner or the person responsible for the parcel. This helps us ensure your privacy and verify the package details. Thank you for your cooperation.", 
+              spanish: "Le solicitamos amablemente su nombre y dirección para confirmar que usted es el dueño o la persona responsable del paquete. Esto nos ayuda a garantizar su privacidad y verificar los detalles del envío. Muchas gracias por su cooperación." },
+            { id: "03", category: "General", title: "Seller Contact Hotline", titleEs: "Línea de Contacto Vendedor", codeEn: "/03", codeEs: "/04", 
+              english: "Thank you for choosing us! At GOFO, we have a dedicated seller hotline team ready to assist you with any support you may need.\nPlease contact:\nCall +1 (626) 505-1101\n10:00 AM - 9:00 PM EST (Mon-Sun)", 
+              spanish: "¡Gracias por elegirnos! En GOFO, contamos con un equipo de atención exclusiva para vendedores, listo para ayudarle con cualquier consulta o asistencia que necesite.\nPor favor contacte:\nLlame al +1 (626) 505-1101\n10:00 AM - 9:00 PM EST (Lun-Dom)" },
+            { id: "03B", category: "General", title: "More than 10 Tracking Numbers", titleEs: "Más de 10 Números de Rastreo", codeEn: "/03B", codeEs: "/04B", 
+              english: "We're sorry, but our system is unable to process a large number of tracking requests at once.\nFor the most accurate and up-to-date information, we kindly recommend visiting our official website www.gofoexpress.com to check the status of your parcels.\nIf you have questions about a specific parcel, please don't hesitate to contact us again, we'll be glad to assist you.", 
+              spanish: "Lamentablemente, nuestro sistema no puede procesar una gran cantidad de solicitudes de seguimiento al mismo tiempo.\nPara obtener información más precisa y actualizada, le recomendamos amablemente visitar nuestro sitio web www.gofoexpress.com y consultar el estado de sus paquetes en esa página.\nSi tuviera preguntas sobre un paquete en específico, no dude en contactarnos nuevamente, estaremos encantados de asistirle." },
+            { id: "07", category: "General", title: "Question for Received Parcel", titleEs: "Pregunta por Paquete Recibido", codeEn: "/07", codeEs: "/08", 
+              english: "According to our system, your package has been marked as delivered.\nHave you received it yet? If not, we kindly suggest checking around your property or asking your neighbors in case it was received on your behalf.\nIf you're still unable to locate it, please let us know we're here to help!", 
+              spanish: "Según nuestro sistema, tu paquete ha sido entregado.\n¿Lo has recibido? Si no, te recomendamos revisar los alrededores de tu propiedad o preguntar a tus vecinos por si lo recibieron en tu nombre.\nSi aún no logras localizarlo, por favor contáctanos - ¡estamos aquí para ayudarte!" },
+            { id: "49", category: "General", title: "No Pick Up Service", titleEs: "Sin Servicio de Recolección", codeEn: "/49", codeEs: "/50", 
+              english: "GOFO currently operates only as a delivery service and does not offer parcel pick-up. We apologize for any inconvenience and recommend contacting your seller directly for more details. Thank you for choosing GOFO we truly value your trust!", 
+              spanish: "Actualmente, GOFO funciona solo como servicio de entrega y no ofrece recolección de paquetes. Lamentamos los inconvenientes y le recomendamos contactar directamente a su vendedor para más detalles. Gracias por elegir GOFO - valoramos mucho su confianza." },
+            { id: "51", category: "General", title: "USPS Tracking Number", titleEs: "Número Rastreo USPS", codeEn: "/51", codeEs: "/52", 
+              english: "Tracking Info\nThe tracking number you provided belongs to USPS\nYou can check your tracking status on their official website: www.usps.com", 
+              spanish: "Información de rastreo\nEl número de rastreo que proporcionó pertenece a USPS.\nPuede verificar el estado de su envío en su sitio web oficial: www.usps.com" },
+            { id: "55", category: "General", title: "Question About The Product", titleEs: "Pregunta sobre el Producto", codeEn: "/55", codeEs: "/56", 
+              english: "We're sorry to hear that. However, as a shipping courier, we are unable to address product-related questions. We kindly ask that you contact the seller directly for assistance.\nThank you very much for your understanding, and we truly appreciate you choosing GOFO!", 
+              spanish: "Lamentamos escuchar eso. Sin embargo, como empresa de mensajería, no podemos atender consultas relacionadas con el producto. Le pedimos amablemente que se comunique con el vendedor para recibir asistencia.\nMuchas gracias por su comprensión y por elegir GOFO - realmente valoramos su confianza." },
+            { id: "69", category: "General", title: "GOFO Get Order Info", titleEs: "Info Orden GOFO (Pre-Tránsito)", codeEn: "/69", codeEs: "/70", 
+              english: "We sincerely apologize, but at this moment we have only received this order in our system. The package has not yet arrived at our facility.\nFor more information and updates, we kindly recommend contacting the seller directly.\nThank you for your understanding and for choosing GOFO Express we truly appreciate your trust!", 
+              spanish: "Lamentamos sinceramente que, por el momento, solo tenemos registrado este pedido en nuestro sistema. El paquete aún no ha llegado a nuestra instalación.\nPara más información y actualizaciones, le recomendamos amablemente contactar directamente con el vendedor.\nGracias por su comprensión y por elegir GOFO Express - valoramos sinceramente su confianza." },
+            { id: "71", category: "General", title: "Any Help Question", titleEs: "¿Algo más en que ayudar?", codeEn: "/71", codeEs: "/72", 
+              english: "Is there anything else I can assist you with today? I want to make sure all your questions are answered and that you feel fully supported.", 
+              spanish: "¿Hay algo más en lo que pueda ayudarle hoy? Quiero asegurarme de que todas sus preguntas queden respondidas y que se sienta plenamente atendido y respaldado" },
+            { id: "71B", category: "General", title: "Survey Evaluation - CSAT", titleEs: "Encuesta de Satisfacción", codeEn: "/71B", codeEs: "/72B", 
+              english: "Before we close, please note that a short survey may appear once our chat ends. It will ask you to rate the assistance I provided today, and your feedback would be greatly appreciated. Thank you!", 
+              spanish: "Antes de finalizar, tenga en cuenta que puede aparecer una breve encuesta una vez que cierre el chat. Se le pedirá calificar la asistencia que le brindé hoy, y su opinión será muy apreciada. ¡Gracias!" },
+            { id: "73", category: "General", title: "Closing Chat", titleEs: "Cierre de Chat", codeEn: "/73", codeEs: "/74", 
+              english: "At GOFO, we appreciate your business and wish you a wonderful day.\nThank you for contacting us.", 
+              spanish: "En GOFO apreciamos tu preferencia y te deseamos un excelente día.\nGracias por contactarnos." },
+
+            // DELIVERY
+            { id: "05", category: "Delivery", title: "Does Not Belong to Recipient", titleEs: "Paquete no es del Destinatario", codeEn: "/05", codeEs: "/06", 
+              english: "It looks like a parcel was mistakenly delivered to your address. We are truly sorry for this error and appreciate your honesty in letting us know. May we kindly ask you to share the correct address so our driver can pick up the parcel within the next 3 days? Thank you for your cooperation.", 
+              spanish: "Parece que un paquete se entregó por error en su dirección. Lamentamos mucho este error y agradecemos su sinceridad al informarnos. Le rogamos que nos proporcione la dirección correcta para que uno de nuestros conductores pueda recoger el paquete en los próximos 3 días. Gracias por su cooperación." },
+            { id: "05B", category: "Delivery", title: "Hold Parcel (Wrong Recipient)", titleEs: "Retener Paquete (Error)", codeEn: "/05B", codeEs: "/06B", 
+              english: "Could you hang on to the parcel for 3 days while we confirm things with the merchant? We'll keep you posted! Thank you so much for your help.\nIf the driver doesn't make it within 3 days, you can go ahead and dispose of the parcel", 
+              spanish: "¿Podría conservar el paquete durante 3 días mientras confirmamos con el vendedor? Le mantendremos informado! Muchas gracias por su ayuda\nSi el conductor no recoge el paquete en 3 días, puede desecharlo." },
+            { id: "05C", category: "Delivery", title: "Dispose Parcel (After 3 days)", titleEs: "Desechar Paquete (Tras 3 días)", codeEn: "/05C", codeEs: "/06C", 
+              english: "If our driver cannot pick up the package within 3 days, we kindly ask you to dispose of it safely. Thank you for your cooperation and understanding.", 
+              spanish: "Si nuestro conductor no puede recoger el paquete dentro de 3 días, le pedimos amablemente que lo deseche de manera segura. Gracias por su cooperación y comprensión." },
+            { id: "07B", category: "Delivery", title: "Confirmed Received (DNR Ticket)", titleEs: "Recibido (Ticket DNR)", codeEn: "/07B", codeEs: "/08B", 
+              english: "So glad to hear your parcel has arrived! If there's anything else you need help, just give us a shout. We're always happy to help!", 
+              spanish: "¡Qué alegría saber que su paquete ha llegado! Si necesita ayuda con algo más, no dude en avisarnos. ¡Siempre estaremos encantados de ayudarle!" },
+            { id: "13", category: "Delivery", title: "PUDO Fajardo (00738)", titleEs: "PUDO Fajardo (00738)", codeEn: "/13", codeEs: "/14", 
+              english: "At this moment, your package is awaiting pickup at this location:\n- Location Name: Fajado-Coupi Travel\n- Address: Carretera #3 KM 45.5 Fajardo Market Square, Suite 4, Fajardo, PR 00738\n- Business Days: Monday to Saturday\n- Business Hours: Monday-Friday: 8:30-17:00, Saturday: 8:30-12:00\n- Contact: Keyra, 787-860-1515\n- Location Zip Code: 00738\nThank you for your attention.", 
+              spanish: "En este momento, su paquete está disponible para ser recogido en esta ubicación:\n- Nombre del lugar: Fajado-Coupi Travel\n- Dirección: Carretera #3 KM 45.5 Fajardo Market Square, Suite 4, Fajardo, PR 00738\n- Días laborables: Lunes a sábado\n- Horario laboral: Lunes a viernes: 8:30-17:00, sábado: 8:30-12:00\n- Contacto: Keyra, 787-860-1515\n- Código postal: 00738\nGracias por su atención" },
+            { id: "13B", category: "Delivery", title: "PUDO Morovis (00687)", titleEs: "PUDO Morovis (00687)", codeEn: "/13B", codeEs: "/14B", 
+              english: "At this moment, your package is awaiting pickup at this location\n- Location Name: Morovis-Isla Menos Printing\n- Address: #23 Ave. Buena Vista, Morovis, PR 00687\n- Business Days: Monday to Saturday\n- Business Hours: Monday-Friday: 7:00-17:00, Saturday: 9:00-14:00\n- Contact: Naira Cruz, 939-255-2438\n- Location Zip Code: 00687\nThank you for your attention.", 
+              spanish: "En este momento, su paquete está disponible para ser recogido en esta ubicación\n- Nombre del lugar: Morovis-Isla Menos Printing\n- Dirección: #23 Ave. Buena Vista, Morovis, PR 00687\n- Días laborables: Lunes a sábado\n- Horario laboral: Lunes a viernes: 7:00-17:00, sábado: 9:00-14:00\n- Contacto: Naira Cruz, 939-255-2438\n- Código postal: 00687\nGracias por su atención" },
+            { id: "15", category: "Delivery", title: "Failed: Access/Google Maps", titleEs: "Fallo: Acceso/Google Maps", codeEn: "/15", codeEs: "/16", 
+              english: "We are very sorry for this. Our driver was unable to complete the delivery because access to your area was not possible. May we kindly ask you to share your gate code or any entrance details so the driver can have them for the next attempt? Thank you very much for your help and patience.", 
+              spanish: "Lamentamos mucho este inconveniente. Nuestro conductor no pudo completar la entrega porque no fue posible acceder a su área. ¿Podemos pedirle amablemente que nos comparta su código de acceso o cualquier detalle de entrada para que el conductor los tenga en el próximo intento? Muchas gracias por su ayuda y paciencia." },
+            { id: "15B", category: "Delivery", title: "Check Address (Google Maps)", titleEs: "Verificar Dirección (Google Maps)", codeEn: "/15B", codeEs: "/16B", 
+              english: "We have reviewed all the information and everything looks correct. A redelivery request has been submitted for you. Once your parcel is back at the warehouse, it will be delivered within 3 days.", 
+              spanish: "Hemos revisado toda la información y todo está correcto. Se ha enviado una solicitud de reentrega para usted. Una vez que su paquete regrese al almacén, será entregado dentro de los 3 días siguientes." },
+            { id: "15C", category: "Delivery", title: "Change HC Box Address", titleEs: "Cambiar Dirección HC Box", codeEn: "/15C", codeEs: "/16C", 
+              english: "We have noticed that your package is registered with an HC address. We would like to help you with this situation. Please send us your physical address, and if possible, your exact coordinates - or we can search for them for you - to guarantee a safe delivery.\nOtherwise, your package could be delivered to the HC boxes, where it might be lost or stolen, and we don't want that to happen.\nWe need to deliver your package directly to you without any problems.\nWe truly appreciate your collaboration and help in resolving this situation.", 
+              spanish: "Hemos notado que su paquete está registrado con una dirección HC. Nos gustaría ayudarle con esta situación. Por favor, envíenos su dirección física y, si es posible, las coordenadas exactas - o podemos buscarlas por usted - para garantizar una entrega segura.\nDe lo contrario, su paquete podría ser entregado en los buzones HC, donde podría perderse o ser robado, y no queremos que eso ocurra.\nNecesitamos entregar su paquete directamente a usted sin ningún problema.\nAgradecemos mucho su colaboración y su ayuda para resolver esta situación." },
+            { id: "17", category: "Delivery", title: "Delivery Failed / No Access", titleEs: "Entrega Fallida / Sin Acceso", codeEn: "/17", codeEs: "/18", 
+              english: "We are very sorry for this. Our driver was unable to complete the delivery because access to your area was not possible. May we kindly ask you to share your gate code or any entrance details so the driver can have them for the next attempt? Thank you very much for your help and patience.", 
+              spanish: "Lamentamos mucho este inconveniente. Nuestro conductor no pudo completar la entrega porque no fue posible acceder a su área. ¿Podemos pedirle amablemente que nos comparta su código de acceso o cualquier detalle de entrada para que el conductor los tenga en el próximo intento? Muchas gracias por su ayuda y paciencia." },
+            { id: "17B", category: "Delivery", title: "Failed (Phone No Answer)", titleEs: "Fallo (Sin Respuesta Teléfono)", codeEn: "/17B", codeEs: "/18B", 
+              english: "We're sorry your delivery could not be completed because the driver was unable to reach you by phone. Please make sure your phone number is correct. Once the package returns to our local warehouse, we will attempt delivery again within 3 days. Kindly keep your phone available so the driver can contact you if needed, and continue to monitor the delivery status.", 
+              spanish: "Lamentamos que no se haya podido completar tu entrega porque el conductor no logró comunicarse contigo por teléfono. Por favor asegúrate de que tu número de teléfono sea correcto. Una vez que el paquete regrese a nuestro almacén local, intentaremos entregarlo nuevamente dentro de 3 días. Te pedimos que mantengas tu teléfono disponible para que el conductor pueda contactarte si es necesario y que sigas revisando el estado de tu entrega." },
+            { id: "17C", category: "Delivery", title: "Failed (Business Closed)", titleEs: "Fallo (Negocio Cerrado)", codeEn: "/17C", codeEs: "/18C", 
+              english: "We sincerely apologize for the inconvenience. Our driver was unable to complete the delivery because the business or delivery location was closed. Could you please let us know the days and hours when your business is open? We'll make sure our driver has this information. Once the package returns to our warehouse, we'll reship it within 3 days.", 
+              spanish: "Lamentamos las molestias. Nuestro repartidor no pudo completar la entrega porque el negocio o lugar de entrega estaba cerrado. ¿Podría indicarnos, por favor, los días y horarios en que su negocio está abierto? Nos aseguraremos de que nuestro conductor tenga esta información. Una vez que el paquete regrese a nuestro almacén, lo enviaremos nuevamente en un plazo de 3 días." },
+            { id: "17D", category: "Delivery", title: "Address with Mailboxes USPS", titleEs: "Dirección con Buzones USPS", codeEn: "/17D", codeEs: "/18D", 
+              english: "Important Notice\nPlease be advised that, in accordance with GOFO Express's delivery policy, we are unable to deliver to the following locations:\n- Military bases\n- HC-Boxes\n- Community mailboxes\n- University addresses (on-campus delivery)\n- Any addresses associated with the USPS mail service\nDo you have an alternate address we can use?", 
+              spanish: "Aviso Importante\nLe informamos que, de acuerdo con la política de entrega de GOFO Express, no podemos entregar en las siguientes direcciones:\n- Bases militares\n- HC-Boxes\n- Buzones comunitarios\n- Direcciones universitarias (entrega en campus)\n- Cualquier dirección asociada con el servicio postal USPS\n¿Cuenta con alguna una dirección alternativa que podamos usar?" },
+            { id: "17H", category: "Delivery", title: "Bad Address / Undeliverable", titleEs: "Dirección Incorrecta / No Entregable", codeEn: "/17H", codeEs: "/18H", 
+              english: "We're sorry to inform you that the delivery of your parcel was unsuccessful. To help us resolve this smoothly, please take a moment to verify your address - it's possible the courier had trouble locating it.\nOnce your parcel is returned to our sorting center, redelivery will take about three (3) business days. Please note that the courier will contact you to coordinate the new delivery.\nThanks so much for your understanding and cooperation! We're here if you need anything.", 
+              spanish: "Lamentamos informarte que la entrega de tu paquete no fue exitosa. Para ayudarte a resolverlo rápidamente, te pedimos que verifiques tu dirección, ya que es posible que el repartidor haya tenido dificultades para encontrarla.\nUna vez el paquete regrese a nuestro centro de clasificación, la reentrega tomará aproximadamente tres (3) días hábiles. Ten en cuenta que el repartidor se comunicará contigo para coordinar la entrega.\n¡Gracias por tu comprensión y colaboración! Estamos aquí para ayudarte en lo que necesites." },
+            { id: "17J", category: "Delivery", title: "No Expedited Delivery", titleEs: "Sin Entrega Exprés", codeEn: "/17J", codeEs: "/18J", 
+              english: "We're sorry to inform you that GoFoExpress currently does not offer expedited or express delivery services.\nYour package will continue its journey through our standard shipping process.\nWe kindly ask for your patience while we work to ensure your package gets to you as soon as possible.\nThank you sincerely for your understanding and for placing your trust in us.", 
+              spanish: "Lamentamos informarte que en GoFoExpress no contamos con servicios de aceleración o entrega exprés en este momento.\nTu paquete continuará su curso según el proceso estándar de envío. Te pedimos amablemente un poco de paciencia mientras avanzamos con la gestión. Ten por seguro que estamos trabajando para que tu paquete llegue a tus manos lo antes posible.\nGracias de corazón por tu comprensión y por confiar en nosotros." },
+            { id: "17K", category: "Delivery", title: "Prepared for Redelivery", titleEs: "Preparado para Reentrega", codeEn: "/17K", codeEs: "/18K", 
+              english: "At this moment, your package is being prepared for redelivery. Please note that it may take up to three business days to arrive. Thank you for your time, and thank you for your patience and understanding.", 
+              spanish: "En este momento, su paquete está siendo preparado para reentrega. Tenga en cuenta que puede tardar hasta tres días hábiles en llegar. Gracias por su tiempo y gracias por su paciencia y comprensión." },
+            { id: "53", category: "Delivery", title: "GPS Verification", titleEs: "Verificación GPS", codeEn: "/53", codeEs: "/54", 
+              english: "We have checked the location on Google Maps and noticed that the registered GPS point is currently showing in an empty or open area, which may cause difficulties in accurately locating the address for your package delivery. To ensure a precise and smooth delivery, we kindly ask you to confirm your exact location or provide a nearby physical reference (for example, a building name, street number, or landmark). With this information, we will be able to update the coordinates in our system.\nWe greatly appreciate your cooperation and understanding as we work to provide you with the best possible service.", 
+              spanish: "Hemos realizado la verificación en Google Maps y observamos que el punto GPS actualmente registrado aparece en un área vacía o abierta, lo que podría dificultar la correcta localización para la entrega de su paquete. Para poder garantizar una entrega precisa y sin inconvenientes, le solicitamos amablemente que nos confirme su ubicación exacta o una referencia física cercana (por ejemplo, nombre de edificio, número de calle o punto de referencia). Con esta información podremos proceder a la actualización de las coordenadas en nuestro sistema.\nAgradecemos mucho su apoyo y comprensión para poder brindarle un mejor servicio." },
+            { id: "39", category: "Delivery", title: "DNR: Can See POD", titleEs: "DNR: Puede ver POD", codeEn: "/39", codeEs: "/40", 
+              english: "We're very sorry to hear that you haven't received your package, even though our system shows it was delivered. Could you please confirm whether the delivery address shown in the tracking details is correct? Your confirmation will help us proceed with the verification process. Thank you for your patience and cooperation.", 
+              spanish: "Lamentamos mucho saber que no has recibido tu paquete, aunque nuestro sistema indica que fue entregado. ¿Podrías por favor confirmar si la dirección donde aparece entregado tu paquete es la correcta? Tu ayuda nos permitirá continuar con el proceso de verificación. Muchas gracias por tu paciencia y colaboración." },
+            { id: "39B", category: "Delivery", title: "DNR: Correct Address", titleEs: "DNR: Dirección Correcta", codeEn: "/39B", codeEs: "/40B", 
+              english: "We sincerely apologize for the inconvenience. A new ticket has been submitted to our investigation team.\nMay we kindly ask you to provide your email address so they can get back to you? The team will respond within 5-10 business days.\nThank you very much for your patience and understanding.", 
+              spanish: "Lamentamos sinceramente los inconvenientes. Se ha creado un nuevo ticket para nuestro equipo de investigación.\n¿Podemos pedirle amablemente que nos proporcione su dirección de correo electrónico para que puedan comunicarse con usted? El equipo responderá dentro de 5 a 10 días hábiles.\nMuchas gracias por su paciencia y comprensión." },
+            { id: "39C", category: "Delivery", title: "DNR: Incorrect Address", titleEs: "DNR: Dirección Incorrecta", codeEn: "/39C", codeEs: "/40C", 
+              english: "We're sorry to know that. To help us properly assess your case and take the appropriate actions, we kindly ask you to provide the following required evidence:\n- Correct address photos, screenshots(if available)\n- Brief description (including the date, time, and what occurred)\n- Send everything to: cs@mail.gofoexpress.com\nOnce we receive your evidence, we will begin the internal investigation process. Our team will notify you of the investigation results via email within 5-10 days.\nYour feedback is very important to us.", 
+              spanish: "Lamentamos mucho saber eso. Para ayudarnos a evaluar correctamente su caso y tomar las acciones correspondientes, le solicitamos amablemente que nos proporcione la siguiente evidencia requerida:\n- Fotos o capturas de pantalla de la dirección correcta (si están disponibles)\n- Breve descripción (incluyendo la fecha, hora y lo ocurrido)\n- Envíe todo a: cs@mail.gofoexpress.com\nUna vez que recibamos su evidencia, comenzaremos el proceso de investigación interna. Nuestro equipo le notificará los resultados dentro de 5 a 10 días hábiles.\nSu opinión es muy importante para nosotros." },
+            { id: "39D", category: "Delivery", title: "DNR: Only Parcel/No POD", titleEs: "DNR: Solo Paquete/Sin POD", codeEn: "/39D", codeEs: "/40D", 
+              english: "We sincerely apologize again for the inconvenience. A new ticket has been submitted to our investigation team, and the review should be completed within 5-10 business days. Could you please provide your email address so our team can reach out if necessary? Thank you very much for your patience and understanding.", 
+              spanish: "Lamentamos nuevamente los inconvenientes. Se ha enviado un nuevo ticket a nuestro equipo de investigación y la revisión debería completarse en un plazo de 5 a 10 días hábiles. ¿Podría proporcionarnos su correo electrónico para que nuestro equipo pueda contactarlo si es necesario? Muchas gracias por su paciencia y comprensión." },
+            { id: "39E", category: "Delivery", title: "Viewed Images of POD", titleEs: "Vio Imágenes de POD", codeEn: "/39E", codeEs: "/40E", 
+              english: "We apologize for any inconvenience. Have you received or viewed any images of your delivery showing where it was dropped off? Thank you for your patience and understanding.", 
+              spanish: "Lamentamos cualquier inconveniente. ¿Ha recibido o visto alguna imagen de su entrega que muestre dónde fue dejada? Gracias por su paciencia y comprensión." },
+            { id: "41", category: "Delivery", title: "Locker No Access", titleEs: "Locker Sin Acceso", codeEn: "/41", codeEs: "/42", 
+              english: "We're very sorry your parcel was delivered to an automated locker, which is not part of our delivery procedure. Could you please check with your building's front desk to see if they can help you retrieve it? If not, let us know and we'll contact the driver. Thank you for your patience.", 
+              spanish: "Lamentamos que su paquete haya sido entregado en un casillero automático, lo cual no corresponde a nuestro procedimiento de entrega. ¿Podría revisar con la recepción de su edificio si pueden ayudarle a recogerlo? Si no, por favor avísenos y contactaremos al conductor. Gracias por su paciencia." },
+
+            // TRACKING
+            { id: "09", category: "Tracking", title: "Left Sorting Center", titleEs: "Salió Centro Clasificación", codeEn: "/09", codeEs: "/10", 
+              english: "Your parcel is on its way to our local warehouse. May we kindly ask for your patience, as it will be delivered within 3 days after arrival", 
+              spanish: "Su paquete se encuentra en camino a nuestro almacén local. Le pedimos amablemente un poco de paciencia, ya que será entregado dentro de los 3 días posteriores a su llegada" },
+            { id: "09B", category: "Tracking", title: "Signed to Sorting Center", titleEs: "Ingresó a Centro Clasificación", codeEn: "/09B", codeEs: "/10B", 
+              english: "Great news! Your parcel has arrived at our warehouse. May we kindly ask you to keep an eye on the updates, as it will be delivered within 3 days", 
+              spanish: "¡Buenas noticias! Su paquete ha llegado a nuestro almacén. ¿Podemos pedirle amablemente que esté atento a las actualizaciones? Será entregado dentro de los próximos 3 días." },
+            { id: "09C", category: "Tracking", title: "Returned to Sorting Center", titleEs: "Devuelto a Centro Clasificación", codeEn: "/09C", codeEs: "/10C", 
+              english: "We apologize for any inconvenience. Your package has been returned to our sorting center. Once it is ready to be redelivered, the process may take up to three business days. Thank you for your patience and understanding", 
+              spanish: "Lamentamos cualquier inconveniente. Su paquete ha sido devuelto a nuestro centro de clasificación. Una vez esté listo para ser reentregado, el proceso puede tardar hasta tres días hábiles. Gracias por su paciencia y comprensión." },
+            { id: "11", category: "Tracking", title: "Out for Delivery (General)", titleEs: "En Reparto (General)", codeEn: "/11", codeEs: "/12", 
+              english: "Great news! Your parcel is now out for delivery and should arrive within the next 3 days. May we kindly ask you to be available to take any calls from the driver so the delivery can be coordinated smoothly. Thank you for your patience, we truly appreciate it", 
+              spanish: "¡Buenas noticias! Su paquete ya está en camino para la entrega y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de manera que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos." },
+            { id: "11A", category: "Tracking", title: "Out for Delivery Day 1", titleEs: "En Reparto Día 1", codeEn: "/11A", codeEs: "/12A", 
+              english: "Great news! Your parcel is now out for delivery and should arrive within the next 3 days. May we kindly ask you to be available to take any calls from the driver so the delivery can be coordinated smoothly. Thank you for your patience, we truly appreciate it.", 
+              spanish: "¡Buenas noticias! Su paquete ya está en camino y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de modo que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos" },
+            { id: "11B", category: "Tracking", title: "Out for Delivery Day 2", titleEs: "En Reparto Día 2", codeEn: "/11B", codeEs: "/12B", 
+              english: "Good news your parcel is now out for delivery and is expected to arrive within 2 days. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!", 
+              spanish: "¡Buenas noticias! Su paquete ya salió para la entrega y se espera que llegue en un plazo de 2 días. Le pedimos que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega. Muchas gracias por su paciencia." },
+            { id: "11C", category: "Tracking", title: "Out for Delivery Day 3", titleEs: "En Reparto Día 3", codeEn: "/11C", codeEs: "/12C", 
+              english: "Good news your parcel is now out for delivery and is expected to arrive by the end of today. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!", 
+              spanish: "¡Buenas noticias! Su paquete ya salió para la entrega y se espera que llegue antes de que termine el día de hoy. Le pedimos que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega. Muchas gracias por su paciencia." },
+            { id: "11D", category: "Tracking", title: "Out for Delivery Day 4", titleEs: "En Reparto Día 4", codeEn: "/11D", codeEs: "/12D", 
+              english: "We are very sorry for the delay and completely understand your concern. If there is still no delivery update by the end of today, may we kindly ask you to write to us again?. Thank you very much for your patience, we truly appreciate it.", 
+              spanish: "Lamentamos mucho la demora y comprendemos completamente su preocupación. Si al final del día aún no hay actualización de la entrega, ¿podemos pedirle amablemente que nos escriba nuevamente? Muchas gracias por su paciencia, lo apreciamos sinceramente" },
+            { id: "11E", category: "Tracking", title: "Out for Delivery Day 5", titleEs: "En Reparto Día 5", codeEn: "/11E", codeEs: "/12E", 
+              english: "We sincerely apologize for the delay in delivery. As there have been no further updates on your package, we kindly ask you to contact your seller directly to request the corresponding refund. We truly appreciate your patience and understanding", 
+              spanish: "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión." },
+            { id: "11F", category: "Tracking", title: "Out for Delivery Day 6", titleEs: "En Reparto Día 6", codeEn: "/11F", codeEs: "/12F", 
+              english: "We sincerely apologize for the delay in delivery. As there have been no further updates on your package, we kindly ask you to contact your seller directly to request the corresponding refund. We truly appreciate your patience and understanding", 
+              spanish: "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión" },
+            { id: "17E", category: "Tracking", title: "No Update (0-7 Days)", titleEs: "Sin Actualización (0-7 Días)", codeEn: "/17E", codeEs: "/18E", 
+              english: "Great news! Your parcel has left our sorting center and is on its way to your local warehouse. Once it arrives, it will be delivered within 3 days. Thank you very much for your patience we truly appreciate it", 
+              spanish: "¡Buenas noticias! Su paquete ha salido de nuestro centro de clasificación y se encuentra en camino a su almacén local. Una vez que llegue, será entregado dentro de los 3 días siguientes. Muchas gracias por su paciencia lo apreciamos sinceramente." },
+            { id: "17F", category: "Tracking", title: "No Update (7+ Days)", titleEs: "Sin Actualización (7+ Días)", codeEn: "/17F", codeEs: "/18F", 
+              english: "We sincerely regret that your package has not had any updates for more than 7 days. We kindly recommend that you contact your seller to request a refund. Please accept our deepest apologies for the inconvenience caused, and thank you very much for your patience and understanding.", 
+              spanish: "Lamentamos sinceramente que su paquete no haya tenido actualizaciones por más de 7 días. Le recomendamos amablemente ponerse en contacto con su vendedor para solicitar un reembolso. Le ofrecemos nuestras más sinceras disculpas por los inconvenientes ocasionados y agradecemos mucho su paciencia y comprensión." },
+            { id: "17G", category: "Tracking", title: "No Update (Other Case)", titleEs: "Sin Actualización (Otro Caso)", codeEn: "/17G", codeEs: "/18G", 
+              english: "We sincerely regret that your package has not had any updates. We kindly recommend that you contact your seller to request a refund. Please accept our deepest apologies for the inconvenience caused, and thank you very much for your patience and understanding.", 
+              spanish: "Lamentamos sinceramente que su paquete no haya tenido actualizaciones. Le recomendamos amablemente ponerse en contacto con su vendedor para solicitar un reembolso. Le ofrecemos nuestras más sinceras disculpas por los inconvenientes ocasionados y agradecemos profundamente su paciencia y comprensión." },
+            { id: "45", category: "Tracking", title: "Delivery International Couriers", titleEs: "Entrega Courier Internacional", codeEn: "/45", codeEs: "/46", 
+              english: "According to our system, your order has been marked as delivered. At this stage, the parcel was handed over to a third-party courier that manages international deliveries outside of the GOFO service area. Once the parcel has been transferred, GOFO is no longer responsible for its handling or final delivery.\nWe kindly recommend contacting the international courier directly for the most up-to-date tracking information. You may also confirm the courier details with your supplier for further assistance.\nThank you for choosing GOFO-we sincerely appreciate your trust in our services.", 
+              spanish: "Según nuestro sistema, su pedido figura como entregado. En esta etapa, el paquete fue transferido a un servicio de mensajería externo que gestiona las entregas internacionales fuera del área de cobertura de GOFO. Una vez transferido, GOFO deja de ser responsable de su manipulación o entrega final.\nLe recomendamos amablemente contactar directamente con la mensajería internacional para obtener la información de seguimiento más actualizada. También puede confirmar los datos del courier con su proveedor para recibir mayor asistencia.\nGracias por elegir GOFO-valoramos sinceramente la confianza que deposita en nuestros servicios." },
+            { id: "47", category: "Tracking", title: "Info International Courier", titleEs: "Info Courier Internacional", codeEn: "/47", codeEs: "/48", 
+              english: "Please note that GOFO does not deliver directly to international destinations outside of the U.S. or outside Puerto Rico. Our responsibility typically ends once we deliver your parcel to an independent international shipping company within the U.S. From there, the final delivery to your international destination is managed by that company.\nThe address and shipping company details must be provided either by you or your supplier... Thank you for your understanding and for choosing GOFO we truly appreciate your trust!", 
+              spanish: "Tenga en cuenta que GOFO no realiza entregas directas a destinos internacionales fuera de los EE. UU. y Puerto Rico. Nuestra responsabilidad generalmente finaliza una vez que entregamos su paquete a una empresa independiente de envíos internacionales dentro de los EE. UU... La dirección y los datos de la compañía de envíos deben ser proporcionados por usted o por su proveedor... Gracias por su comprensión y por elegir GOFO-valoramos sinceramente la confianza que deposita en nuestros servicios" },
+            { id: "59B", category: "Tracking", title: "NTU Ticket Pending", titleEs: "Ticket NTU Pendiente", codeEn: "/59B", codeEs: "/60B", 
+              english: "We're sorry that your ticket is still under investigation. If you don't receive any updates within 3 days, please contact us again so we can verify the ticket and follow up accordingly.\nThank you so much for your patience and understanding we truly appreciate it!", 
+              spanish: "Lamentamos que su ticket aún se encuentre en investigación. Si no recibe actualizaciones dentro de los próximos 3 días, por favor contáctenos nuevamente para que podamos verificar el ticket y dar el seguimiento correspondiente.\nMuchas gracias por su paciencia y comprensión realmente lo valoramos." },
+
+            // RETURN
+            { id: "21", category: "Return", title: "Return to Seller (2+ Failed)", titleEs: "Devolución (2+ Fallidos)", codeEn: "/21", codeEs: "/22", 
+              english: "Unfortunately, the delivery attempts for your parcel were unsuccessful, and it has been returned to the seller. We're very sorry about this. Please contact the seller directly for more information.\nWe truly appreciate your patience and understanding throughout this process.", 
+              spanish: "Lamentablemente, los intentos de entrega de su paquete no tuvieron éxito y ha sido devuelto al vendedor. Lamentamos mucho esta situación. Por favor, comuníquese directamente con el vendedor para solicitar mas informacion o para mas consultas. Agradecemos sinceramente su paciencia y comprensión durante este proceso" },
+            { id: "21B", category: "Return", title: "Return to Seller (0-1 Failed)", titleEs: "Devolución (0-1 Fallidos)", codeEn: "/21B", codeEs: "/22B", 
+              english: "Unfortunately, the delivery attempts for your parcel were unsuccessful, and it has been returned to the seller. For a refund, please contact the seller directly..\nThanks so much for your patience and understanding throughout this process!", 
+              spanish: "Lamentablemente, los intentos de entrega de su paquete no han tenido éxito y ha sido devuelto al vendedor. Para obtener un reembolso, póngase en contacto directamente con el vendedor.\nMuchas gracias por su paciencia y comprensión durante todo este proceso!" },
+            { id: "67", category: "Return", title: "Return to the Load", titleEs: "Devuelto al Remitente (Load)", codeEn: "/67", codeEs: "/68", 
+              english: "We're sorry to inform you that the tracking update shows the package has been returned to the seller's warehouse, so a redelivery cannot be arranged at this time. We sincerely apologize for the inconvenience and kindly recommend contacting the seller for more information.", 
+              spanish: "Lamentamos informarle que, según la actualización de seguimiento, el paquete ha sido devuelto al almacén del vendedor, por lo que no es posible programar una nueva entrega en este momento.\nOfrecemos sinceras disculpas por los inconvenientes ocasionados. Le recomendamos comunicarse directamente con el vendedor para obtener más información." },
+            { id: "33", category: "Return", title: "Modify to Undeliverable", titleEs: "Modificar a No Entregable", codeEn: "/33", codeEs: "/34", 
+              english: "Important Notice\nPlease be advised that, in accordance with GOFO's delivery policy, we are unable to deliver to the following locations: Military bases, HC-Boxes, Community mailboxes, University addresses, USPS.\nPlease note that we are also unable to change the delivery address to a different state...", 
+              spanish: "Aviso importante\nTenga en cuenta que... no podemos entregar a las siguientes ubicaciones: Bases militares, HC-Boxes, Buzones comunitarios...\nAsimismo, no podemos cambiar la dirección de entrega a otro estado..." },
+            { id: "33B", category: "Return", title: "Address Change Another State", titleEs: "Cambio Estado Diferente", codeEn: "/33B", codeEs: "/34B", 
+              english: "Address Change Notice\nUnfortunately, we are unable to process address changes across different states. If you wish to change your address, please note that it must remain within the same state. Base on that would you like to keep your current address?", 
+              spanish: "Aviso de cambio de dirección\nLamentablemente, no podemos procesar cambios de dirección entre diferentes estados. Si desea cambiar su dirección, esta debe permanecer dentro del mismo estado. Con base en esto, ¿quiere mantener su dirección actual?" },
+            { id: "33C", category: "Return", title: "Zip Code Not Service", titleEs: "CP Sin Servicio", codeEn: "/33C", codeEs: "/34C", 
+              english: "Thanks for your request. The ZIP code provided is outside our delivery area. Could you please share another address within the same state? Otherwise, the parcel will need to be returned to the seller.", 
+              spanish: "Gracias por su solicitud. El código postal indicado está fuera de nuestra zona de entrega. ¿Podría proporcionarnos otra dirección dentro del mismo estado? De lo contrario, el paquete deberá devolverse al vendedor" },
+            { id: "37", category: "Return", title: "Customer Refuses Parcel", titleEs: "Cliente Rechaza Paquete", codeEn: "/37", codeEs: "/38", 
+              english: "We sincerely apologize for the inconvenience. A work order will be created to try to intercept the delivery; the reimbursement will be sent to the seller, and we kindly ask you to contact them directly for your refund. Thank you for your understanding.", 
+              spanish: "Lamentamos los inconvenientes. Se creará una orden de trabajo para intentar interceptar la entrega el reembolso será enviado al vendedor y le pedimos que lo contacte directamente para solicitar su devolución. Gracias por su comprensión." },
+
+            // MODIFICATION
+            { id: "19", category: "Modification", title: "Modify Success (Failed-Back)", titleEs: "Modificación Exitosa (Fallido)", codeEn: "/19", codeEs: "/20", 
+              english: "Thank you for your patience. We've successfully updated your information, and notified the driver of the updates. Once the package returns to the warehouse, we'll deliver it within 3 days.", 
+              spanish: "Gracias por su paciencia. Hemos actualizado su información correctamente, y notificado al conductor sobre las actualizaciones. Una vez que el paquete regrese al almacén, lo entregaremos en un plazo de 3 días" },
+            { id: "19B", category: "Modification", title: "Modify Success (Normal)", titleEs: "Modificación Exitosa (Normal)", codeEn: "/19B", codeEs: "/20B", 
+              english: "Thank you for your patience. We've successfully updated your information, and notified the driver of the updates. Once the package arrives in our warehouse, we'll deliver it within 3 days", 
+              spanish: "Gracias por su paciencia. Hemos actualizado correctamente su información y hemos notificado al conductor de los cambios. Una vez que el paquete llegue a nuestro almacén, se lo entregaremos en un plazo de 3 días" },
+            { id: "31", category: "Modification", title: "Modify Before Delivery", titleEs: "Modificar Antes de Entrega", codeEn: "/31", codeEs: "/32", 
+              english: "We've updated your information. Once the package arrives at our warehouse, it will be delivered to you within 3 days.\nThank you so much for your patience we truly appreciate it!", 
+              spanish: "Hemos actualizado su información. Una vez que el paquete llegue a nuestro almacén, será entregado en un plazo de 3 días.\nMuchas gracias por su paciencia, lo apreciamos de verdad." },
+            { id: "31B", category: "Modification", title: "Modify During Delivery", titleEs: "Modificar Durante Entrega", codeEn: "/31B", codeEs: "/32B", 
+              english: "Your package is currently out for delivery. We can leave a note for the driver, however, please note that it might still be delivered to the original address. Would you like us to proceed with updating the delivery details?", 
+              spanish: "Su paquete se encuentra actualmente en proceso de entrega. Podemos dejar una nota para el conductor; sin embargo, tenga en cuenta que aún podría entregarse en la dirección original. ¿Desea que procedamos a modificar los detalles de la entrega?" },
+            { id: "35", category: "Modification", title: "Successful Modify Info", titleEs: "Info Modificada Exitosamente", codeEn: "/35", codeEs: "/36", 
+              english: "Thank you for your patience. We've successfully updated your information in our system. Once the parcel arrives at our local warehouse, it will be delivered within 3 days.", 
+              spanish: "Gracias por su paciencia. Hemos actualizado correctamente su información en nuestro sistema. Una vez que el paquete llegue a nuestro almacén local, se entregará en un plazo de 3 días." },
+
+            // COMPLAINT / ADMIN / SECURITY
+            { id: "23", category: "Complaint", title: "Lost Parcel", titleEs: "Paquete Perdido", codeEn: "/23", codeEs: "/24", 
+              english: "We sincerely apologize for the issue with your package. Our investigation has determined that the package has been lost. We will reimburse the seller, and we kindly ask that you contact the seller directly for a refund. We truly appreciate your patience and are very sorry for the inconvenience.", 
+              spanish: "Lamentamos sinceramente el problema con su paquete. Nuestra investigación nos determina que el paquete muestra como perdido. Se enviara un reembolso al vendedor y le pedimos amablemente que se comunique directamente con él para solicitar su devolución. Agradecemos mucho su paciencia y lamentamos profundamente los inconvenientes." },
+            { id: "23B", category: "Complaint", title: "Damage (Tracking Query)", titleEs: "Daño (Consulta Rastreo)", codeEn: "/23B", codeEs: "/24B", 
+              english: "We are sorry to inform you that your package arrived at the warehouse already damaged. We are currently waiting for the seller's response regarding the next steps. May we kindly ask you to also reach out to the seller for further instructions. Thank you for your understanding, we truly appreciate your patience.", 
+              spanish: "Lamentamos informarle que su paquete llegó al almacén dañado. Actualmente estamos a la espera de la respuesta del vendedor sobre los siguientes pasos. Le agradeceríamos que también pudiera comunicarse con el vendedor para recibir más instrucciones. Gracias por su comprensión, valoramos sinceramente su paciencia." },
+            { id: "25", category: "Complaint", title: "Damage Tracking 2", titleEs: "Daño Rastreo 2", codeEn: "/25", codeEs: "/26", 
+              english: "We are sorry to inform you that your package arrived at the warehouse already damaged. We are currently waiting for the seller's response regarding the next steps. May we kindly ask you to also reach out to the seller for further instructions. Thank you for your understanding, we truly appreciate your patience.", 
+              spanish: "Lamentamos informarle que su paquete llegó al almacén ya dañado. Actualmente estamos a la espera de la respuesta del vendedor respecto a los siguientes pasos. Le solicitamos amablemente que también se comunique con el vendedor para recibir más instrucciones. Gracias por su comprensión, apreciamos sinceramente su paciencia." },
+            { id: "25B", category: "Complaint", title: "Reported > 48h", titleEs: "Reportado > 48h", codeEn: "/25B", codeEs: "/26B", 
+              english: "We completely understand your concern... According to our system, the parcel was delivered and no damage was reported within 48 hours... this case is outside our supervision...", 
+              spanish: "Comprendemos completamente su preocupación... Según nuestro sistema, el paquete fue entregado y no se reportó ningún daño dentro de las 48 horas posteriores... este caso queda fuera de nuestra supervisión..." },
+            { id: "25C", category: "Complaint", title: "Demand Report > 48h", titleEs: "Exigir Reporte > 48h", codeEn: "/25C", codeEs: "/26C", 
+              english: "May we kindly ask you to let us know the reason why the damage was not reported within the first 48 hours? Once we receive this information, we can create a special case to assist you further.", 
+              spanish: "¿Podemos pedirle amablemente que nos indique la razón por la cual el daño no fue reportado dentro de las primeras 48 horas? Una vez que recibamos esta información, podremos crear un caso especial para brindarle mayor asistencia." },
+            { id: "25D", category: "Complaint", title: "No Damage/Missing Product", titleEs: "Sin Daño/Producto Faltante", codeEn: "/25D", codeEs: "/26D", 
+              english: "Thank you very much for your feedback, we truly appreciate it. We will forward this to our investigation team... We are very sorry for your experience...", 
+              spanish: "Muchas gracias por sus comentarios... Remitiremos esta información a nuestro equipo de investigación... Lamentamos mucho su experiencia..." },
+            { id: "25E", category: "Complaint", title: "Damage Description", titleEs: "Descripción Daño", codeEn: "/25E", codeEs: "/26E", 
+              english: "For investigation purposes, may we kindly ask you to provide a detailed description of what happened? For example, which part of the product is damaged or missing...", 
+              spanish: "Para fines de investigación, ¿podemos pedirle amablemente que nos proporcione una descripción detallada de lo ocurrido? Por ejemplo, qué parte del producto está dañada o falta..." },
+            { id: "25F", category: "Complaint", title: "All/Part Damaged Evidence", titleEs: "Evidencia Daño Total/Parcial", codeEn: "/25F", codeEs: "/26F", 
+              english: "(COPY AND PASTE)\nWe totally understand how you feel. Please provide the following evidence along with the tracking number... 1. Outer packaging... 2. Inner packaging... 3. Damaged item...", 
+              spanish: "(COPY AND PASTE)\nEntendemos completamente cómo se siente. Por favor proporcione la siguiente evidencia junto con el número de rastreo... 1. Empaque exterior... 2. Empaque interior... 3. Artículo dañado..." },
+            { id: "25G", category: "Complaint", title: "Loss/Damage Evidence", titleEs: "Evidencia Pérdida/Daño", codeEn: "/25G", codeEs: "/26G", 
+              english: "(COPY AND PASTE)\nWe totally understand how you feel. Please provide... 1. Outer packaging... 2. Inner packaging... 3. Damaged item... 4. Delivery item...", 
+              spanish: "(COPY AND PASTE)\nComprendemos totalmente cómo se siente... Obligatorio: 1. Embalaje externo... 2. Embalaje interno... 3. Artículo dañado..." },
+            { id: "25H", category: "Complaint", title: "All Loss Evidence", titleEs: "Evidencia Pérdida Total", codeEn: "/25H", codeEs: "/26H", 
+              english: "(COPY AND PASTE)\nI totally understand how you feel... 1. Outer packaging... 2. Inner packaging... 3. Delivered item...", 
+              spanish: "(COPY AND PASTE)\nComprendemos totalmente cómo se siente... 1. Empaque exterior... 2. Empaque interior... 3. Artículo entregado..." },
+            { id: "27", category: "Admin", title: "Fake POD", titleEs: "Fake POD", codeEn: "/27", codeEs: "/28", 
+              english: "We regret to inform you that this delivery did not meet our standards. Our investigation team has already contacted the seller, and the package has been confirmed as refundable...", 
+              spanish: "Lamentamos informarle que esta entrega no cumplió con nuestros estándares. Nuestro equipo de investigación ya se ha comunicado con el vendedor y el paquete ha sido confirmado como reembolsable..." },
+            { id: "29", category: "Admin", title: "Proof of Loss", titleEs: "Prueba de Pérdida", codeEn: "/29", codeEs: "/30", 
+              english: "We sincerely apologize for the inconvenience. We've already created a ticket for you in our system and requested the proof of loss from the investigation team...", 
+              spanish: "Lamentamos sinceramente los inconvenientes. Ya hemos creado un ticket en nuestro sistema y solicitado al equipo de investigación la constancia de pérdida..." },
+            { id: "41B", category: "Admin", title: "DNR Over 30 Days", titleEs: "DNR Más de 30 Días", codeEn: "/41B", codeEs: "/42B", 
+              english: "We deeply regret any inconvenience this may have caused. Unfortunately, investigations must be initiated within 30 days of delivery, and according to our records, this period has expired...", 
+              spanish: "Lamentamos profundamente los inconvenientes ocasionados. Desafortunadamente, las investigaciones solo pueden iniciarse dentro de los 30 días posteriores a la entrega..." },
+            { id: "43", category: "Complaint", title: "Complaints Courier", titleEs: "Quejas sobre Courier", codeEn: "/43", codeEs: "/44", 
+              english: "We apologize that the courier did not adhere to GOFO's delivery standards. We will initiate an investigation to evaluate the driver's actions. Could you please share any relevant evidence...", 
+              spanish: "Lamentamos sinceramente los inconvenientes ocasionados. Esta entrega no cumplió con el estándar de entrega de GOFO... ¿Tiene alguna evidencia?" },
+            { id: "43B", category: "Complaint", title: "Have Evidence", titleEs: "Tengo Evidencia", codeEn: "/43B", codeEs: "/44B", 
+              english: "We take this matter very seriously... Please send to cs@mail.gofoexpress.com...", 
+              spanish: "Tomamos este asunto muy en serio... Por favor envíe a cs@mail.gofoexpress.com..." },
+            { id: "43C", category: "Complaint", title: "No Evidence", titleEs: "Sin Evidencia", codeEn: "/43C", codeEs: "/44C", 
+              english: "We take this matter very seriously and strongly recommend that you gather all available evidence...", 
+              spanish: "Tomamos este asunto muy en serio y le recomendamos amablemente que pueda reunir toda la evidencia disponible..." },
+            { id: "57", category: "Admin", title: "Resolved Claim", titleEs: "Reclamo Resuelto", codeEn: "/57", codeEs: "/58", 
+              english: "We sincerely apologize again that you didn't receive your parcel. A reimbursement will be sent to the seller, and we kindly ask that you contact them directly to request your refund...", 
+              spanish: "Lamentamos sinceramente nuevamente que no haya recibido su paquete. El reembolso será enviado al vendedor, y le pedimos amablemente que lo contacte directamente..." },
+            { id: "59", category: "Admin", title: "Resolved Not Claimable", titleEs: "Resuelto No Reclamable", codeEn: "/59", codeEs: "/60", 
+              english: "Upon investigation, we confirmed that our driver followed the delivery procedures for this package, so we are not able to issue a refund...", 
+              spanish: "Tras la investigación, confirmamos que nuestro conductor siguió los procedimientos de entrega para este paquete, por lo que no es posible emitir un reembolso..." },
+            { id: "61", category: "Admin", title: "Pending > 14 Days", titleEs: "Pendiente > 14 Días", codeEn: "/61", codeEs: "/62", 
+              english: "We sincerely apologize that the investigation process has taken longer than usual. We will be sending the reimbursement to the seller, and you may now contact the seller directly...", 
+              spanish: "Ofrecemos nuestras más sinceras disculpas porque el proceso de investigación ha tomado más tiempo de lo habitual. Estaremos enviando el reembolso al vendedor..." },
+            { id: "63", category: "Admin", title: "Pending < 14 Days", titleEs: "Pendiente < 14 Días", codeEn: "/63", codeEs: "/64", 
+              english: "We apologize that the previous ticket for this parcel is still under investigation. Our team is working to provide the results within 5-10 business days.", 
+              spanish: "Lamentamos que el ticket anterior de este paquete aún se encuentre en investigación. Nuestro equipo está trabajando para proporcionarle los resultados en un plazo de 5 a 10 días hábiles." },
+            { id: "65", category: "Admin", title: "In Process > 14 Days", titleEs: "En Proceso > 14 Días", codeEn: "/65", codeEs: "/66", 
+              english: "We sincerely apologize that the investigation process has taken longer than usual. The reimbursement will be sent to the seller...", 
+              spanish: "Lamentamos sinceramente que el proceso de investigación haya tomado más tiempo de lo habitual. El reembolso se enviará al vendedor..." },
+            { id: "75", category: "Security", title: "Call for Police", titleEs: "Llamar a la Policía", codeEn: "/75", codeEs: "/76", 
+              english: "First of all, we would like to express our deepest concern regarding the situation you just mentioned... To immediately launch an investigation... 1. The driver's full name... 2. The vehicle's license plate...", 
+              spanish: "Antes que nada, queremos expresar nuestra más profunda preocupación por la situación que nos ha mencionado... Para iniciar de inmediato una investigación... 1. Nombre completo del conductor..." }
+        ];
+
+        // --- COMPONENTES ---
+        // ... (resto del código igual) ...
+        const CategoryFilter = ({ activeCategory, onSelectCategory, darkMode }) => (
+          <div className={`overflow-x-auto py-3 px-4 no-scrollbar border-b ${darkMode ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-white'} sticky top-[73px] z-10 shadow-sm`}>
+            <div className="flex gap-2 min-w-max">
+              <button onClick={() => onSelectCategory('ALL')} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all border ${activeCategory === 'ALL' ? 'bg-slate-800 text-white border-slate-900 shadow-md transform scale-105' : darkMode ? 'bg-slate-800 text-slate-300 border-slate-700' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}>Todos</button>
+              {Object.values(CATEGORIES).map(cat => (
+                <button key={cat.id} onClick={() => onSelectCategory(cat.id)} className={`px-4 py-2 rounded-lg text-xs font-bold transition-all flex items-center gap-2 border ${activeCategory === cat.id ? `${cat.bg} ${cat.text} ${cat.color} shadow-md transform scale-105 ring-1 ring-offset-0 ring-${cat.color.replace('border-', '')}` : darkMode ? 'bg-slate-800 text-slate-400 border-slate-700 hover:bg-slate-700' : 'bg-white text-slate-600 border-slate-200 hover:bg-slate-50'}`}>
+                  {cat.icon && <cat.icon size={14} />}{cat.label}
+                </button>
+              ))}
+            </div>
+          </div>
+        );
+
+        const CopyBlock = ({ text, code, lang, darkMode }) => {
+          const [copied, setCopied] = useState(false);
+          const handleCopy = (e) => { e.stopPropagation(); copyToClipboardRobust(text, () => { setCopied(true); setTimeout(() => setCopied(false), 2000); }); };
+          return (
+            <div onClick={handleCopy} className={`relative group cursor-pointer rounded-xl p-5 transition-all duration-200 border h-full flex flex-col ${darkMode ? 'bg-slate-800/50 border-slate-700 hover:bg-slate-800 hover:border-slate-500' : 'bg-slate-50 border-slate-200 hover:bg-white hover:border-indigo-300 hover:shadow-md'}`}>
+              <div className="flex justify-between items-start mb-3">
+                <div className="flex flex-col">
+                  <span className={`text-[10px] font-bold uppercase tracking-wider mb-1 ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>{lang === 'en' ? '🇺🇸 English' : '🇪🇸 Español'}</span>
+                  <span className={`text-4xl font-black tracking-tighter ${darkMode ? 'text-white' : 'text-slate-800'}`}>{code}</span>
+                </div>
+                <span className={`text-xs px-2 py-1 rounded-md transition-all flex items-center gap-1 font-medium ${copied ? 'bg-green-500 text-white shadow-sm' : 'bg-slate-200 text-slate-500 opacity-0 group-hover:opacity-100'}`}>{copied ? <Check size={14}/> : <Copy size={14}/>}</span>
+              </div>
+              <p className={`whitespace-pre-wrap text-sm leading-relaxed font-mono mt-auto ${darkMode ? 'text-slate-300' : 'text-slate-700'}`}>{text}</p>
+              {copied && <div className="absolute inset-0 bg-green-500/5 rounded-xl animate-pulse pointer-events-none border-2 border-green-500" />}
+            </div>
+          );
+        };
+
+        const PromptCard = ({ prompt, darkMode, selected }) => {
+          const catStyle = Object.values(CATEGORIES).find(c => c.id === prompt.category) || CATEGORIES.GENERAL;
+          const cardRef = useRef(null);
+          useEffect(() => { if (selected && cardRef.current) { cardRef.current.scrollIntoView({ behavior: 'smooth', block: 'center' }); cardRef.current.classList.add('highlight-card'); setTimeout(() => { if(cardRef.current) cardRef.current.classList.remove('highlight-card'); }, 1000); } }, [selected]);
+          return (
+            <div id={`card-${prompt.id}`} ref={cardRef} className={`relative rounded-xl overflow-hidden shadow-sm transition-all duration-300 border-l-4 ${darkMode ? 'bg-slate-900 border-y border-r border-slate-800' : 'bg-white border-y border-r border-slate-200'} ${catStyle.color}`}>
+              <div className={`px-5 py-3 border-b ${darkMode ? 'border-slate-800 bg-slate-900/50' : 'border-slate-100 bg-slate-50/50'} flex justify-between items-center`}>
+                <div className="flex items-center gap-2">
+                  <span className={`inline-flex items-center justify-center w-6 h-6 rounded-full ${catStyle.bg} ${catStyle.text}`}>{catStyle.icon && <catStyle.icon size={12} />}</span>
+                  <h3 className={`text-sm font-bold uppercase tracking-wide ${catStyle.text}`}>{catStyle.label}</h3>
+                </div>
+                <div className={`text-xs font-medium px-2 py-1 rounded ${darkMode ? 'bg-slate-800 text-slate-400' : 'bg-white border border-slate-200 text-slate-500'}`}>{prompt.title}</div>
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-0 divide-y md:divide-y-0 md:divide-x divide-slate-200 dark:divide-slate-800">
+                <div className="p-4"><CopyBlock text={prompt.english} code={prompt.codeEn} lang="en" darkMode={darkMode} /></div>
+                <div className="p-4"><CopyBlock text={prompt.spanish} code={prompt.codeEs} lang="es" darkMode={darkMode} /></div>
+              </div>
+            </div>
+          );
+        };
+
+        const ClickableCode = ({ code, text, lang, darkMode }) => {
+            const [copied, setCopied] = useState(false);
+            const handleCopy = (e) => { e.stopPropagation(); copyToClipboardRobust(text, () => { setCopied(true); setTimeout(() => setCopied(false), 800); }); };
+            return (
+                <button onClick={handleCopy} className={`relative inline-flex items-center px-3 py-1.5 rounded-lg font-mono font-bold text-sm transition-all duration-200 ${copied ? 'bg-green-500 text-white scale-105 shadow-md' : darkMode ? 'bg-slate-800 text-slate-300 hover:bg-slate-700 hover:text-white' : lang === 'en' ? 'bg-blue-50 text-blue-700 border border-blue-100 hover:bg-blue-100' : 'bg-emerald-50 text-emerald-700 border border-emerald-100 hover:bg-emerald-100'}`} title="Clic para copiar prompt">
+                    {copied ? <Check size={14} className="mr-1.5" /> : null}{code}
+                </button>
+            );
+        };
+
+        const ListView = ({ prompts, darkMode, onPromptClick }) => {
+          const [listLang, setListLang] = useState('es');
+          return (
+            <div className={`rounded-xl overflow-hidden border ${darkMode ? 'border-slate-700 bg-slate-900' : 'border-slate-200 bg-white'} shadow-sm`}>
+              <div className={`flex justify-between items-center px-6 py-3 border-b ${darkMode ? 'border-slate-700 bg-slate-800/50' : 'border-slate-100 bg-slate-50'}`}>
+                  <div className="flex items-center gap-2"><List size={16} className={darkMode ? 'text-slate-400' : 'text-slate-500'} /><span className={`text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Vista de Lista</span></div>
+                  <div className="flex items-center gap-2"><span className={`text-xs font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Idioma Títulos:</span><div className="flex bg-slate-200/50 dark:bg-slate-700/50 p-1 rounded-lg"><button onClick={() => setListLang('en')} className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${listLang === 'en' ? 'bg-white shadow-sm text-blue-600' : 'text-slate-500 hover:text-slate-700'}`}>EN</button><button onClick={() => setListLang('es')} className={`px-3 py-1 text-xs font-bold rounded-md transition-all ${listLang === 'es' ? 'bg-white shadow-sm text-emerald-600' : 'text-slate-500 hover:text-slate-700'}`}>ES</button></div></div>
+              </div>
+              <table className="w-full text-left text-sm">
+                <thead className={`${darkMode ? 'bg-slate-800 text-slate-200' : 'bg-white text-slate-700'} border-b ${darkMode ? 'border-slate-700' : 'border-slate-200'}`}>
+                  <tr><th className="px-6 py-4 font-bold">Título del Prompt ({listLang === 'en' ? 'English' : 'Español'})</th><th className="px-6 py-4 font-bold w-32 text-center">🇺🇸 Inglés</th><th className="px-6 py-4 font-bold w-32 text-center">🇪🇸 Español</th></tr>
+                </thead>
+                <tbody className={`divide-y ${darkMode ? 'divide-slate-800' : 'divide-slate-100'}`}>
+                  {prompts.map((p, idx) => (
+                    <tr key={idx} onClick={() => onPromptClick(p.id)} className={`group hover:bg-slate-50 dark:hover:bg-slate-800/50 transition-colors cursor-pointer`}>
+                      <td className={`px-6 py-4 font-medium ${darkMode ? 'text-slate-300' : 'text-slate-800'}`}>{listLang === 'en' ? p.title : (p.titleEs || p.title)}<span className={`ml-2 text-[10px] uppercase font-bold px-2 py-0.5 rounded-full border ${darkMode ? 'bg-slate-800 text-slate-500 border-slate-700' : 'bg-slate-100 text-slate-500 border-slate-200'}`}>{p.category}</span></td>
+                      <td className="px-6 py-4 text-center"><ClickableCode code={p.codeEn} text={p.english} lang="en" darkMode={darkMode} /></td>
+                      <td className="px-6 py-4 text-center"><ClickableCode code={p.codeEs} text={p.spanish} lang="es" darkMode={darkMode} /></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          );
+        };
+
+        const App = () => {
+          const [searchTerm, setSearchTerm] = useState('');
+          const [activeCategory, setActiveCategory] = useState('ALL');
+          const [darkMode, setDarkMode] = useState(false);
+          const [viewMode, setViewMode] = useState('grid');
+          const [filteredPrompts, setFilteredPrompts] = useState(promptsData);
+          const [selectedPromptId, setSelectedPromptId] = useState(null);
+
+          useEffect(() => {
+            const lowerTerm = searchTerm.toLowerCase();
+            const filtered = promptsData.filter(prompt => {
+              const matchesSearch = (prompt.title.toLowerCase().includes(lowerTerm) || (prompt.titleEs && prompt.titleEs.toLowerCase().includes(lowerTerm)) || prompt.codeEn.toLowerCase().includes(lowerTerm) || prompt.codeEs.toLowerCase().includes(lowerTerm) || prompt.english.toLowerCase().includes(lowerTerm) || prompt.spanish.toLowerCase().includes(lowerTerm));
+              const matchesCategory = activeCategory === 'ALL' || prompt.category === activeCategory;
+              return matchesSearch && matchesCategory;
+            });
+            setFilteredPrompts(filtered);
+          }, [searchTerm, activeCategory]);
+
+          const handlePromptClick = (id) => { setViewMode('grid'); setSelectedPromptId(id); setTimeout(() => setSelectedPromptId(null), 2000); };
+
+          return (
+            <div className={`min-h-screen ${darkMode ? 'bg-slate-950' : 'bg-slate-100'} font-sans transition-colors duration-300`}>
+              <header className={`${darkMode ? 'bg-slate-900 border-slate-800' : 'bg-white border-slate-200'} border-b sticky top-0 z-30 shadow-sm`}>
+                <div className="max-w-7xl mx-auto px-4 py-3">
+                  <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+                    <div className="flex items-center gap-3 w-full md:w-auto">
+                      <div className="bg-green-500 p-2 rounded-xl shadow-lg shadow-green-500/20"><MessageCircle size={24} className="text-white" /></div>
+                      <div><h1 className={`text-xl font-black tracking-tight ${darkMode ? 'text-white' : 'text-slate-900'}`}>WhatsApp Prompts <span className="text-green-500">2025</span></h1><p className={`text-xs font-medium ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>Base de Datos Oficial • Lista Extendida</p></div>
+                    </div>
+                    <div className="flex items-center gap-3 w-full md:w-auto">
+                      <div className="relative flex-grow md:w-80 group"><Search className={`absolute left-3 top-2.5 h-4 w-4 ${darkMode ? 'text-slate-500 group-focus-within:text-green-400' : 'text-slate-400 group-focus-within:text-green-600'} transition-colors`} /><input type="text" placeholder="Buscar por título, código (ej: /01E)..." value={searchTerm} onChange={(e) => setSearchTerm(e.target.value)} className={`w-full pl-10 pr-4 py-2 text-sm rounded-lg border ${darkMode ? 'bg-slate-800 border-slate-700 text-white placeholder-slate-500 focus:ring-green-500/50' : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:ring-green-500/30'} focus:outline-none focus:ring-4 focus:border-green-500 transition-all`} /></div>
+                      <button onClick={() => setViewMode(viewMode === 'grid' ? 'list' : 'grid')} className={`flex items-center gap-2 px-3 py-2 rounded-lg text-xs font-bold transition-all border ${viewMode === 'list' ? darkMode ? 'bg-green-900/30 text-green-400 border-green-800' : 'bg-green-50 text-green-700 border-green-200' : darkMode ? 'bg-slate-800 text-slate-400 border-slate-700' : 'bg-white text-slate-600 border-slate-200'}`} title={viewMode === 'grid' ? "Ver Lista Compacta" : "Ver Tarjetas"}>{viewMode === 'grid' ? <List size={16}/> : <Grid size={16}/>}<span className="hidden sm:inline">{viewMode === 'grid' ? 'Modo Lista' : 'Tarjetas'}</span></button>
+                      <button onClick={() => setDarkMode(!darkMode)} className={`p-2 rounded-lg transition-colors border ${darkMode ? 'bg-slate-800 border-slate-700 text-yellow-400 hover:bg-slate-700' : 'bg-white border-slate-200 text-slate-400 hover:bg-slate-50 hover:text-slate-600'}`}>{darkMode ? <Sun size={20} /> : <Moon size={20} />}</button>
+                    </div>
+                  </div>
+                </div>
+              </header>
+              <CategoryFilter activeCategory={activeCategory} onSelectCategory={setActiveCategory} darkMode={darkMode} />
+              <main className="max-w-7xl mx-auto p-4 md:p-6 pb-20">
+                <div className="mb-6 flex justify-between items-end">
+                  <p className={`text-sm font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Encontrados: <strong className={darkMode ? 'text-white' : 'text-slate-900'}>{filteredPrompts.length}</strong></p>
+                  {searchTerm && <button onClick={() => setSearchTerm('')} className="text-xs text-red-500 hover:text-red-600 font-bold uppercase tracking-wide hover:underline">Borrar Filtros</button>}
+                </div>
+                {filteredPrompts.length > 0 ? (
+                  viewMode === 'list' ? <ListView prompts={filteredPrompts} darkMode={darkMode} onPromptClick={handlePromptClick} /> : <div className="grid grid-cols-1 gap-6">{filteredPrompts.map(prompt => <PromptCard key={prompt.id} prompt={prompt} darkMode={darkMode} selected={selectedPromptId === prompt.id} />)}</div>
+                ) : (
+                  <div className="flex flex-col items-center justify-center py-24 text-center">
+                    <div className={`p-6 rounded-full mb-4 ${darkMode ? 'bg-slate-900' : 'bg-white shadow-sm border border-slate-200'}`}><Search size={48} className={`opacity-20 ${darkMode ? 'text-white' : 'text-slate-900'}`} /></div>
+                    <h3 className={`text-lg font-bold ${darkMode ? 'text-white' : 'text-slate-900'}`}>Sin resultados</h3>
+                    <p className={`mt-2 ${darkMode ? 'text-slate-500' : 'text-slate-500'}`}>No encontramos prompts con ese código o título.</p>
+                    <button onClick={() => {setSearchTerm(''); setActiveCategory('ALL');}} className="mt-6 px-6 py-2 bg-green-600 text-white rounded-lg text-sm font-bold hover:bg-green-700 transition shadow-lg shadow-green-600/20">Ver Todo</button>
+                  </div>
+                )}
+              </main>
+            </div>
+          );
+        };
+
+        const root = ReactDOM.createRoot(document.getElementById('root'));
+        root.render(<App />);
+    </script>
+</body>
+</html>

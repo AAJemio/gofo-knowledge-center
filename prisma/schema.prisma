@@ -1,0 +1,113 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Role {
+  admin
+  agent
+}
+
+model User {
+  id        String   @id @default(uuid())
+  email     String   @unique
+  password  String   // In a real app, this should be hashed. For this demo, we might store plain or simple hash.
+  firstName String   @default("")
+  lastName  String   @default("")
+  role      Role     @default(agent)
+  usageCount Int      @default(0)
+  mustChangePassword Boolean @default(false)
+  
+  // Preferences
+  theme       String   @default("light") // 'light' | 'dark'
+  language    String   @default("es")    // 'es' | 'en'
+  defaultPage String   @default("mqa")   // 'mqa' | '/prompts' | 'last-visited' ...
+  lastPath    String   @default("/mqa")
+  wapViewMode String   @default("list")  // 'list' | 'grid'
+
+  interactions Interaction[]
+  auditLogs    AuditLog[]
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model AuditLog {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id])
+  
+  action    String   // 'CREATE' | 'UPDATE' | 'DELETE'
+  entity    String   // 'CASE' | 'PROMPT'
+  entityId  String
+  details   String   @db.Text
+  
+  previousState String? @db.Text // JSON snapshot of state before change
+  newState      String? @db.Text // JSON snapshot of state after change
+  
+  isReverted    Boolean  @default(false)
+  
+  createdAt DateTime @default(now())
+}
+
+model WhatsappPrompt {
+  id            String   @id @default(uuid())
+  title         String
+  title_es      String?
+  category      String
+  code_impar_en String?
+  code_par_es   String?
+  content_en    String   @db.Text
+  content_es    String   @db.Text
+  usage_count   Int      @default(0)
+  createdAt     DateTime @default(now())
+  updatedAt     DateTime @updatedAt
+  
+  supportCases          SupportCase[] // Relation to cases that recommend this prompt
+  interactions          Interaction[]
+}
+
+model SupportCase {
+  id                   String   @id @default(uuid())
+  title_es             String
+  title_en             String
+  category             String
+  keywords             String   @db.Text
+  condition            String   @db.Text
+  condition_en         String?  @db.Text
+  crm_code_type        String?
+  crm_complaint_status String?
+  crm_detailed_type    String?
+  crm_remark_template  String?  @db.Text
+  script_official_en   String   @db.Text
+  script_official_es   String   @db.Text
+  script_friendly_en   String?  @db.Text
+  script_friendly_es   String?  @db.Text
+  usage_count          Int      @default(0)
+  
+  recommendedPrompts    WhatsappPrompt[]
+  interactions          Interaction[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Interaction {
+  id        String   @id @default(uuid())
+  userId    String
+  user      User     @relation(fields: [userId], references: [id], onDelete: Cascade)
+  
+  type      String   // 'case' | 'prompt'
+  language  String?  // 'en' | 'es'
+  
+  caseId    String?
+  case      SupportCase? @relation(fields: [caseId], references: [id])
+  
+  promptId  String?
+  prompt    WhatsappPrompt? @relation(fields: [promptId], references: [id])
+  
+  createdAt DateTime @default(now())
+}
