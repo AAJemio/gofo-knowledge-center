@@ -111,6 +111,7 @@ export const POST = apiHandler(async (request: Request, { params }: { params: Pr
     await logAction(
         user.id,
         'UPDATE', // It's effectively an update/restore
+        log.entity as 'CASE' | 'PROMPT',
         log.entityId,
         isPartial
             ? `Partial Revert (${keys?.join(', ')}) from ${new Date(log.createdAt).toLocaleString()}`
