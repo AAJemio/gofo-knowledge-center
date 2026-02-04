@@ -1,4 +1,5 @@
 import { prisma } from '@/lib/prisma';
+import { Suspense } from 'react';
 import PromptsViewer from '@/app/components/PromptsViewer';
 import AKCNavigation from '@/components/AKCNavigation';
 
@@ -30,7 +31,9 @@ export default async function PromptsPage() {
     return (
         <div className="min-h-screen bg-slate-50">
             <AKCNavigation />
-            <PromptsViewer initialPrompts={formattedPrompts} />
+            <Suspense fallback={<div className="p-8 text-center">Loading Prompts...</div>}>
+                <PromptsViewer initialPrompts={formattedPrompts} />
+            </Suspense>
         </div>
     );
 }

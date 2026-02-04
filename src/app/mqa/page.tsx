@@ -12,7 +12,9 @@ export default async function MQAPage() {
     return (
         <div className="min-h-screen bg-gray-50">
             <AKCNavigation />
-            <AgentWorkspace initialCases={cases} />
+            <React.Suspense fallback={<div className="p-8 text-center">Loading Workspace...</div>}>
+                <AgentWorkspace initialCases={cases} />
+            </React.Suspense>
         </div>
     );
 }
