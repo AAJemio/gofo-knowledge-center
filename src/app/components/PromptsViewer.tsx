@@ -119,6 +119,15 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
     const [expandedId, setExpandedId] = useState<string | null>(null);
     const searchParams = useSearchParams();
     const promptId = searchParams.get('id');
+    const highlightId = searchParams.get('highlight');
+
+    // Handle initial highlight/scroll
+    useEffect(() => {
+        const targetId = highlightId || promptId;
+        if (targetId) {
+            scrollToCard(targetId);
+        }
+    }, [promptId, highlightId]);
 
     // Sync viewMode with currentUser preference on load
     useEffect(() => {
@@ -157,6 +166,19 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
             p.codeEs.toLowerCase().includes(search.toLowerCase());
         const matchesCategory = category === 'all' || p.category === category;
         return matchesSearch && matchesCategory;
+
+    });
+
+    // Sort by Highlight
+    // Sort by Highlight (Active)
+    filteredPrompts.sort((a, b) => {
+        const now = new Date();
+        const isA = a.highlightExpiresAt && new Date(a.highlightExpiresAt) > now && (!a.highlightStartsAt || new Date(a.highlightStartsAt) <= now);
+        const isB = b.highlightExpiresAt && new Date(b.highlightExpiresAt) > now && (!b.highlightStartsAt || new Date(b.highlightStartsAt) <= now);
+
+        if (isA && !isB) return -1;
+        if (!isA && isB) return 1;
+        return 0;
     });
 
     const scrollToCard = (id: string) => {
@@ -327,16 +349,28 @@ const ClickableCode = ({ code, text, lang, darkMode, promptId }: { code: string,
 
 function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: { prompt: any, darkMode: boolean, viewMode: string, lang: 'en' | 'es', isExpanded?: boolean, onToggle?: () => void }) {
     const catStyle = CATEGORIES[prompt.category] || CATEGORIES['General'];
+    const now = new Date();
+    const isHighlighted = prompt.highlightExpiresAt && new Date(prompt.highlightExpiresAt) > now && (!prompt.highlightStartsAt || new Date(prompt.highlightStartsAt) <= now);
+    const highlightStyle = isHighlighted ? {
+        borderColor: prompt.highlightColor || '#EF4D23',
+        borderWidth: '2px',
+        backgroundColor: prompt.highlightColor ? `${prompt.highlightColor}10` : undefined
+    } : {};
 
     if (viewMode === 'list') {
         return (
-            <div id={`prompt-${prompt.id}`} className={`rounded-xl border transition-all duration-200 ${darkMode ? 'bg-[#151719] border-gray-800' : 'bg-white border-slate-100 shadow-sm hover:shadow-md'}`}>
+            <div id={`prompt-${prompt.id}`} style={highlightStyle} className={`rounded-xl border transition-all duration-200 relative ${darkMode ? 'bg-[#151719] border-gray-800' : 'bg-white border-slate-100 shadow-sm hover:shadow-md'}`}>
+                {isHighlighted && (
+                    <div className="bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 w-fit rounded-br-lg rounded-tl-lg absolute z-10 left-0 top-0">
+                        UPDATED
+                    </div>
+                )}
                 {/* List Row Header */}
                 <div
                     onClick={onToggle}
                     className={`px-6 py-4 flex flex-col md:flex-row items-start md:items-center justify-between gap-4 cursor-pointer hover:bg-gray-50 dark:hover:bg-gray-800/50 transition-colors ${isExpanded ? 'bg-gray-50 dark:bg-gray-800/50' : ''}`}
                 >
-                    <div className="flex items-center gap-3 flex-1">
+                    <div className="flex items-center gap-3 flex-1 ml-4 md:ml-0">
                         <h3 className={`font-bold text-sm ${darkMode ? 'text-slate-200' : 'text-slate-700'}`}>
                             {lang === 'en' ? prompt.title : (prompt.titleEs || prompt.title)}
                         </h3>
@@ -398,7 +432,12 @@ function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: 
 
     // Grid View (Original Card)
     return (
-        <div id={`prompt-${prompt.id}`} className={`rounded-2xl border overflow-hidden transition-all duration-300 ${darkMode ? 'bg-[#151719] border-gray-700' : 'bg-white border-slate-200 shadow-sm hover:shadow-md'}`}>
+        <div id={`prompt-${prompt.id}`} style={highlightStyle} className={`rounded-2xl border overflow-hidden transition-all duration-300 relative ${darkMode ? 'bg-[#151719] border-gray-700' : 'bg-white border-slate-200 shadow-sm hover:shadow-md'}`}>
+            {isHighlighted && (
+                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg z-10">
+                    UPDATED
+                </div>
+            )}
             {/* Card Header */}
             <div className={`px-5 py-3 border-b flex justify-between items-center ${darkMode ? 'border-gray-700 bg-gray-800' : 'border-slate-100 bg-slate-50/50'}`}>
                 <div className="flex items-center gap-3">

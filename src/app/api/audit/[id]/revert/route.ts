@@ -4,6 +4,8 @@ import { apiHandler } from '@/lib/api-handler';
 import { logAction } from '@/services/audit';
 import { getCurrentUser } from '@/lib/session';
 
+import { createNotification } from '@/lib/notifications';
+
 export const POST = apiHandler(async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const user = await getCurrentUser();
@@ -127,6 +129,36 @@ export const POST = apiHandler(async (request: Request, { params }: { params: Pr
             where: { id },
             data: { isReverted: true }
         });
+    }
+
+    // Agent Notification
+    try {
+        const title = log.entity === 'CASE' ? 'Case Reverted' : 'Prompt Reverted';
+        let entityTitle = 'Unknown';
+
+        if (log.entity === 'CASE') {
+            // We can try to get the title from the restored/current state
+            // @ts-ignore
+            entityTitle = result?.title_en || result?.title_es || 'Case';
+        } else if (log.entity === 'PROMPT') {
+            // @ts-ignore
+            entityTitle = result?.title || 'Prompt';
+        }
+
+        const keysMsg = isPartial ? `Partial revert: ${keys?.join(', ')}` : 'Full revert';
+
+        await createNotification({
+            type: log.entity === 'CASE' ? 'CASE_UPDATE' : 'PROMPT_UPDATE',
+            entityId: (log.entity === 'CREATE') ? 'deleted' : entityId, // If we reverted a CREATE, it's deleted. But we probably shouldn't notify agent if deleted, or link goes nowhere. 
+            // If reverted CREATE, entity was deleted. Navigate nowhere? Or just alert.
+            // If log.action was CREATE, we deleted it.
+            // If log.action was DELETE, we restored it.
+            title: title,
+            message: `${title}: ${entityTitle} (${keysMsg})`,
+            // Default 24h
+        });
+    } catch (e) {
+        console.error('Failed to send notification for revert', e);
     }
 
     return NextResponse.json({ success: true, result });

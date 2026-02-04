@@ -4,11 +4,12 @@ import { apiHandler } from '@/lib/api-handler';
 
 import { logAction } from '@/services/audit';
 import { getCurrentUser } from '@/lib/session';
+import { createNotification } from '@/lib/notifications';
 
 export const PUT = apiHandler(async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
     const body = await request.json();
-    const { recommendedPromptIds, ...rest } = body;
+    const { recommendedPromptIds, highlightType, ...rest } = body;
     const data: any = { ...rest };
 
     if (recommendedPromptIds && Array.isArray(recommendedPromptIds)) {
@@ -37,6 +38,34 @@ export const PUT = apiHandler(async (request: Request, { params }: { params: Pro
             updatedCase
         );
     }
+
+    // Calculate changes
+    const changes: string[] = [];
+    if (previousState) {
+        if (updatedCase.title_en !== previousState.title_en) changes.push('Title (EN)');
+        if (updatedCase.title_es !== previousState.title_es) changes.push('Title (ES)');
+        if (updatedCase.keywords !== previousState.keywords) changes.push('Keywords');
+        if (updatedCase.script_official_es !== previousState.script_official_es) changes.push('Script (ES)');
+        if (updatedCase.script_official_en !== previousState.script_official_en) changes.push('Script (EN)');
+        if (updatedCase.script_friendly_es !== previousState.script_friendly_es) changes.push('Friendly Script (ES)');
+        if (updatedCase.script_friendly_en !== previousState.script_friendly_en) changes.push('Friendly Script (EN)');
+        if (updatedCase.condition !== previousState.condition) changes.push('Condition');
+        if (updatedCase.category !== previousState.category) changes.push('Category');
+        if (updatedCase.crm_remark_template !== previousState.crm_remark_template) changes.push('CRM Template');
+    }
+
+    const changeSummary = changes.length > 0 ? `Updated: ${changes.join(', ')}` : 'Case Updated';
+
+    // Notify agents about the update
+    await createNotification({
+        type: 'CASE_UPDATE',
+        entityId: updatedCase.id,
+        title: 'Case Updated',
+        message: body.highlightReason
+            ? `Highlight: ${body.highlightReason}`
+            : changes.length > 0 ? `Case "${updatedCase.title_en}" updated: ${changes.join(', ')}` : `Case "${updatedCase.title_en}" has been updated.`,
+        expiresAt: body.highlightExpiresAt ? new Date(body.highlightExpiresAt) : undefined
+    });
 
     return NextResponse.json(updatedCase);
 });

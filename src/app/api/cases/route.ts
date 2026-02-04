@@ -40,7 +40,7 @@ export const GET = apiHandler(async (request: Request) => {
 
 export const POST = apiHandler(async (request: Request) => {
     const body = await request.json();
-    const { id, ...rest } = body;
+    const { id, highlightType, recommendedPromptIds, ...rest } = body;
 
     // Basic validation
     if (!id) throw new Error('ID is required');

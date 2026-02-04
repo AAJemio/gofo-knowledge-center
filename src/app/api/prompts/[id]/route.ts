@@ -4,6 +4,7 @@ import { apiHandler } from '@/lib/api-handler';
 
 import { logAction } from '@/services/audit';
 import { getCurrentUser } from '@/lib/session';
+import { createNotification } from '@/lib/notifications';
 
 export const PUT = apiHandler(async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
@@ -18,6 +19,10 @@ export const PUT = apiHandler(async (request: Request, { params }: { params: Pro
         code_par_es: body.code_par_es || null,
         content_en: body.content_en,
         content_es: body.content_es,
+        highlightExpiresAt: body.highlightExpiresAt,
+        highlightStartsAt: body.highlightStartsAt,
+        highlightColor: body.highlightColor,
+        highlightReason: body.highlightReason,
     };
 
     // Fetch previous state
@@ -40,6 +45,15 @@ export const PUT = apiHandler(async (request: Request, { params }: { params: Pro
             updatedPrompt
         );
     }
+
+    // Notify agents about the update
+    await createNotification({
+        type: 'PROMPT_UPDATE',
+        entityId: updatedPrompt.id,
+        title: 'Prompt Updated',
+        message: data.highlightReason ? `Highlight: ${data.highlightReason}` : `Prompt "${updatedPrompt.title}" has been updated.`,
+        expiresAt: data.highlightExpiresAt ? new Date(data.highlightExpiresAt) : undefined
+    });
 
     return NextResponse.json(updatedPrompt);
 });

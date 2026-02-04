@@ -3,7 +3,7 @@
 import React, { useState, useMemo } from 'react';
 import { Search, MessageCircle, Truck, Zap, CornerUpLeft, AlertTriangle, Shield, Edit3, CheckCircle2, Copy, X, Globe, MessageSquare } from 'lucide-react';
 import Link from 'next/link';
-import { useRouter } from 'next/navigation';
+import { useRouter, useSearchParams } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
 import { api } from '@/services/api';
 
@@ -89,18 +89,49 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
     const [query, setQuery] = useState('');
     const [category, setCategory] = useState('all');
     const [selectedCase, setSelectedCase] = useState<any>(null);
+    const searchParams = useSearchParams();
+
+    // Check for highlight param on mount
+    React.useEffect(() => {
+        const highlightId = searchParams.get('highlight');
+        const reason = searchParams.get('reason');
+
+        if (highlightId && initialCases) {
+            const target = initialCases.find(c => c.id === highlightId);
+            if (target) {
+                setSelectedCase(target);
+                // If a specific reason is provided (from notification), we could show it.
+                // But the user requested to remove the notification alert.
+                // We keep the param reading in case we want to use it for a non-intrusive UI later.
+                if (reason) {
+                    // console.log('Highlight reason:', reason);
+                }
+            }
+        }
+    }, [searchParams, initialCases]);
 
     const isBilingual = language === 'es'; // If ES, show bilingual content. If EN, show only English.
 
     // Filter logic
     const filteredCases = useMemo(() => {
-        return initialCases.filter(c => {
+        const filtered = initialCases.filter(c => {
             const matchesSearch =
                 c.title_es.toLowerCase().includes(query.toLowerCase()) ||
                 c.title_en.toLowerCase().includes(query.toLowerCase()) ||
                 c.keywords.toLowerCase().includes(query.toLowerCase());
             const matchesCategory = category === 'all' || c.category === category;
             return matchesSearch && matchesCategory;
+        });
+
+        // Sort by Highlight (Active Highlight first)
+        return filtered.sort((a, b) => {
+            const now = new Date();
+            const isA = a.highlightExpiresAt && new Date(a.highlightExpiresAt) > now && (!a.highlightStartsAt || new Date(a.highlightStartsAt) <= now);
+            const isB = b.highlightExpiresAt && new Date(b.highlightExpiresAt) > now && (!b.highlightStartsAt || new Date(b.highlightStartsAt) <= now);
+
+            if (isA && !isB) return -1;
+            if (!isA && isB) return 1;
+            return 0; // Keep original order (usage_count or updated)
         });
     }, [initialCases, query, category]);
 
@@ -171,12 +202,26 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
             <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
                 {filteredCases.map(c => {
                     const style = CATEGORIES[c.category as keyof typeof CATEGORIES] || CATEGORIES['General'];
+                    const now = new Date();
+                    const isHighlighted = c.highlightExpiresAt && new Date(c.highlightExpiresAt) > now && (!c.highlightStartsAt || new Date(c.highlightStartsAt) <= now);
+                    const highlightStyle = isHighlighted ? {
+                        borderColor: c.highlightColor || '#EF4D23',
+                        borderWidth: '2px',
+                        backgroundColor: c.highlightColor ? `${c.highlightColor}10` : undefined
+                    } : {};
+
                     return (
                         <div
                             key={c.id}
                             onClick={() => handleCardClick(c)}
-                            className={`bg-white dark:bg-[#1B1F22] rounded-xl p-5 cursor-pointer hover:shadow-md hover:ring-2 hover:ring-[#EF4D23] transition group border border-gray-200 dark:border-gray-800 flex flex-col h-full`}
+                            style={highlightStyle}
+                            className={`bg-white dark:bg-[#1B1F22] rounded-xl p-5 cursor-pointer hover:shadow-md hover:ring-2 hover:ring-[#EF4D23] transition group border border-gray-200 dark:border-gray-800 flex flex-col h-full relative overflow-hidden`}
                         >
+                            {isHighlighted && (
+                                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg z-10">
+                                    UPDATED
+                                </div>
+                            )}
                             <div className="flex justify-between items-start mb-2">
                                 <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${style.text} ${style.bg} border ${style.color}`}>
                                     {language === 'es' ? style.labelEs : style.labelEn}

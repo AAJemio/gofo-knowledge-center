@@ -66,6 +66,11 @@ model WhatsappPrompt {
   createdAt     DateTime @default(now())
   updatedAt     DateTime @updatedAt
   
+  highlightExpiresAt DateTime?
+  highlightColor     String? // e.g. '#ffcc00' or 'red'
+  highlightReason    String? // Reason for highlighting
+  highlightStartsAt  DateTime? // Start of highlight period
+  
   supportCases          SupportCase[] // Relation to cases that recommend this prompt
   interactions          Interaction[]
 }
@@ -93,6 +98,11 @@ model SupportCase {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  
+  highlightExpiresAt DateTime?
+  highlightColor     String?
+  highlightReason    String?
+  highlightStartsAt  DateTime?
 }
 
 model Interaction {
@@ -111,3 +121,14 @@ model Interaction {
   
   createdAt DateTime @default(now())
 }
+
+model Notification {
+  id        String   @id @default(uuid())
+  type      String   // 'CASE_UPDATE' | 'PROMPT_UPDATE'
+  entityId  String
+  title     String
+  message   String
+  createdAt DateTime @default(now())
+  expiresAt DateTime?
+}
+

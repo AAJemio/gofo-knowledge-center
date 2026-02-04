@@ -61,7 +61,8 @@ export function AKCProvider({ children }: { children: React.ReactNode }) {
                 const data = await api.auth.me();
                 setCurrentUser(data.user);
             } catch (error) {
-                console.error('Session check failed', error);
+                // Silent fail (not logged in)
+                console.log('Session check: No active session');
             }
         };
         checkSession();

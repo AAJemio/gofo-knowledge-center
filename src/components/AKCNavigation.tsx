@@ -6,6 +6,7 @@ import { usePathname } from 'next/navigation';
 import { LogOut, LayoutGrid, MessageSquare, ShieldCheck, Moon, Sun, Globe, BarChart2, Settings } from 'lucide-react';
 import { useAKC } from '@/context/AKCContext';
 import ProfileModal from './ProfileModal';
+import NotificationCenter from './NotificationCenter';
 
 export default function AKCNavigation() {
     const pathname = usePathname();
@@ -102,6 +103,8 @@ export default function AKCNavigation() {
 
                         {/* User Actions & Toggles */}
                         <div className="flex items-center gap-3">
+                            <NotificationCenter />
+
                             {/* Language Toggle */}
                             <div className="flex bg-gray-100 dark:bg-gray-800 p-1 rounded-lg border border-gray-200 dark:border-gray-700">
                                 <button
