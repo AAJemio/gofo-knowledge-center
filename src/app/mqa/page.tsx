@@ -3,6 +3,8 @@ import { prisma } from '@/lib/prisma';
 import AgentWorkspace from '@/app/components/AgentWorkspace';
 import AKCNavigation from '@/components/AKCNavigation';
 
+export const dynamic = 'force-dynamic';
+
 export default async function MQAPage() {
     const cases = await prisma.supportCase.findMany({
         orderBy: { usage_count: 'desc' },

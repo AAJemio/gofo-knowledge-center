@@ -5,6 +5,7 @@ import { apiHandler } from '@/lib/api-handler';
 import { logAction } from '@/services/audit';
 import { getCurrentUser } from '@/lib/session';
 import { createNotification } from '@/lib/notifications';
+import { revalidatePath } from 'next/cache';
 
 export const PUT = apiHandler(async (request: Request, { params }: { params: Promise<{ id: string }> }) => {
     const { id } = await params;
@@ -66,6 +67,8 @@ export const PUT = apiHandler(async (request: Request, { params }: { params: Pro
             : changes.length > 0 ? `Case "${updatedCase.title_en}" updated: ${changes.join(', ')}` : `Case "${updatedCase.title_en}" has been updated.`,
         expiresAt: body.highlightExpiresAt ? new Date(body.highlightExpiresAt) : undefined
     });
+
+    revalidatePath('/mqa');
 
     return NextResponse.json(updatedCase);
 });

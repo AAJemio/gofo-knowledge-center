@@ -3,6 +3,7 @@ import { prisma } from '@/lib/prisma';
 import { apiHandler } from '@/lib/api-handler';
 import { logAction } from '@/services/audit';
 import { getCurrentUser } from '@/lib/session';
+import { revalidatePath } from 'next/cache';
 
 
 export const GET = apiHandler(async (request: Request) => {
@@ -66,6 +67,7 @@ export const POST = apiHandler(async (request: Request) => {
             newCase
         );
     }
+    revalidatePath('/mqa');
 
     return NextResponse.json(newCase);
 });
