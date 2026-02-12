@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { Search, Copy, Check, Truck, Zap, CornerUpLeft, Edit3, AlertTriangle, Shield, CheckCircle2, MessageCircle, List, Grid } from 'lucide-react';
+import { Search, Copy, Check, Truck, Zap, CornerUpLeft, Edit3, AlertTriangle, Shield, CheckCircle2, MessageCircle, List, Grid, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { useSearchParams } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
@@ -357,6 +357,16 @@ function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: 
         backgroundColor: prompt.highlightColor ? `${prompt.highlightColor}10` : undefined
     } : {};
 
+    const [copiedShare, setCopiedShare] = useState(false);
+
+    const handleShare = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        const url = `${window.location.origin}/prompts?id=${prompt.id}`;
+        navigator.clipboard.writeText(url);
+        setCopiedShare(true);
+        setTimeout(() => setCopiedShare(false), 2000);
+    };
+
     if (viewMode === 'list') {
         return (
             <div id={`prompt-${prompt.id}`} style={highlightStyle} className={`rounded-xl border transition-all duration-200 relative ${darkMode ? 'bg-[#151719] border-gray-800' : 'bg-white border-slate-100 shadow-sm hover:shadow-md'}`}>
@@ -401,6 +411,15 @@ function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: 
                             />
                         </div>
                     </div>
+
+                    {/* Share Button (List View) */}
+                    <button
+                        onClick={handleShare}
+                        className={`p-2 ml-2 rounded-full transition ${copiedShare ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' : 'hover:bg-gray-200 dark:hover:bg-gray-700 text-gray-400'}`}
+                        title={lang === 'es' ? "Copiar enlace" : "Copy link"}
+                    >
+                        {copiedShare ? <CheckCircle2 size={16} /> : <Share2 size={16} />}
+                    </button>
                 </div>
 
                 {/* Expanded Content */}
@@ -451,6 +470,15 @@ function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: 
                         <p className={`text-[10px] uppercase tracking-wider font-semibold ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>{prompt.category}</p>
                     </div>
                 </div>
+
+                {/* Share Button (Grid View) */}
+                <button
+                    onClick={handleShare}
+                    className={`p-2 rounded-full transition ${copiedShare ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' : 'hover:bg-gray-100 dark:hover:bg-gray-700 text-gray-400'}`}
+                    title={lang === 'es' ? "Copiar enlace" : "Copy link"}
+                >
+                    {copiedShare ? <CheckCircle2 size={16} /> : <Share2 size={16} />}
+                </button>
             </div>
 
             {/* Card Body */}

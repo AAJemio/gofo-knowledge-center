@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, MessageCircle, Truck, Zap, CornerUpLeft, AlertTriangle, Shield, Edit3, CheckCircle2, Copy, X, Globe, MessageSquare } from 'lucide-react';
+import { Search, MessageCircle, Truck, Zap, CornerUpLeft, AlertTriangle, Shield, Edit3, CheckCircle2, Copy, X, Globe, MessageSquare, Share2 } from 'lucide-react';
 import Link from 'next/link';
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
@@ -89,6 +89,7 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
     const [query, setQuery] = useState('');
     const [category, setCategory] = useState('all');
     const [selectedCase, setSelectedCase] = useState<any>(null);
+    const [copiedShareLink, setCopiedShareLink] = useState(false);
     const searchParams = useSearchParams();
 
     // Check for highlight param on mount
@@ -137,9 +138,19 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
 
     const handleCardClick = async (c: any) => {
         setSelectedCase(c);
+        setCopiedShareLink(false);
         try {
             await api.usage.track('case', c.id);
         } catch (e) { console.error(e); }
+    };
+
+    const handleShare = (e: React.MouseEvent) => {
+        e.stopPropagation();
+        if (!selectedCase) return;
+        const url = `${window.location.origin}/mqa?highlight=${selectedCase.id}`;
+        navigator.clipboard.writeText(url);
+        setCopiedShareLink(true);
+        setTimeout(() => setCopiedShareLink(false), 2000);
     };
 
     return (
@@ -269,9 +280,18 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
                                     </span>
                                 </div>
                             </div>
-                            <button onClick={() => setSelectedCase(null)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition">
-                                <X size={20} className="text-gray-400" />
-                            </button>
+                            <div className="flex items-center gap-2">
+                                <button
+                                    onClick={handleShare}
+                                    className={`p-2 rounded-full transition ${copiedShareLink ? 'bg-green-100 text-green-600 dark:bg-green-900/30 dark:text-green-400' : 'hover:bg-gray-100 dark:hover:bg-gray-800 text-gray-400'}`}
+                                    title={language === 'es' ? "Copiar enlace del caso" : "Copy case link"}
+                                >
+                                    {copiedShareLink ? <CheckCircle2 size={20} /> : <Share2 size={20} />}
+                                </button>
+                                <button onClick={() => setSelectedCase(null)} className="p-2 hover:bg-gray-100 dark:hover:bg-gray-800 rounded-full transition text-gray-400">
+                                    <X size={20} />
+                                </button>
+                            </div>
                         </div>
 
                         <div className="p-6 space-y-6 overflow-y-auto">

@@ -57,7 +57,17 @@ export default function LoginPage() {
   return (
     <div className="min-h-screen flex items-center justify-center bg-[#FFFBF0] relative overflow-hidden">
       {/* Background Decor */}
-      <div className="absolute top-0 left-0 w-full h-96 bg-[#1B1F22] skew-y-3 origin-top-left translate-y-[-50px]"></div>
+      {/* Background Decor / Banner */}
+      <div className="absolute top-0 left-0 w-full h-full z-0">
+        <div className="absolute top-0 left-0 w-full h-[40vh] md:h-[50vh] overflow-hidden">
+          <img
+            src="/banner.jpg"
+            alt="Gofo Knowledge Center Banner"
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF0]"></div>
+        </div>
+      </div>
 
       <div className="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
         <div className="text-center mb-8">
