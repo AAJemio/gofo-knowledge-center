@@ -203,43 +203,43 @@ CREATE UNIQUE INDEX IF NOT EXISTS "_SupportCaseToWhatsappPrompt_AB_unique" ON "_
 CREATE INDEX IF NOT EXISTS "_SupportCaseToWhatsappPrompt_B_index" ON "_SupportCaseToWhatsappPrompt"("B");
 
 -- AddForeignKey
-ALTER TABLE "PudoLocation" ADD CONSTRAINT "PudoLocation_whatsappPromptId_fkey" FOREIGN KEY ("whatsappPromptId") REFERENCES "WhatsappPrompt"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "PudoLocation_whatsappPromptId_fkey" FOREIGN KEY ("whatsappPromptId") REFERENCES "WhatsappPrompt"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "AuditLog" ADD CONSTRAINT "AuditLog_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "AuditLog_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "WhatsappPrompt" ADD CONSTRAINT "WhatsappPrompt_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "WhatsappPrompt_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "WhatsappPrompt" ADD CONSTRAINT "WhatsappPrompt_editorId_fkey" FOREIGN KEY ("editorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "WhatsappPrompt_editorId_fkey" FOREIGN KEY ("editorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "SupportCase" ADD CONSTRAINT "SupportCase_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "SupportCase_authorId_fkey" FOREIGN KEY ("authorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "SupportCase" ADD CONSTRAINT "SupportCase_editorId_fkey" FOREIGN KEY ("editorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "SupportCase_editorId_fkey" FOREIGN KEY ("editorId") REFERENCES "User"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "Interaction_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_caseId_fkey" FOREIGN KEY ("caseId") REFERENCES "SupportCase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "Interaction_caseId_fkey" FOREIGN KEY ("caseId") REFERENCES "SupportCase"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "Interaction" ADD CONSTRAINT "Interaction_promptId_fkey" FOREIGN KEY ("promptId") REFERENCES "WhatsappPrompt"("id") ON DELETE SET NULL ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "Interaction_promptId_fkey" FOREIGN KEY ("promptId") REFERENCES "WhatsappPrompt"("id") ON DELETE SET NULL ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "DailyKPI" ADD CONSTRAINT "DailyKPI_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "DailyKPI_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "KpiActivityLog" ADD CONSTRAINT "KpiActivityLog_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "KpiActivityLog_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "KpiSourceFile" ADD CONSTRAINT "KpiSourceFile_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "KpiSourceFile_adminId_fkey" FOREIGN KEY ("adminId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SupportCaseToWhatsappPrompt" ADD CONSTRAINT "_SupportCaseToWhatsappPrompt_A_fkey" FOREIGN KEY ("A") REFERENCES "SupportCase"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "_SupportCaseToWhatsappPrompt_A_fkey" FOREIGN KEY ("A") REFERENCES "SupportCase"("id") ON DELETE CASCADE ON UPDATE CASCADE;
 
 -- AddForeignKey
-ALTER TABLE "_SupportCaseToWhatsappPrompt" ADD CONSTRAINT "_SupportCaseToWhatsappPrompt_B_fkey" FOREIGN KEY ("B") REFERENCES "WhatsappPrompt"("id") ON DELETE CASCADE ON UPDATE CASCADE;
+-- ALTER TABLE ADD CONSTRAINT "_SupportCaseToWhatsappPrompt_B_fkey" FOREIGN KEY ("B") REFERENCES "WhatsappPrompt"("id") ON DELETE CASCADE ON UPDATE CASCADE;
