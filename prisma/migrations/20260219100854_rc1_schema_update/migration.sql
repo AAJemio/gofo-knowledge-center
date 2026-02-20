@@ -5,43 +5,43 @@
 
 */
 -- DropForeignKey
-ALTER TABLE "SupportCase" DROP CONSTRAINT "SupportCase_recommended_prompt_id_fkey";
+ALTER TABLE "SupportCase" DROP CONSTRAINT IF EXISTS "SupportCase_recommended_prompt_id_fkey";
 
 -- AlterTable
-ALTER TABLE "SupportCase" DROP COLUMN "recommended_prompt_id",
-ADD COLUMN     "authorId" TEXT,
-ADD COLUMN     "condition_en" TEXT,
-ADD COLUMN     "crm_detailed_type" TEXT,
-ADD COLUMN     "crm_remark_template" TEXT,
-ADD COLUMN     "editorId" TEXT,
-ADD COLUMN     "highlightColor" TEXT,
-ADD COLUMN     "highlightExpiresAt" TIMESTAMP(3),
-ADD COLUMN     "highlightReason" TEXT,
-ADD COLUMN     "highlightStartsAt" TIMESTAMP(3);
+ALTER TABLE "SupportCase" DROP COLUMN IF EXISTS "recommended_prompt_id",
+ADD COLUMN IF NOT EXISTS "authorId" TEXT,
+ADD COLUMN IF NOT EXISTS "condition_en" TEXT,
+ADD COLUMN IF NOT EXISTS "crm_detailed_type" TEXT,
+ADD COLUMN IF NOT EXISTS "crm_remark_template" TEXT,
+ADD COLUMN IF NOT EXISTS "editorId" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightColor" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightExpiresAt" TIMESTAMP(3),
+ADD COLUMN IF NOT EXISTS "highlightReason" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightStartsAt" TIMESTAMP(3);
 
 -- AlterTable
-ALTER TABLE "User" ADD COLUMN     "defaultPage" TEXT NOT NULL DEFAULT 'mqa',
-ADD COLUMN     "firstName" TEXT NOT NULL DEFAULT '',
-ADD COLUMN     "language" TEXT NOT NULL DEFAULT 'es',
-ADD COLUMN     "lastLogin" TIMESTAMP(3),
-ADD COLUMN     "lastName" TEXT NOT NULL DEFAULT '',
-ADD COLUMN     "lastPath" TEXT NOT NULL DEFAULT '/mqa',
-ADD COLUMN     "mustChangePassword" BOOLEAN NOT NULL DEFAULT false,
-ADD COLUMN     "theme" TEXT NOT NULL DEFAULT 'light',
-ADD COLUMN     "usageCount" INTEGER NOT NULL DEFAULT 0,
-ADD COLUMN     "wapViewMode" TEXT NOT NULL DEFAULT 'list';
+ALTER TABLE "User" ADD COLUMN IF NOT EXISTS "defaultPage" TEXT NOT NULL DEFAULT 'mqa',
+ADD COLUMN IF NOT EXISTS "firstName" TEXT NOT NULL DEFAULT '',
+ADD COLUMN IF NOT EXISTS "language" TEXT NOT NULL DEFAULT 'es',
+ADD COLUMN IF NOT EXISTS "lastLogin" TIMESTAMP(3),
+ADD COLUMN IF NOT EXISTS "lastName" TEXT NOT NULL DEFAULT '',
+ADD COLUMN IF NOT EXISTS "lastPath" TEXT NOT NULL DEFAULT '/mqa',
+ADD COLUMN IF NOT EXISTS "mustChangePassword" BOOLEAN NOT NULL DEFAULT false,
+ADD COLUMN IF NOT EXISTS "theme" TEXT NOT NULL DEFAULT 'light',
+ADD COLUMN IF NOT EXISTS "usageCount" INTEGER NOT NULL DEFAULT 0,
+ADD COLUMN IF NOT EXISTS "wapViewMode" TEXT NOT NULL DEFAULT 'list';
 
 -- AlterTable
-ALTER TABLE "WhatsappPrompt" ADD COLUMN     "authorId" TEXT,
-ADD COLUMN     "editorId" TEXT,
-ADD COLUMN     "highlightColor" TEXT,
-ADD COLUMN     "highlightExpiresAt" TIMESTAMP(3),
-ADD COLUMN     "highlightReason" TEXT,
-ADD COLUMN     "highlightStartsAt" TIMESTAMP(3),
-ADD COLUMN     "title_es" TEXT;
+ALTER TABLE "WhatsappPrompt" ADD COLUMN IF NOT EXISTS "authorId" TEXT,
+ADD COLUMN IF NOT EXISTS "editorId" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightColor" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightExpiresAt" TIMESTAMP(3),
+ADD COLUMN IF NOT EXISTS "highlightReason" TEXT,
+ADD COLUMN IF NOT EXISTS "highlightStartsAt" TIMESTAMP(3),
+ADD COLUMN IF NOT EXISTS "title_es" TEXT;
 
 -- CreateTable
-CREATE TABLE "PudoLocation" (
+CREATE TABLE IF NOT EXISTS "PudoLocation" (
     "id" TEXT NOT NULL,
     "name" TEXT NOT NULL,
     "address" TEXT NOT NULL,
@@ -60,7 +60,7 @@ CREATE TABLE "PudoLocation" (
 );
 
 -- CreateTable
-CREATE TABLE "PudoContent" (
+CREATE TABLE IF NOT EXISTS "PudoContent" (
     "id" SERIAL NOT NULL,
     "key" TEXT NOT NULL,
     "contentEn" TEXT NOT NULL,
@@ -71,7 +71,7 @@ CREATE TABLE "PudoContent" (
 );
 
 -- CreateTable
-CREATE TABLE "AuditLog" (
+CREATE TABLE IF NOT EXISTS "AuditLog" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "action" TEXT NOT NULL,
@@ -87,7 +87,7 @@ CREATE TABLE "AuditLog" (
 );
 
 -- CreateTable
-CREATE TABLE "Interaction" (
+CREATE TABLE IF NOT EXISTS "Interaction" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "type" TEXT NOT NULL,
@@ -100,7 +100,7 @@ CREATE TABLE "Interaction" (
 );
 
 -- CreateTable
-CREATE TABLE "Notification" (
+CREATE TABLE IF NOT EXISTS "Notification" (
     "id" TEXT NOT NULL,
     "type" TEXT NOT NULL,
     "entityId" TEXT NOT NULL,
@@ -113,7 +113,7 @@ CREATE TABLE "Notification" (
 );
 
 -- CreateTable
-CREATE TABLE "DailyKPI" (
+CREATE TABLE IF NOT EXISTS "DailyKPI" (
     "id" TEXT NOT NULL,
     "userId" TEXT NOT NULL,
     "date" TIMESTAMP(3) NOT NULL,
@@ -131,7 +131,7 @@ CREATE TABLE "DailyKPI" (
 );
 
 -- CreateTable
-CREATE TABLE "KpiActivityLog" (
+CREATE TABLE IF NOT EXISTS "KpiActivityLog" (
     "id" TEXT NOT NULL,
     "adminId" TEXT NOT NULL,
     "action" TEXT NOT NULL,
@@ -143,7 +143,7 @@ CREATE TABLE "KpiActivityLog" (
 );
 
 -- CreateTable
-CREATE TABLE "KpiSettings" (
+CREATE TABLE IF NOT EXISTS "KpiSettings" (
     "id" TEXT NOT NULL DEFAULT 'default',
     "lockDate" TIMESTAMP(3),
     "dailyConversationTarget" INTEGER NOT NULL DEFAULT 100,
@@ -153,7 +153,7 @@ CREATE TABLE "KpiSettings" (
 );
 
 -- CreateTable
-CREATE TABLE "KpiSourceFile" (
+CREATE TABLE IF NOT EXISTS "KpiSourceFile" (
     "id" TEXT NOT NULL,
     "adminId" TEXT NOT NULL,
     "filename" TEXT NOT NULL,
@@ -165,7 +165,7 @@ CREATE TABLE "KpiSourceFile" (
 );
 
 -- CreateTable
-CREATE TABLE "SystemTempStorage" (
+CREATE TABLE IF NOT EXISTS "SystemTempStorage" (
     "id" TEXT NOT NULL,
     "dataType" TEXT NOT NULL,
     "data" TEXT NOT NULL,
@@ -176,31 +176,31 @@ CREATE TABLE "SystemTempStorage" (
 );
 
 -- CreateTable
-CREATE TABLE "_SupportCaseToWhatsappPrompt" (
+CREATE TABLE IF NOT EXISTS "_SupportCaseToWhatsappPrompt" (
     "A" TEXT NOT NULL,
     "B" TEXT NOT NULL
 );
 
 -- CreateIndex
-CREATE UNIQUE INDEX "PudoContent_key_key" ON "PudoContent"("key");
+CREATE UNIQUE INDEX IF NOT EXISTS "PudoContent_key_key" ON "PudoContent"("key");
 
 -- CreateIndex
-CREATE INDEX "Notification_createdAt_idx" ON "Notification"("createdAt");
+CREATE INDEX IF NOT EXISTS "Notification_createdAt_idx" ON "Notification"("createdAt");
 
 -- CreateIndex
-CREATE INDEX "DailyKPI_date_idx" ON "DailyKPI"("date");
+CREATE INDEX IF NOT EXISTS "DailyKPI_date_idx" ON "DailyKPI"("date");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "DailyKPI_userId_date_key" ON "DailyKPI"("userId", "date");
+CREATE UNIQUE INDEX IF NOT EXISTS "DailyKPI_userId_date_key" ON "DailyKPI"("userId", "date");
 
 -- CreateIndex
-CREATE INDEX "KpiSourceFile_targetDate_idx" ON "KpiSourceFile"("targetDate");
+CREATE INDEX IF NOT EXISTS "KpiSourceFile_targetDate_idx" ON "KpiSourceFile"("targetDate");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "_SupportCaseToWhatsappPrompt_AB_unique" ON "_SupportCaseToWhatsappPrompt"("A", "B");
+CREATE UNIQUE INDEX IF NOT EXISTS "_SupportCaseToWhatsappPrompt_AB_unique" ON "_SupportCaseToWhatsappPrompt"("A", "B");
 
 -- CreateIndex
-CREATE INDEX "_SupportCaseToWhatsappPrompt_B_index" ON "_SupportCaseToWhatsappPrompt"("B");
+CREATE INDEX IF NOT EXISTS "_SupportCaseToWhatsappPrompt_B_index" ON "_SupportCaseToWhatsappPrompt"("B");
 
 -- AddForeignKey
 ALTER TABLE "PudoLocation" ADD CONSTRAINT "PudoLocation_whatsappPromptId_fkey" FOREIGN KEY ("whatsappPromptId") REFERENCES "WhatsappPrompt"("id") ON DELETE SET NULL ON UPDATE CASCADE;
