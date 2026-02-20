@@ -1,0 +1,377 @@
+{
+  "updatesCount": 23,
+  "newPromptsCount": 0,
+  "updates": [
+    {
+      "dbId": "01E",
+      "title": "Incorrect Tracking Number",
+      "changes": [
+        {
+          "field": "content_es",
+          "old": "Aparentemente el número de rastreo que nos proporcionó podría contener un error o no estar escrito correctamente. ¿Podría verificarlo amablemente y enviarnos el número correcto?\nUna vez que recibamos el número de rastreo correcto, podremos realizar el seguimiento de su paquete de manera adecuada y proporcionarle la información más actualizada.\nMuchas gracias por su cooperación y comprensión! Apreciamos sinceramente su paciencia.",
+          "new": "Aparentemente el número de rastreo que nos proporcionó podría contener un error o no estar escrito correctamente. \r\n¿Podría verificarlo amablemente y enviarnos el número correcto?\r\nUna vez que recibamos el número de rastreo correcto, podremos realizar el seguimiento de su paquete de manera adecuada y proporcionarle la información más actualizada.\r\n\r\n¡Muchas gracias por su cooperación y comprensión! Apreciamos sinceramente su paciencia.",
+          "code": "/02E"
+        }
+      ]
+    },
+    {
+      "dbId": "03",
+      "title": "Seller Contact Hotline",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Thank you for choosing us! At GOFO, we have a dedicated seller hotline team ready to assist you with any support you may need.\nPlease contact:\nCall +1 (626) 505-1101\n10:00 AM - 9:00 PM EST (Mon-Sun)",
+          "new": "Thank you for choosing us! At GOFO, we have a dedicated seller hotline team ready to assist you with any support you may need.\r\nPlease contact:\r\n📞 Call +1 (626) 505-1101\r\n🕒 10:00 AM – 9:00 PM EST (Mon–Sun)",
+          "code": "/03"
+        },
+        {
+          "field": "content_es",
+          "old": "¡Gracias por elegirnos! En GOFO, contamos con un equipo de atención exclusiva para vendedores, listo para ayudarle con cualquier consulta o asistencia que necesite.\nPor favor contacte:\nLlame al +1 (626) 505-1101\n10:00 AM - 9:00 PM EST (Lun-Dom)",
+          "new": "¡Gracias por elegirnos! En GOFO, contamos con un equipo de atención exclusiva para vendedores, listo para ayudarle con cualquier consulta o asistencia que necesite.\r\nPor favor contacte:\r\n📞 Llame al +1 (626) 505-1101\r\n🕒 10:00 AM – 9:00 PM EST (Lun–Dom)",
+          "code": "/04"
+        }
+      ]
+    },
+    {
+      "dbId": "03B",
+      "title": "More than 10 Tracking Numbers",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We're sorry, but our system is unable to process a large number of tracking requests at once.\nFor the most accurate and up-to-date information, we kindly recommend visiting our official website www.gofoexpress.com to check the status of your parcels.\nIf you have questions about a specific parcel, please don't hesitate to contact us again, we'll be glad to assist you.",
+          "new": "We're sorry, but our system is unable to process a large number of tracking requests at once.\r\nFor the most accurate and up-to-date information, we kindly recommend visiting our official website www.gofoexpress.com to check the status of your parcels.\r\nIf you have questions about a specific parcel, please don’t hesitate to contact us again, we’ll be glad to assist you.",
+          "code": "/03B"
+        }
+      ]
+    },
+    {
+      "dbId": "49",
+      "title": "No Pick Up Service",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "GOFO currently operates only as a delivery service and does not offer parcel pick-up. We apologize for any inconvenience and recommend contacting your seller directly for more details. Thank you for choosing GOFO we truly value your trust!",
+          "new": "GOFO currently operates only as a delivery service and does not offer parcel pick-up. We apologize for any inconvenience and recommend contacting your seller directly for more details. Thank you for choosing GOFO — we truly value your trust!",
+          "code": "/49"
+        },
+        {
+          "field": "content_es",
+          "old": "Actualmente, GOFO funciona solo como servicio de entrega y no ofrece recolección de paquetes. Lamentamos los inconvenientes y le recomendamos contactar directamente a su vendedor para más detalles. Gracias por elegir GOFO - valoramos mucho su confianza.",
+          "new": "Actualmente, GOFO funciona solo como servicio de entrega y no ofrece recolección de paquetes. Lamentamos los inconvenientes y le recomendamos contactar directamente a su vendedor para más detalles. Gracias por elegir GOFO — valoramos mucho su confianza",
+          "code": "/50"
+        }
+      ]
+    },
+    {
+      "dbId": "51",
+      "title": "USPS Tracking Number",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Tracking Info\nThe tracking number you provided belongs to USPS\nYou can check your tracking status on their official website: www.usps.com",
+          "new": "🔍 Tracking Info\r\nThe tracking number you provided belongs to USPS.\r\nYou can check your tracking status on their official website: 🌐 www.usps.com\r\n",
+          "code": "/51"
+        },
+        {
+          "field": "content_es",
+          "old": "Información de rastreo\nEl número de rastreo que proporcionó pertenece a USPS.\nPuede verificar el estado de su envío en su sitio web oficial: www.usps.com",
+          "new": "🔍 Información de rastreo\r\nEl número de rastreo que proporcionó pertenece a USPS.\r\nPuede verificar el estado de su envío en su sitio web oficial: 🌐 www.usps.com",
+          "code": "/52"
+        }
+      ]
+    },
+    {
+      "dbId": "55",
+      "title": "Question About The Product",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We're sorry to hear that. However, as a shipping courier, we are unable to address product-related questions. We kindly ask that you contact the seller directly for assistance.\nThank you very much for your understanding, and we truly appreciate you choosing GOFO!",
+          "new": "We’re sorry to hear that. However, as a shipping courier, we are unable to address product-related questions. We kindly ask that you contact the seller directly for assistance.\r\nThank you very much for your understanding, and we truly appreciate you choosing GOFO!",
+          "code": "/55"
+        },
+        {
+          "field": "content_es",
+          "old": "Lamentamos escuchar eso. Sin embargo, como empresa de mensajería, no podemos atender consultas relacionadas con el producto. Le pedimos amablemente que se comunique con el vendedor para recibir asistencia.\nMuchas gracias por su comprensión y por elegir GOFO - realmente valoramos su confianza.",
+          "new": "Lamentamos escuchar eso. Sin embargo, como empresa de mensajería, no podemos atender consultas relacionadas con el producto o su contenido. Le pedimos amablemente que se comunique con el vendedor para recibir asistencia.\r\nMuchas gracias por su comprensión y por elegir GOFO — realmente valoramos su confianza.",
+          "code": "/56"
+        }
+      ]
+    },
+    {
+      "dbId": "71",
+      "title": "Any Help Question",
+      "changes": [
+        {
+          "field": "content_es",
+          "old": "¿Hay algo más en lo que pueda ayudarle hoy? Quiero asegurarme de que todas sus preguntas queden respondidas y que se sienta plenamente atendido y respaldado",
+          "new": "¿Hay algo más en lo que pueda ayudarle hoy? Quiero asegurarme de que todas sus preguntas queden respondidas y que se sienta plenamente atendido y respaldado.",
+          "code": "/72"
+        }
+      ]
+    },
+    {
+      "dbId": "73",
+      "title": "Closing Chat",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "At GOFO, we appreciate your business and wish you a wonderful day.\nThank you for contacting us.",
+          "new": "Thank you for choosing us!\r\n\r\nAt GOFO, we appreciate your business and wish you a wonderful day.\r\nThank you for contacting us.",
+          "code": "/73"
+        },
+        {
+          "field": "content_es",
+          "old": "En GOFO apreciamos tu preferencia y te deseamos un excelente día.\nGracias por contactarnos.",
+          "new": "¡Gracias por elegirnos!\r\n\r\nEn GOFO apreciamos tu preferencia y te deseamos un excelente día.\r\nGracias por contactarnos.",
+          "code": "/74"
+        }
+      ]
+    },
+    {
+      "dbId": "05",
+      "title": "Does Not Belong to Recipient",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "It looks like a parcel was mistakenly delivered to your address. We are truly sorry for this error and appreciate your honesty in letting us know. May we kindly ask you to share the correct address so our driver can pick up the parcel within the next 3 days? Thank you for your cooperation.",
+          "new": "It appears that a package was mistakenly delivered to your address. We sincerely apologize for this error and truly appreciate your honesty in informing us.\r\nWe kindly ask you to provide your full address and phone number so one of our drivers can collect the package within the next three (3) days.\r\nThank you very much for your cooperation.",
+          "code": "/05"
+        },
+        {
+          "field": "content_es",
+          "old": "Parece que un paquete se entregó por error en su dirección. Lamentamos mucho este error y agradecemos su sinceridad al informarnos. Le rogamos que nos proporcione la dirección correcta para que uno de nuestros conductores pueda recoger el paquete en los próximos 3 días. Gracias por su cooperación.",
+          "new": "Parece que un paquete fue entregado por error en su dirección. Lamentamos sinceramente este inconveniente y agradecemos mucho su honestidad al informarnos.\r\nLe solicitamos amablemente que nos proporcione su dirección completa y número de teléfono para que uno de nuestros conductores pueda recoger el paquete dentro de los próximos tres (3) días.\r\nMuchas gracias por su cooperación.",
+          "code": "/06"
+        }
+      ]
+    },
+    {
+      "dbId": "05B",
+      "title": "Hold Parcel (Wrong Recipient)",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Could you hang on to the parcel for 3 days while we confirm things with the merchant? We'll keep you posted! Thank you so much for your help.\nIf the driver doesn't make it within 3 days, you can go ahead and dispose of the parcel",
+          "new": "Could you hang on to the parcel for 3 days while we confirm things with the merchant? We’ll keep you posted! Thank you so much for your help. \r\nIf the driver doesn’t make it within 3 days, you can go ahead and dispose of the parcel.",
+          "code": "/05B"
+        },
+        {
+          "field": "content_es",
+          "old": "¿Podría conservar el paquete durante 3 días mientras confirmamos con el vendedor? Le mantendremos informado! Muchas gracias por su ayuda\nSi el conductor no recoge el paquete en 3 días, puede desecharlo.",
+          "new": "¿Podría conservar el paquete durante 3 días mientras confirmamos con el vendedor? ¡Le mantendremos informado! Muchas gracias por su ayuda 🙏.\r\nSi el conductor no recoge el paquete en 3 días, puede desecharlo.",
+          "code": "/06B"
+        }
+      ]
+    },
+    {
+      "dbId": "39",
+      "title": "DNR: Can See POD",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We're very sorry to hear that you haven't received your package, even though our system shows it was delivered. Could you please confirm whether the delivery address shown in the tracking details is correct? Your confirmation will help us proceed with the verification process. Thank you for your patience and cooperation.",
+          "new": "We’re very sorry to hear that you haven’t received your package, even though our system shows it was delivered. Could you please confirm whether the delivery address shown in the tracking details is correct? Your confirmation will help us proceed with the verification process. Thank you for your patience and cooperation.",
+          "code": "/39"
+        }
+      ]
+    },
+    {
+      "dbId": "09",
+      "title": "Left Sorting Center",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Your parcel is on its way to our local warehouse. May we kindly ask for your patience, as it will be delivered within 3 days after arrival",
+          "new": "Your parcel is on its way to our local warehouse. May we kindly ask for your patience, as it will be delivered within 3 days after arrival.",
+          "code": "/09"
+        },
+        {
+          "field": "content_es",
+          "old": "Su paquete se encuentra en camino a nuestro almacén local. Le pedimos amablemente un poco de paciencia, ya que será entregado dentro de los 3 días posteriores a su llegada",
+          "new": "Su paquete se encuentra en camino a nuestro almacén local. Le pedimos amablemente un poco de paciencia, ya que será entregado dentro de los 3 días posteriores a su llegada.",
+          "code": "/10"
+        }
+      ]
+    },
+    {
+      "dbId": "11A",
+      "title": "Out for Delivery Day 1",
+      "changes": [
+        {
+          "field": "content_es",
+          "old": "¡Buenas noticias! Su paquete ya está en camino y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de modo que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos",
+          "new": "¡Buenas noticias! Su paquete ya está en camino y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de modo que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos.",
+          "code": "/12A"
+        }
+      ]
+    },
+    {
+      "dbId": "11B",
+      "title": "Out for Delivery Day 2",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Good news your parcel is now out for delivery and is expected to arrive within 2 days. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!",
+          "new": "Good news — your parcel is now out for delivery and is expected to arrive within 2 days. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!",
+          "code": "/11B"
+        }
+      ]
+    },
+    {
+      "dbId": "11C",
+      "title": "Out for Delivery Day 3",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Good news your parcel is now out for delivery and is expected to arrive by the end of today. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!",
+          "new": "Good news! Your package is now out for delivery. If you do not receive it by the end of tomorrow, please contact us again.\r\nWe kindly ask that you be available to answer any calls from our delivery driver to coordinate the delivery.\r\nThank you very much for your patience.",
+          "code": "/11C"
+        },
+        {
+          "field": "content_es",
+          "old": "¡Buenas noticias! Su paquete ya salió para la entrega y se espera que llegue antes de que termine el día de hoy. Le pedimos que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega. Muchas gracias por su paciencia.",
+          "new": "¡Buenas noticias! Su paquete ya salió para entrega. Si no lo recibe al finalizar el día de mañana, le pedimos que nos contacte nuevamente.\r\nLe solicitamos amablemente que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega.\r\nMuchas gracias por su paciencia.",
+          "code": "/12C"
+        }
+      ]
+    },
+    {
+      "dbId": "11F",
+      "title": "Out for Delivery Day 6",
+      "changes": [
+        {
+          "field": "content_es",
+          "old": "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión",
+          "new": "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión.",
+          "code": "/12F"
+        }
+      ]
+    },
+    {
+      "dbId": "31B",
+      "title": "Modify During Delivery",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Your package is currently out for delivery. We can leave a note for the driver, however, please note that it might still be delivered to the original address. Would you like us to proceed with updating the delivery details?",
+          "new": "We have processed your request; however, since the package is already out for delivery, the driver may not see the changes in time. We can leave a note with the updated information; however, please be aware that the package may still be delivered to the original address or that the driver may not see the new instructions in time.\r\nPlease let us know if you would like us to proceed. We greatly appreciate your understanding.",
+          "code": "/31B"
+        },
+        {
+          "field": "content_es",
+          "old": "Su paquete se encuentra actualmente en proceso de entrega. Podemos dejar una nota para el conductor; sin embargo, tenga en cuenta que aún podría entregarse en la dirección original. ¿Desea que procedamos a modificar los detalles de la entrega?",
+          "new": "Hemos atendido su solicitud; sin embargo, dado que el paquete ya se encuentra en ruta de entrega, es posible que el conductor no visualice los cambios a tiempo. Podemos dejar una nota con la información actualizada; no obstante, tenga en cuenta que el paquete aún podría entregarse en la dirección original o que el conductor no llegue a ver las nuevas instrucciones a tiempo.\r\nPor favor, indíquenos si desea que procedamos. Agradecemos mucho su comprensión.",
+          "code": "/32B"
+        }
+      ]
+    },
+    {
+      "dbId": "65",
+      "title": "In Process > 14 Days",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We sincerely apologize that the investigation process has taken longer than usual. The reimbursement will be sent to the seller...",
+          "new": "We sincerely apologize that the investigation process has taken longer than usual. The reimbursement will be sent to the seller, and you may now contact them directly to request your refund.\r\nWe apologize again for any inconvenience this may have caused. Thank you for choosing GOFO Express — we are here to support you every step of the way!",
+          "code": "/65"
+        },
+        {
+          "field": "content_es",
+          "old": "Lamentamos sinceramente que el proceso de investigación haya tomado más tiempo de lo habitual. El reembolso se enviará al vendedor...",
+          "new": "Lamentamos sinceramente que el proceso de investigación haya tomado más tiempo de lo habitual. El reembolso se enviará al vendedor, y ahora puede comunicarse directamente con él para solicitar su devolución.\r\nNuevamente nos disculpamos por cualquier inconveniente que esto haya podido causar. Gracias por elegir GOFO Express — estamos aquí para apoyarle en todo momento.",
+          "code": "/66"
+        }
+      ]
+    },
+    {
+      "dbId": "43B",
+      "title": "Have Evidence",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We take this matter very seriously... Please send to cs@mail.gofoexpress.com...",
+          "new": "We take this matter very seriously and want to resolve it as quickly as possible. We kindly ask you to send the following to cs@mail.gofo.com: \r\n- Photos, screenshots, or recordings (if available)\r\n- A brief description (including the date, time, tracking number, and what occurred)\r\n\r\nPlease note that we are unable to initiate the investigation without photo or video evidence. Once we receive your materials, our team will begin the internal investigation. You will receive the results via email within 5–10 business days.\r\nMay you also provide your best email address so our team can contact you if necessary?\r\nThank you very much for your cooperation and patience.",
+          "code": "/43B"
+        },
+        {
+          "field": "content_es",
+          "old": "Tomamos este asunto muy en serio... Por favor envíe a cs@mail.gofoexpress.com...",
+          "new": "Tomamos este asunto muy en serio y queremos resolverlo lo más rápido posible. ¿Podemos pedirle amablemente que envíe lo siguiente a cs@mail.gofo.com \r\n- Fotos, capturas de pantalla o grabaciones (si están disponibles)\r\n- Una breve descripción (incluyendo la fecha, hora, número de seguimiento y lo que sucedió)\r\n\r\nTenga en cuenta que no podemos iniciar la investigación sin evidencia en fotos o videos. Una vez que recibamos su material, nuestro equipo comenzará la investigación interna. Recibirá los resultados por correo electrónico dentro de 5 a 10 días hábiles. \r\nLe pedimos amablemente que nos proporcione un correo electrónico activo para que nuestro equipo pueda contactarlo si es necesario. \r\nMuchas gracias por su cooperación y paciencia.",
+          "code": "/44B"
+        }
+      ]
+    },
+    {
+      "dbId": "43C",
+      "title": "No Evidence",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We take this matter very seriously and strongly recommend that you gather all available evidence...",
+          "new": "We take this matter very seriously and strongly recommend that you gather all available evidence, including:\r\n- Photos, screenshots, or recordings (if available)\r\n- A brief description (including the date, time, tracking number, and what occurred)\r\n- Please send everything to: cs@mail.gofo.com\r\nThis will help us expedite the investigation process, and we will also use this information to provide additional training to the driver.\r\nOnce we receive your evidence, our team will begin the internal investigation, and you will receive the results via email within 5–10 business days.\r\nMay we also kindly have your best email address so our team can contact you if necessary?\r\nThank you very much for your cooperation and patience.",
+          "code": "/43C"
+        },
+        {
+          "field": "content_es",
+          "old": "Tomamos este asunto muy en serio y le recomendamos amablemente que pueda reunir toda la evidencia disponible...",
+          "new": "Tomamos este asunto muy en serio y le recomendamos amablemente que pueda reunir toda la evidencia disponible, incluyendo: \r\n- Fotos, capturas de pantalla o grabaciones (si están disponibles)\r\n- Una breve descripción (incluyendo la fecha, hora, número de seguimiento y lo que ocurrió)\r\n- Por favor, envíe todo a: cs@mail.gofo.com\r\nEsto nos ayudará a agilizar el proceso de investigación, y también utilizaremos esta información para brindar capacitación adicional al conductor.\r\nUna vez que recibamos su evidencia, nuestro equipo comenzará la investigación interna y recibirá los resultados por correo electrónico dentro de 5 a 10 días hábiles.\r\n¿Podemos pedirle también su mejor dirección de correo electrónico para que nuestro equipo pueda contactarlo si es necesario?\r\nMuchas gracias por su cooperación y paciencia",
+          "code": "/44C"
+        }
+      ]
+    },
+    {
+      "dbId": "57",
+      "title": "Resolved Claim",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We sincerely apologize again that you didn't receive your parcel. A reimbursement will be sent to the seller, and we kindly ask that you contact them directly to request your refund...",
+          "new": "We sincerely apologize again that you didn’t receive your parcel. A reimbursement will be sent to the seller, and we kindly ask that you contact them directly to request your refund. We truly appreciate your understanding and are very sorry for the inconvenience this has caused. Thank you for choosing GOFO — we truly value your trust!",
+          "code": "/57"
+        },
+        {
+          "field": "content_es",
+          "old": "Lamentamos sinceramente nuevamente que no haya recibido su paquete. El reembolso será enviado al vendedor, y le pedimos amablemente que lo contacte directamente...",
+          "new": "Lamentamos sinceramente nuevamente que no haya recibido su paquete. El reembolso será enviado al vendedor, y le pedimos amablemente que lo contacte directamente para solicitar su devolución. Agradecemos mucho su comprensión y sentimos los inconvenientes ocasionados. Gracias por elegir GOFO — valoramos sinceramente su confianza.",
+          "code": "/58"
+        }
+      ]
+    },
+    {
+      "dbId": "59",
+      "title": "Resolved Not Claimable",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "Upon investigation, we confirmed that our driver followed the delivery procedures for this package, so we are not able to issue a refund...",
+          "new": "Upon investigation, we confirmed that our driver followed the delivery procedures for this package, so we are not able to issue a refund. For any other questions or concerns regarding your order, we kindly recommend contacting your seller directly, as they can provide the most accurate details and solutions related to your purchase. Thank you for choosing GOFO, we greatly value your trust and understanding.",
+          "code": "/59"
+        },
+        {
+          "field": "content_es",
+          "old": "Tras la investigación, confirmamos que nuestro conductor siguió los procedimientos de entrega para este paquete, por lo que no es posible emitir un reembolso...",
+          "new": "Tras la investigación, confirmamos que nuestro conductor siguió los procedimientos de entrega para este paquete, por lo que no es posible emitir un reembolso. Para cualquier otra pregunta o inquietud relacionada con su pedido, le recomendamos amablemente contactar directamente a su vendedor, ya que podrá brindarle la información y soluciones más precisas sobre su compra. Gracias por elegir GOFO, valoramos enormemente su confianza y comprensión.",
+          "code": "/60"
+        }
+      ]
+    },
+    {
+      "dbId": "25",
+      "title": "Damage Tracking 2",
+      "changes": [
+        {
+          "field": "content_en",
+          "old": "We are sorry to inform you that your package arrived at the warehouse already damaged. We are currently waiting for the seller's response regarding the next steps. May we kindly ask you to also reach out to the seller for further instructions. Thank you for your understanding, we truly appreciate your patience.",
+          "code": "/25"
+        },
+        {
+          "field": "content_es",
+          "old": "Lamentamos informarle que su paquete llegó al almacén ya dañado. Actualmente estamos a la espera de la respuesta del vendedor respecto a los siguientes pasos. Le solicitamos amablemente que también se comunique con el vendedor para recibir más instrucciones. Gracias por su comprensión, apreciamos sinceramente su paciencia.",
+          "code": "/26"
+        }
+      ]
+    }
+  ],
+  "newPrompts": []
+}

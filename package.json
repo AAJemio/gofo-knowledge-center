@@ -1,23 +1,26 @@
 {
   "name": "temp_app",
-  "version": "1.1.2",
+  "version": "1.2.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "prisma generate && prisma migrate deploy && next build",
     "start": "next start",
     "lint": "eslint",
     "postinstall": "prisma generate"
   },
   "dependencies": {
     "@prisma/client": "^5.22.0",
+    "@sentry/nextjs": "^10.39.0",
     "dotenv": "^17.2.3",
     "lucide-react": "^0.556.0",
     "next": "16.0.7",
     "pg": "^8.16.3",
     "prisma": "^5.22.0",
     "react": "19.2.0",
-    "react-dom": "19.2.0"
+    "react-dom": "19.2.0",
+    "recharts": "^3.7.0",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "@types/node": "^20",

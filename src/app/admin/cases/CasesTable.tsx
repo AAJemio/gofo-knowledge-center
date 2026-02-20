@@ -2,9 +2,12 @@
 
 import React, { useState, useMemo } from 'react';
 import { useRouter } from 'next/navigation';
-import { Search, Edit, Trash2, ArrowUpDown } from 'lucide-react';
-import Link from 'next/link';
+import { Search, Edit, Trash2, ArrowUpDown, Share2 } from 'lucide-react';
+
 import { useAKC } from '@/context/AKCContext';
+import ContentRestoreWizard from '../components/ContentRestoreWizard';
+import ExportModal from '../components/ExportModal';
+import { downloadFileFromUrl } from '@/utils/downloadHelpers';
 
 interface SupportCase {
     id: string;
@@ -15,10 +18,12 @@ interface SupportCase {
 }
 
 export default function CasesTable({ cases }: { cases: SupportCase[] }) {
-    const { language } = useAKC();
+    const { language, currentUser } = useAKC();
     const router = useRouter();
     const [search, setSearch] = useState('');
     const [sortConfig, setSortConfig] = useState<{ key: string; direction: 'asc' | 'desc' } | null>(null);
+    const [showRestoreWizard, setShowRestoreWizard] = useState(false);
+    const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
     const handleSort = (key: string) => {
         let direction: 'asc' | 'desc' = 'asc';
@@ -26,6 +31,15 @@ export default function CasesTable({ cases }: { cases: SupportCase[] }) {
             direction = 'desc';
         }
         setSortConfig({ key, direction });
+    };
+
+    const handleExportClick = () => {
+        setIsExportModalOpen(true);
+    };
+
+    const handleExportConfirm = (filename: string) => {
+        setIsExportModalOpen(false);
+        downloadFileFromUrl(`/api/admin/content/backup?scope=cases`, filename);
     };
 
     const filteredCases = useMemo(() => {
@@ -76,9 +90,9 @@ export default function CasesTable({ cases }: { cases: SupportCase[] }) {
 
     return (
         <div>
-            {/* Search Bar */}
-            <div className="bg-white dark:bg-[#1B1F22] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 mb-6 transition-colors duration-300">
-                <div className="relative">
+            {/* Toolbar */}
+            <div className="bg-white dark:bg-[#1B1F22] p-4 rounded-xl shadow-sm border border-gray-200 dark:border-gray-800 mb-6 transition-colors duration-300 flex flex-col md:flex-row gap-4 items-center">
+                <div className="relative flex-1 w-full">
                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-500 dark:text-gray-400" size={20} />
                     <input
                         value={search}
@@ -87,6 +101,34 @@ export default function CasesTable({ cases }: { cases: SupportCase[] }) {
                         className="w-full pl-10 pr-4 py-2 border border-gray-300 dark:border-gray-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-[#A94F2D]/20 focus:border-[#A94F2D] transition text-gray-900 dark:text-white font-medium placeholder-gray-500 dark:placeholder-gray-400 bg-transparent dark:bg-gray-900"
                     />
                 </div>
+
+                {/* Admin Controls */}
+                {currentUser?.role === 'admin' && (
+                    <div className="flex items-center gap-2 border-l border-gray-200 dark:border-gray-700 pl-4">
+                        <button
+                            onClick={handleExportClick}
+                            className="p-2 text-gray-500 hover:text-[#A94F2D] dark:text-gray-400 dark:hover:text-[#A94F2D] transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                            title="Export Cases"
+                        >
+                            <Share2 size={20} className="rotate-180" />
+                        </button>
+                        <button
+                            onClick={() => setShowRestoreWizard(true)}
+                            className="p-2 text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors rounded-lg hover:bg-gray-100 dark:hover:bg-gray-800"
+                            title="Import Cases"
+                        >
+                            <Share2 size={20} />
+                        </button>
+
+                        <ExportModal
+                            isOpen={isExportModalOpen}
+                            onClose={() => setIsExportModalOpen(false)}
+                            onConfirm={handleExportConfirm}
+                            defaultFilename={`backup_cases_${new Date().toISOString().slice(0, 10)}`}
+                            title={language === 'es' ? 'Exportar Casos' : 'Export Cases'}
+                        />
+                    </div>
+                )}
             </div>
 
             {/* Table */}
@@ -144,35 +186,27 @@ export default function CasesTable({ cases }: { cases: SupportCase[] }) {
                                         {c.category}
                                     </span>
                                 </td>
-                                <td className="px-6 py-4 text-sm text-gray-700 dark:text-gray-300 font-medium">
-                                    {c.crm_code_type || '-'}
+                                <td className="px-6 py-4">
+                                    <span className="font-mono text-xs bg-gray-50 dark:bg-gray-900 px-2 py-1 rounded border border-gray-200 dark:border-gray-800 text-gray-600 dark:text-gray-400">
+                                        {c.crm_code_type}
+                                    </span>
                                 </td>
-                                <td className="px-6 py-4 text-right" onClick={(e) => e.stopPropagation()}>
-                                    <div className="flex items-center justify-end gap-2">
-                                        <Link href={`/admin/cases/${c.id}`} className="p-2 text-gray-400 hover:text-[#A94F2D] dark:hover:text-[#EF4D23] hover:bg-[#A94F2D]/10 dark:hover:bg-[#EF4D23]/10 rounded-lg transition">
-                                            <Edit size={18} />
-                                        </Link>
-                                        <button className="p-2 text-gray-400 hover:text-red-600 dark:hover:text-red-400 hover:bg-red-50 dark:hover:bg-red-900/20 rounded-lg transition">
-                                            <Trash2 size={18} />
-                                        </button>
-                                    </div>
+                                <td className="px-6 py-4 text-right">
+                                    <Edit className="inline-block text-gray-400 group-hover:text-[#A94F2D] transition-colors" size={16} />
                                 </td>
                             </tr>
                         ))}
-                        {filteredCases.length === 0 && (
-                            <tr>
-                                <td colSpan={4} className="px-6 py-8 text-center text-gray-500 dark:text-gray-400 font-medium">
-                                    No cases found matching "{search}".
-                                </td>
-                            </tr>
-                        )}
                     </tbody>
                 </table>
             </div>
 
-            <div className="mt-4 text-sm text-gray-500 dark:text-gray-400 font-medium">
-                Showing {filteredCases.length} cases
-            </div>
+            {showRestoreWizard && (
+                <ContentRestoreWizard
+                    scope="cases"
+                    onSuccess={() => setShowRestoreWizard(false)}
+                    onClose={() => setShowRestoreWizard(false)}
+                />
+            )}
         </div>
     );
 }

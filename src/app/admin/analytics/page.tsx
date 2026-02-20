@@ -1,6 +1,7 @@
 import React from 'react';
 import { prisma } from '@/lib/prisma';
 import AnalyticsList from './AnalyticsList';
+import AdminAnalyticsOverview from './AdminAnalyticsOverview';
 
 export const dynamic = 'force-dynamic';
 
@@ -47,9 +48,6 @@ export default async function AnalyticsPage() {
     }
 
     return (
-        <div className="space-y-8">
-            <AnalyticsList users={users} />
-            <AuditLogList logs={auditLogs} />
-        </div>
+        <AdminAnalyticsOverview users={users} auditLogs={auditLogs} />
     );
 }

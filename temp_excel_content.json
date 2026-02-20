@@ -1,0 +1,1505 @@
+[
+  {
+    "PROMPT TITLE": "INTRO FOR BOT MESSAGE FOR FRT\r\n(First Response Time)"
+  },
+  {
+    "PROMPT NUMBER": "/01A",
+    "PROMPT TITLE": "ENGLISH_INTRO FOR BOT MESSAGE FOR FRT\r\n(First Response Time)",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Greetings from GOFO! Please press Help or type Help so we can assist you as quickly as possible, resolve your situation, track your package, and connect you with a live agent. Thank you!"
+  },
+  {
+    "PROMPT NUMBER": "/02A",
+    "PROMPT TITLE": "SPANISH_INTRO FOR BOT MESSAGE FOR FRT\r\n(First Response Time)",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Saludos de GOFO! Por favor presione Ayuda o escriba Ayuda para que podamos asistirle lo más rápido posible, resolver su situación, rastrear su paquete y conectarlo con un agente en vivo. ¡Gracias!"
+  },
+  {
+    "PROMPT TITLE": "First Response(FRT)"
+  },
+  {
+    "PROMPT NUMBER": "/01B",
+    "PROMPT TITLE": "ENGLISH_FIRST RESPONSE NO TRACKING NUMBER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Hi there, thanks for getting in touch with us.\r\nCould you please share your full name, complete address, and your tracking number so we can help you out? \r\nThe tracking number usually starts with codes like:\r\n✅ GF6...\r\n✅ YT2...\r\n✅ WT2...\r\n✅ TEP00...\r\n✅ BG-2...\r\n✅ TAL2...\r\n✅ FS2...\r\n✅ ONE00...and others. \r\nOnce we have that, we’ll check your account and verify the details. This might take just a few moments, and we really appreciate your patience while we get everything sorted for you."
+  },
+  {
+    "PROMPT NUMBER": "/02B",
+    "PROMPT TITLE": "SPANISH_FIRST RESPONSE NO TRACKING NUMBER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hola, gracias por ponerse en contacto con nosotros. ¿Nos podrías compartir su nombre completo, dirección completa y su número de seguimiento para que podamos ayudarle? \r\nEl número de seguimiento generalmente comienza con códigos como:\r\n✅ GF6...\r\n✅ YT2...\r\n✅ WT2...\r\n✅ TEP00...\r\n✅ BG-2...\r\n✅ TAL2...\r\n✅ FS2...\r\n✅ ONE00...o otros. \r\nUna vez que tengamos eso, revisaremos su cuenta y verificaremos los detalles. Esto podría tomar solo unos momentos, y realmente apreciamos su paciencia mientras resolvemos todo para usted."
+  },
+  {
+    "PROMPT TITLE": "(FRT) WITH TRACKING NUMBER IN CHAT"
+  },
+  {
+    "PROMPT NUMBER": "/01C",
+    "PROMPT TITLE": "ENGLISH_WITH TRACKING NUMBER IN CHAT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Hi! Could you please share your full name and complete address? I’m already checking your tracking number and reviewing your account. This will only take a few minutes, and I truly appreciate your patience while I get this sorted for you."
+  },
+  {
+    "PROMPT NUMBER": "/02C",
+    "PROMPT TITLE": "SPANISH_WITH TRACKING NUMBER IN CHAT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Hola! ¿Nos podrías compartir tu nombre completo y tu dirección completa? Ya estoy revisando tu número de rastreo y verificando tu cuenta. Esto tomará solo unos minutos, y de verdad agradezco mucho tu paciencia mientras lo resolvemos."
+  },
+  {
+    "PROMPT TITLE": "NO TRACKING NUMBER"
+  },
+  {
+    "PROMPT NUMBER": "/01D",
+    "PROMPT TITLE": "ENGLISH_NO TRACKING NUMBER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Could you share your tracking number with us? It usually starts with\r\n✅GF\r\n✅YT2. \r\nWithout a tracking number, we cannot find out the parcel info in our system. Please contact the seller or log into your shopping website to check your order for the tracking number, and then you can call back. We will always try our best to help you once you get it! Please go to www.gofoexpress.com and you can search your tracking number. \r\nThanks for your patience and understanding. We’re always here to help with anything shipping-related!"
+  },
+  {
+    "PROMPT NUMBER": "/02D",
+    "PROMPT TITLE": "SPANISH_NO TRACKING NUMBER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¿Podría compartir su número de seguimiento con nosotros? Normalmente empieza con:\r\n✅GF\r\n✅YT2.\r\nSin un número de seguimiento, no podemos localizar la información del paquete en nuestro sistema. Por favor, contacte con el vendedor o inicie sesión en la página web de su compra para verificar el número de seguimiento en su pedido, y luego puede llamarnos de nuevo. ¡Siempre haremos lo posible para ayudarle una vez lo tenga!Por favor visite 🌐 www.gofoexpress.com e ingrese su número de seguimiento. \r\nGracias por su paciencia y comprensión. ¡Siempre estamos aquí para ayudarle con cualquier cosa relacionada con envíos!"
+  },
+  {
+    "PROMPT TITLE": "INCORRECT TRACKING NUMBER"
+  },
+  {
+    "PROMPT NUMBER": "/01E",
+    "PROMPT TITLE": "ENGLISH_INCORRECT TRACKING NUMBER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "It appears that the tracking number you provided may contain an error or is not formatted correctly. Could you kindly verify the number and provide us with the correct one?\r\nOnce we receive the accurate tracking number, we will be able to track your package properly and provide you with the most up-to-date information. \r\n\r\nThank you very much for your cooperation and understanding. We truly appreciate your patience!"
+  },
+  {
+    "PROMPT NUMBER": "/02E",
+    "PROMPT TITLE": "SPANISH_INCORRECT TRACKING NUMBER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Aparentemente el número de rastreo que nos proporcionó podría contener un error o no estar escrito correctamente. \r\n¿Podría verificarlo amablemente y enviarnos el número correcto?\r\nUna vez que recibamos el número de rastreo correcto, podremos realizar el seguimiento de su paquete de manera adecuada y proporcionarle la información más actualizada.\r\n\r\n¡Muchas gracias por su cooperación y comprensión! Apreciamos sinceramente su paciencia."
+  },
+  {
+    "PROMPT TITLE": "WHILE CUSTOMER WAITS-NEW"
+  },
+  {
+    "PROMPT NUMBER": "/01F",
+    "PROMPT TITLE": "ENGLISH_WHILE CUSTOMER WAITS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this moment, I am verifying your information. I will get back to you as soon as possible. Thank you for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/02F",
+    "PROMPT TITLE": "SPANISH_WHILE CUSTOMER WAITS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento estoy verificando su información. Me comunicaré con usted lo antes posible. Gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "ASK CONFIRM ADDRESS-NEW"
+  },
+  {
+    "PROMPT NUMBER": "/01G",
+    "PROMPT TITLE": "ENGLISH_ASK CONFIRM ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We kindly ask for your name and address so we can confirm that you are the owner or the person responsible for the parcel. This helps us ensure your privacy and verify the package details. Thank you for your cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/02G",
+    "PROMPT TITLE": "SPANISH_ASK CONFIRM ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Le solicitamos amablemente su nombre y dirección para confirmar que usted es el dueño o la persona responsable del paquete. Esto nos ayuda a garantizar su privacidad y verificar los detalles del envío. Muchas gracias por su cooperación."
+  },
+  {
+    "PROMPT TITLE": "SELLER CONTECT HOTLINE"
+  },
+  {
+    "PROMPT NUMBER": "/03",
+    "PROMPT TITLE": "ENGLISH_SELLER CONTACT HOTLINE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for choosing us! At GOFO, we have a dedicated seller hotline team ready to assist you with any support you may need.\r\nPlease contact:\r\n📞 Call +1 (626) 505-1101\r\n🕒 10:00 AM – 9:00 PM EST (Mon–Sun)"
+  },
+  {
+    "PROMPT NUMBER": "/04",
+    "PROMPT TITLE": "SPANISH_SELLER CONTACT HOTLINE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Gracias por elegirnos! En GOFO, contamos con un equipo de atención exclusiva para vendedores, listo para ayudarle con cualquier consulta o asistencia que necesite.\r\nPor favor contacte:\r\n📞 Llame al +1 (626) 505-1101\r\n🕒 10:00 AM – 9:00 PM EST (Lun–Dom)"
+  },
+  {
+    "PROMPT TITLE": "PROVIDE MORE THAN 10 TRACKING NUMBER AS CUSTOMER"
+  },
+  {
+    "PROMPT NUMBER": "/03B",
+    "PROMPT TITLE": "ENGLISH_PROVIDE MORE THAN 10 TRACKING NUMBER AS CUSTOMER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We're sorry, but our system is unable to process a large number of tracking requests at once.\r\nFor the most accurate and up-to-date information, we kindly recommend visiting our official website www.gofoexpress.com to check the status of your parcels.\r\nIf you have questions about a specific parcel, please don’t hesitate to contact us again, we’ll be glad to assist you."
+  },
+  {
+    "PROMPT NUMBER": "/04B",
+    "PROMPT TITLE": "SPANISH_PROVIDE MORE THAN 10 TRACKING NUMBER AS CUSTOMER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentablemente, nuestro sistema no puede procesar una gran cantidad de solicitudes de seguimiento al mismo tiempo.\r\nPara obtener información más precisa y actualizada, le recomendamos amablemente visitar nuestro sitio web www.gofoexpress.com y consultar el estado de sus paquetes en esa página. \r\nSi tuviera preguntas sobre un paquete en específico, no dude en contactarnos nuevamente, estaremos encantados de asistirle."
+  },
+  {
+    "PROMPT TITLE": "TRACKING DOES NOT BELONG – GOFO IS ONLY CARRIER"
+  },
+  {
+    "PROMPT NUMBER": "/03C",
+    "PROMPT TITLE": "ENGLISH_ GOFO IS ONLY CARRIER",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for the confusion and thank you for contacting us. After verifying the information, the tracking number provided does not belong to Gofo; in these cases, we act solely as the carrier for the company responsible for delivering your shipment.\r\nWe kindly invite you to visit https://www.gofo.com/us/ to identify the company in charge.\r\nWe appreciate your understanding and remain available for any further questions or assistance."
+  },
+  {
+    "PROMPT NUMBER": "/04C",
+    "PROMPT TITLE": "SPANISH_GOFO IS ONLY CARRIER",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos la confusión y gracias por contactarnos. Después de verificar la información, el número de rastreo proporcionado no corresponde a Gofo; en estos casos, actuamos únicamente como transportista para la empresa responsable de su envío.\r\nLe invitamos a visitar https://www.gofo.com/us/ para identificar la empresa encargada.\r\nAgradecemos su comprensión y quedamos a su disposición para cualquier consulta adicional."
+  },
+  {
+    "PROMPT TITLE": "INTERNATIONAL GOFO CHANNEL"
+  },
+  {
+    "PROMPT NUMBER": "/03D",
+    "PROMPT TITLE": "ENGLISH_INTERNATIONAL GOFO CHANNEL",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for the information provided. This channel handles shipments within the United States and Puerto Rico only.\r\nFor packages from Gofo Italy, Gofo France, or Gofo Netherlands, we kindly ask you to visit the Gofo website, select your country, and check your shipment information there.\r\nThank you for your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/04D",
+    "PROMPT TITLE": "SPANISH_INTERNATIONAL GOFO CHANNEL",
+    "PROMPT CONTENT IN YCLOUD": "Agradecemos mucho la información proporcionada. Este canal atiende únicamente envíos dentro de Estados Unidos y Puerto Rico.\r\nPara paquetes de Gofo Italia, Gofo Francia o Gofo Países Bajos, le solicitamos visitar la página web de Gofo, seleccionar su país y consultar allí la información correspondiente a su envío.\r\nGracias por su comprensión."
+  },
+  {
+    "PROMPT TITLE": "PARCEL DOES NOT BELONG TO THE RECIPIENT"
+  },
+  {
+    "PROMPT NUMBER": "/05",
+    "PROMPT TITLE": "ENGLISH_DOES NOT BELONG TO THE RECIPIENT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "It appears that a package was mistakenly delivered to your address. We sincerely apologize for this error and truly appreciate your honesty in informing us.\r\nWe kindly ask you to provide your full address and phone number so one of our drivers can collect the package within the next three (3) days.\r\nThank you very much for your cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/06",
+    "PROMPT TITLE": "SPINISH_DOES NOT BELONG TO THE RECIPIENT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Parece que un paquete fue entregado por error en su dirección. Lamentamos sinceramente este inconveniente y agradecemos mucho su honestidad al informarnos.\r\nLe solicitamos amablemente que nos proporcione su dirección completa y número de teléfono para que uno de nuestros conductores pueda recoger el paquete dentro de los próximos tres (3) días.\r\nMuchas gracias por su cooperación."
+  },
+  {
+    "PROMPT TITLE": "ASK FOR DISCARDED PARCEL"
+  },
+  {
+    "PROMPT NUMBER": "/05B",
+    "PROMPT TITLE": "ENGLISH_ASK CUSTOMER TO HOLD PARCEL DOESN\"T BELONG TO RECIPIENT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Could you hang on to the parcel for 3 days while we confirm things with the merchant? We’ll keep you posted! Thank you so much for your help. \r\nIf the driver doesn’t make it within 3 days, you can go ahead and dispose of the parcel."
+  },
+  {
+    "PROMPT NUMBER": "/06B",
+    "PROMPT TITLE": "SPANISH_ASK CUSTOMER TO HOLD PARCEL DOESN\"T BELONG TO RECIPIENT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¿Podría conservar el paquete durante 3 días mientras confirmamos con el vendedor? ¡Le mantendremos informado! Muchas gracias por su ayuda 🙏.\r\nSi el conductor no recoge el paquete en 3 días, puede desecharlo."
+  },
+  {
+    "PROMPT TITLE": "ASK FOR DISCARDED PARCEL"
+  },
+  {
+    "PROMPT NUMBER": "/05C",
+    "PROMPT TITLE": "ENGLISH_ASK CUSTOMER TO DISPOSE PARCEL AFTER 3 DAYS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "If our driver cannot pick up the package within 3 days, we kindly ask you to dispose of it safely. Thank you for your cooperation and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/06C",
+    "PROMPT TITLE": "SPANISH_ASK CUSTOMER TO DISPOSE PARCEL AFTER 3 DAYS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Si nuestro conductor no puede recoger el paquete dentro de 3 días, le pedimos amablemente que lo deseche de manera segura. Gracias por su cooperación y comprensión."
+  },
+  {
+    "PROMPT TITLE": "QUESTION FOR RECEIVED PARCEL"
+  },
+  {
+    "PROMPT NUMBER": "/07",
+    "PROMPT TITLE": "ENGLISH_QUESTION FOR RECEIVED PARCEL",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "According to our system, your package has been marked as delivered.\r\nHave you received it yet? If not, we kindly suggest checking around your property or asking your neighbors in case it was received on your behalf.\r\n\r\nIf you're still unable to locate it, please let us know — we're here to help!"
+  },
+  {
+    "PROMPT NUMBER": "/08",
+    "PROMPT TITLE": "SPANISH_QUESTION FOR RECEIVED PARCEL",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Según nuestro sistema, tu paquete ha sido entregado.\r\n¿Lo has recibido? Si no, te recomendamos revisar los alrededores de tu propiedad o preguntar a tus vecinos por si lo recibieron en tu nombre.\r\n\r\nSi aún no logras localizarlo, por favor contáctanos — ¡estamos aquí para ayudarte!"
+  },
+  {
+    "PROMPT TITLE": "CONFIRMED PARCEL RECEIVED WITH \"DELIVERY NOT RECEIVED\" TICKET"
+  },
+  {
+    "PROMPT NUMBER": "/07B",
+    "PROMPT TITLE": "ENGLISH_CONFIRMED PARCEL RECEIVED WITH \"DELIVERY NOT RECEIVED\" TICKET",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "So glad to hear your parcel has arrived! If there’s anything else you need help, just give us a shout. We’re always happy to help!"
+  },
+  {
+    "PROMPT NUMBER": "/08B",
+    "PROMPT TITLE": "SPANISH_CONFIRMED PARCEL RECEIVED WITH \"DELIVERY NOT RECEIVED\" TICKET",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Qué alegría saber que su paquete ha llegado! Si necesita ayuda con algo más, no dude en avisarnos. ¡Siempre estaremos encantados de ayudarle!"
+  },
+  {
+    "PROMPT TITLE": "LEFT THE SORTING CENTER"
+  },
+  {
+    "PROMPT NUMBER": "/09",
+    "PROMPT TITLE": "ENGLISH_LEFT THE SORTING CENTER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Your parcel is on its way to our local warehouse. May we kindly ask for your patience, as it will be delivered within 3 days after arrival."
+  },
+  {
+    "PROMPT NUMBER": "/10",
+    "PROMPT TITLE": "SPANISH_LEFT THE SORTING CENTER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Su paquete se encuentra en camino a nuestro almacén local. Le pedimos amablemente un poco de paciencia, ya que será entregado dentro de los 3 días posteriores a su llegada."
+  },
+  {
+    "PROMPT TITLE": "SIGNED TO SORTING CENTER"
+  },
+  {
+    "PROMPT NUMBER": "/09B",
+    "PROMPT TITLE": "ENGLISH_SIGNED TO SORTING CENTER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Great news! Your parcel has arrived at our warehouse. May we kindly ask you to keep an eye on the updates, as it will be delivered within 3 days"
+  },
+  {
+    "PROMPT NUMBER": "/10B",
+    "PROMPT TITLE": "SPANISH_SIGNED TO SORTING CENTER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Buenas noticias! Su paquete ha llegado a nuestro almacén. ¿Podemos pedirle amablemente que esté atento a las actualizaciones? Será entregado dentro de los próximos 3 días."
+  },
+  {
+    "PROMPT TITLE": "RETURNED TO SORTING CENTER"
+  },
+  {
+    "PROMPT NUMBER": "/09C",
+    "PROMPT TITLE": "ENGLISH_RETURNED TO SORTING CENTER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for any inconvenience. Your package has been returned to our sorting center. Once it is ready to be re-delivered, the process may take up to three business days. Thank you for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/10C",
+    "PROMPT TITLE": "SPANISH_RETURNED TO SORTING CENTER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos cualquier inconveniente. Su paquete ha sido devuelto a nuestro centro de clasificación. Una vez esté listo para ser reentregado, el proceso puede tardar hasta tres días hábiles. Gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/11",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Great news! Your parcel is now out for delivery and should arrive within the next 3 days. May we kindly ask you to be available to take any calls from the driver so the delivery can be coordinated smoothly. Thank you for your patience, we truly appreciate it."
+  },
+  {
+    "PROMPT NUMBER": "/12",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Buenas noticias! Su paquete ya está en camino para la entrega y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de manera que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 1"
+  },
+  {
+    "PROMPT NUMBER": "/11A",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 1",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Great news! Your parcel is now out for delivery and should arrive within the next 3 days. May we kindly ask you to be available to take any calls from the driver so the delivery can be coordinated smoothly. Thank you for your patience, we truly appreciate it."
+  },
+  {
+    "PROMPT NUMBER": "/12A",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 1",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Buenas noticias! Su paquete ya está en camino y debería llegar dentro de los próximos 3 días. Le pedimos amablemente que se mantenga disponible para atender cualquier llamada del conductor, de modo que la entrega pueda coordinarse sin inconvenientes. Gracias por su paciencia, realmente lo apreciamos."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 2"
+  },
+  {
+    "PROMPT NUMBER": "/11B",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 2",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Good news — your parcel is now out for delivery and is expected to arrive within 2 days. Please be available to take any calls from the driver to coordinate your delivery. Thank you so much for your patience!"
+  },
+  {
+    "PROMPT NUMBER": "/12B",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 2",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Buenas noticias! Su paquete ya salió para la entrega y se espera que llegue en un plazo de 2 días. Le pedimos que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega. Muchas gracias por su paciencia."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 3"
+  },
+  {
+    "PROMPT NUMBER": "/11C",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 3",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Good news! Your package is now out for delivery. If you do not receive it by the end of tomorrow, please contact us again.\r\nWe kindly ask that you be available to answer any calls from our delivery driver to coordinate the delivery.\r\nThank you very much for your patience."
+  },
+  {
+    "PROMPT NUMBER": "/12C",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 3",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Buenas noticias! Su paquete ya salió para entrega. Si no lo recibe al finalizar el día de mañana, le pedimos que nos contacte nuevamente.\r\nLe solicitamos amablemente que esté disponible para contestar cualquier llamada de nuestro repartidor y así coordinar la entrega.\r\nMuchas gracias por su paciencia."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 4"
+  },
+  {
+    "PROMPT NUMBER": "/11D",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 4",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We are very sorry for the delay and completely understand your concern. If there is still no delivery update by the end of today, may we kindly ask you to write to us again?. Thank you very much for your patience, we truly appreciate it."
+  },
+  {
+    "PROMPT NUMBER": "/12D",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 4",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos mucho la demora y comprendemos completamente su preocupación. Si al final del día aún no hay actualización de la entrega, ¿podemos pedirle amablemente que nos escriba nuevamente? Muchas gracias por su paciencia, lo apreciamos sinceramente"
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 5"
+  },
+  {
+    "PROMPT NUMBER": "/11E",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 5",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the delay in delivery. As there have been no further updates on your package, we kindly ask you to contact your seller directly to request the corresponding refund. We truly appreciate your patience and understanding"
+  },
+  {
+    "PROMPT NUMBER": "/12E",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 5",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "OUT FOR DELIVERY DAY 6"
+  },
+  {
+    "PROMPT NUMBER": "/11F",
+    "PROMPT TITLE": "ENGLISH_OUT FOR DELIVERY DAY 6",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the delay in delivery. As there have been no further updates on your package, we kindly ask you to contact your seller directly to request the corresponding refund. We truly appreciate your patience and understanding"
+  },
+  {
+    "PROMPT NUMBER": "/12F",
+    "PROMPT TITLE": "SPANISH_OUT FOR DELIVERY DAY 6",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente la demora en la entrega. Dado que no hemos recibido más actualizaciones sobre su paquete, le solicitamos amablemente que se comunique directamente con su vendedor para gestionar el correspondiente reembolso. Agradecemos mucho su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRESS FAJARDO"
+  },
+  {
+    "PROMPT NUMBER": "/13",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS FAJARDO 00738",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this moment, your package is awaiting pickup at this location:\r\n-Location Name: Fajado-Coupi Travel \r\n-Address: Carretera #3 KM 45.5 Fajardo Market Square, Suite 4, Fajardo, PR 00738 \r\n-Business Days: Monday to Saturday \r\n-Business Hours: Monday–Friday: 8:30–17:00, Saturday: 8:30–12:00 \r\n-Contact: Keyra, 787-860-1515 \r\n-Location Zip Code: 00738 \r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS FAJARDO 00738",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n-Nombre del lugar: Fajado-Coupi Travel \r\n-Dirección: Carretera #3 KM 45.5 Fajardo Market Square, Suite 4, Fajardo, PR 00738 \r\n-Días laborables: Lunes a sábado \r\n-Horario laboral: Lunes a viernes: 8:30–17:00, sábado: 8:30–12:00 \r\n-Contacto: Keyra, 787-860-1515 \r\n-Código postal: 00738 \r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRES MOROVIS"
+  },
+  {
+    "PROMPT NUMBER": "/13B",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS MOROVIS 00687",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this moment, your package is awaiting pickup at this location:\r\n-Location Name: Morovis-Isla Menos Printing \r\n-Address: #23 Ave. Buena Vista, Morovis, PR 00687 \r\n-Business Days: Monday to Saturday \r\n-Business Hours: Monday–Friday: 7:00–17:00, Saturday: 9:00–14:00 \r\n-Contact: Naira Cruz, 939-255-2438 \r\n-Location Zip Code: 00687 \r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14B",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS MOROVIS 00687",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n-Nombre del lugar: Morovis-Isla Menos Printing \r\n-Dirección: #23 Ave. Buena Vista, Morovis, PR 00687 \r\n-Días laborables: Lunes a sábado \r\n-Horario laboral: Lunes a viernes: 7:00–17:00, sábado: 9:00–14:00 \r\n-Contacto: Naira Cruz, 939-255-2438 \r\n-Código postal: 00687 \r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRES NARANJITO"
+  },
+  {
+    "PROMPT NUMBER": "/13C",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS NARANJITO 00719",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this moment, your package is awaiting pickup at this location:\r\n- Location Name: Local Artesanal\r\n- Address: 126 Calle Georgetti, Naranjito, PR 00719\r\n- Business Days: 7 Days\r\n- Business Hours: Monday–Friday: 7:00am–5:00pm, Saturday: 8:00am–2:00pm, Sunday: Closed\r\n- Contact: 939-460-9500\r\n- Location Zip Code: 00719\r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14C",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS NARANJITO 00720",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n- Nombre del lugar: Local Artesanal\r\n- Dirección: 126 Calle Georgetti, Naranjito, PR 00719\r\n- Días laborables: 7 días\r\n- Horario laboral: Lunes a viernes: 7:00am–5:00pm, sábado: 8:00am–2:00pm, domingo: cerrado\r\n- Contacto: 939-460-9500\r\n- Código postal: 00719\r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRES AGUAS BUENAS"
+  },
+  {
+    "PROMPT NUMBER": "/13D",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS AGUAS BUENAS 00703",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "\r\nAt this moment, your package is awaiting pickup at this location:\r\n- Location Name: Damasin Mini Market\r\n- Address: Carr. 173 Km 2.7, Sonadora, Aguas Buenas, PR 00703\r\n- Business Days: 7 Days\r\n- Business Hours: Monday–Sunday: 7:00am–8:00pm\r\n- Contact: 939-313-4063\r\n- Location Zip Code: 00703\r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14D",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS AGUAS BUENAS 00703",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n- Nombre del lugar: Damasin Mini Market\r\n- Dirección: Carr. 173 Km 2.7, Sonadora, Aguas Buenas, PR 00703\r\n- Días laborables: 7 días\r\n- Horario laboral: Lunes a domingo: 7:00am–8:00pm\r\n- Contacto: 939-313-4063\r\n- Código postal: 00703\r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRES LAS PIEDRAS & JUNCOS"
+  },
+  {
+    "PROMPT NUMBER": "/13E",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS LAS PIEDRAS & JUNCOS 00771",
+    "PROMPT CONTENT IN YCLOUD": "\r\nAt this moment, your package is awaiting pickup at this location:\r\n\r\n- Location Name: CAR GROUP INC\r\n- Address: 198 Carr Torres, Bo. Montones 1, Las Piedras, PR 00771\r\n- Business Days: Monday to Saturday\r\n- Business Hours: Monday–Saturday: 8:00am–6:00pm, Sunday: Closed\r\n- Contact: 787-669-5920\r\n- Location Zip Code: 00771\r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14E",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS LAS PIEDRAS & JUNCOS 00771",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n- Nombre del lugar: CAR GROUP INC\r\n- Dirección: 198 Carr Torres, Bo. Montones 1, Las Piedras, PR 00771\r\n- Días laborables: Lunes a sábado\r\n- Horario laboral: Lunes a sábado: 8:00am–6:00pm, domingo: cerrado\r\n- Contacto: 787-669-5920\r\n- Código postal: 00771\r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "PUDO ADDRES SAN LORENZO"
+  },
+  {
+    "PROMPT NUMBER": "/13F",
+    "PROMPT TITLE": "ENGLISH_PUDO ADDRESS SAN LORENZO 00754",
+    "PROMPT CONTENT IN YCLOUD": "\r\nAt this moment, your package is awaiting pickup at this location:\r\n\r\n- Location Name: Laurent Beauty Supply\r\n- Address: 150 Calle Luis Muñoz Rivera, San Lorenzo, PR 00754\r\n- Business Days: Monday to Saturday\r\n- Business Hours: Monday–Saturday: 8:30am–4:00pm, Sunday: Closed\r\n- Contact: 787-561-8199\r\n- Location Zip Code: 00754\r\nThank you for your attention."
+  },
+  {
+    "PROMPT NUMBER": "/14F",
+    "PROMPT TITLE": "SPANISH_PUDO ADDRESS SAN LORENZO 00755",
+    "PROMPT CONTENT IN YCLOUD": "\r\nEn este momento, su paquete está disponible para ser recogido en esta ubicación:\r\n- Nombre del lugar: Laurent Beauty Supply\r\n- Dirección: 150 Calle Luis Muñoz Rivera, San Lorenzo, PR 00754\r\n- Días laborables: Lunes a sábado\r\n- Horario laboral: Lunes a sábado: 8:30am–4:00pm, domingo: cerrado\r\n- Contacto: 787-561-8199\r\n- Código postal: 00754\r\nGracias por su atención."
+  },
+  {
+    "PROMPT TITLE": "SHOW CORRECTLY ON GOOGLE MAPS/FAIL BECAUSE THE ACCESS"
+  },
+  {
+    "PROMPT NUMBER": "/15",
+    "PROMPT TITLE": "ENGLISH_SHOW CORRECTLY ON GOOGLE MAPS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We are very sorry for this. Our driver was unable to complete the delivery because access to your area was not possible. May we kindly ask you to share your gate code or any entrance details so the driver can have them for the next attempt? Thank you very much for your help and patience."
+  },
+  {
+    "PROMPT NUMBER": "/16",
+    "PROMPT TITLE": "SPANISH_SHOW CORRECTLY ON GOOGLE MAPS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos mucho este inconveniente. Nuestro conductor no pudo completar la entrega porque no fue posible acceder a su área. ¿Podemos pedirle amablemente que nos comparta su código de acceso o cualquier detalle de entrada para que el conductor los tenga en el próximo intento? Muchas gracias por su ayuda y paciencia."
+  },
+  {
+    "PROMPT TITLE": "CHECK ADDRESS SHOW CORRECT IN GOOGLEMAPS"
+  },
+  {
+    "PROMPT NUMBER": "/15B",
+    "PROMPT TITLE": "ENGLISH_CHECK ADDRESS SHOW CORRECT IN GOOGLEMAPS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We have reviewed all the information and everything looks correct. A re-delivery request has been submitted for you. Once your parcel is back at the warehouse, it will be delivered within 3 days."
+  },
+  {
+    "PROMPT NUMBER": "/16B",
+    "PROMPT TITLE": "SPANISH_CHECK ADDRESS SHOW CORRECT IN GOOGLEMAPS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hemos revisado toda la información y todo está correcto. Se ha enviado una solicitud de reentrega para usted. Una vez que su paquete regrese al almacén, será entregado dentro de los 3 días siguientes."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED / CHANGE HC BOX ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/15C",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED / CHANGE HC BOX ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We have noticed that your package is registered with an HC address. We would like to help you with this situation. Please send us your physical address, and if possible, your exact coordinates — or we can search for them for you — to guarantee a safe delivery.\r\nOtherwise, your package could be delivered to the HC boxes, where it might be lost or stolen, and we don’t want that to happen.\r\nWe need to deliver your package directly to you without any problems.\r\nWe truly appreciate your collaboration and help in resolving this situation."
+  },
+  {
+    "PROMPT NUMBER": "/16C",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED / CHANGE HC BOX ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hemos notado que su paquete está registrado con una dirección HC. Nos gustaría ayudarle con esta situación. Por favor, envíenos su dirección física y, si es posible, las coordenadas exactas —o podemos buscarlas por usted— para garantizar una entrega segura.\r\nDe lo contrario, su paquete podría ser entregado en los buzones HC, donde podría perderse o ser robado, y no queremos que eso ocurra.\r\nNecesitamos entregar su paquete directamente a usted sin ningún problema.\r\nAgradecemos mucho su colaboración y su ayuda para resolver esta situación."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED / NO ACCESS"
+  },
+  {
+    "PROMPT NUMBER": "/17",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED / NO ACCESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We are very sorry for this. Our driver was unable to complete the delivery because access to your area was not possible. May we kindly ask you to share your gate code or any entrance details so the driver can have them for the next attempt? Thank you very much for your help and patience."
+  },
+  {
+    "PROMPT NUMBER": "/18",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED / NO ACCESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos mucho este inconveniente. Nuestro conductor no pudo completar la entrega porque no fue posible acceder a su área. ¿Podemos pedirle amablemente que nos comparta su código de acceso o cualquier detalle de entrada para que el conductor los tenga en el próximo intento? Muchas gracias por su ayuda y paciencia."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED PHONE NO ANSWER"
+  },
+  {
+    "PROMPT NUMBER": "/17B",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED PHONE NO ANSWER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re sorry your delivery could not be completed because the driver was unable to reach you by phone. Please make sure your phone number is correct. Once the package returns to our local warehouse, we will attempt delivery again within 3 days. Kindly keep your phone available so the driver can contact you if needed, and continue to monitor the delivery status."
+  },
+  {
+    "PROMPT NUMBER": "/18B",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED PHONE NO ANSWER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos que no se haya podido completar tu entrega porque el conductor no logró comunicarse contigo por teléfono. Por favor asegúrate de que tu número de teléfono sea correcto. Una vez que el paquete regrese a nuestro almacén local, intentaremos entregarlo nuevamente dentro de 3 días. Te pedimos que mantengas tu teléfono disponible para que el conductor pueda contactarte si es necesario y que sigas revisando el estado de tu entrega."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED BUSINESS CLOSE"
+  },
+  {
+    "PROMPT NUMBER": "/17C",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED BUSINESS CLOSE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the inconvenience. Our driver was unable to complete the delivery because the business or delivery location was closed. Could you please let us know the days and hours when your business is open? We’ll make sure our driver has this information. Once the package returns to our warehouse, we’ll reship it within 3 days."
+  },
+  {
+    "PROMPT NUMBER": "/18C",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED BUSINESS CLOSE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos las molestias. Nuestro repartidor no pudo completar la entrega porque el negocio o lugar de entrega estaba cerrado. ¿Podría indicarnos, por favor, los días y horarios en que su negocio está abierto? Nos aseguraremos de que nuestro conductor tenga esta información. Una vez que el paquete regrese a nuestro almacén, lo enviaremos nuevamente en un plazo de 3 días."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED ADDRESS WITH MAILBOXES USPS"
+  },
+  {
+    "PROMPT NUMBER": "/17D",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED ADDRESS WITH MAILBOXES USPS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "📢 Important Notice\r\nPlease be advised that, in accordance with GOFO Express’s delivery policy, we are unable to deliver to the following locations:\r\n🚫 Military bases\r\n🚫 HC-Boxes\r\n🚫 Community mailboxes\r\n🚫 University addresses (on-campus delivery)\r\n🚫 Any addresses associated with the USPS mail service\r\nDo you have an alternate address we can use?"
+  },
+  {
+    "PROMPT NUMBER": "/18D",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED ADDRESS WITH MAILBOXES USPS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "📢 Aviso Importante\r\nLe informamos que, de acuerdo con la política de entrega de GOFO Express, no podemos entregar en las siguientes direcciones:\r\n🚫 Bases militares\r\n🚫 HC-Boxes\r\n🚫 Buzones comunitarios\r\n🚫 Direcciones universitarias (entrega en campus)\r\n🚫 Cualquier dirección asociada con el servicio postal USPS\r\n¿Cuenta con alguna una dirección alternativa que podamos usar?"
+  },
+  {
+    "PROMPT TITLE": "NO UPDATE AND PARCEL WITH LEFT SORTING CENTER(0-7 DAYS)"
+  },
+  {
+    "PROMPT NUMBER": "/17E",
+    "PROMPT TITLE": "ENGLISH_NO UPDATE AND PARCEL WITH LEFT SORTING CENTER(0-7 DAYS)",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Great news! Your parcel has left our sorting center and is on its way to your local warehouse. Once it arrives, it will be delivered within 3 days. Thank you very much for your patience — we truly appreciate it!"
+  },
+  {
+    "PROMPT NUMBER": "/18E",
+    "PROMPT TITLE": "SPANISH_NO UPDATE AND PARCEL WITH LEFT SORTING CENTER(0-7 DAYS)",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Buenas noticias! Su paquete ha salido de nuestro centro de clasificación y se encuentra en camino a su almacén local. Una vez que llegue, será entregado dentro de los 3 días siguientes. Muchas gracias por su paciencia — lo apreciamos sinceramente."
+  },
+  {
+    "PROMPT TITLE": "NO UPDATE AND PARCEL WITH LEFT SORTING CENTER (7+ DAYS)"
+  },
+  {
+    "PROMPT NUMBER": "/17F",
+    "PROMPT TITLE": "ENGLISH_NO UPDATE AND PARCEL WITH LEFT SORTING CENTER (+7 DAYS)",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely regret that your package has not had any updates for more than 7 days. We kindly recommend that you contact your seller to request a refund. Please accept our deepest apologies for the inconvenience caused, and thank you very much for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/18F",
+    "PROMPT TITLE": "SPANISH_NO UPDATE AND PARCEL WITH LEFT SORTING CENTER (+7 DAYS)",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente que su paquete no haya tenido actualizaciones por más de 7 días. Le recomendamos amablemente ponerse en contacto con su vendedor para solicitar un reembolso. Le ofrecemos nuestras más sinceras disculpas por los inconvenientes ocasionados y agradecemos mucho su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "NO UPDATE AND PARCEL WITH OTHER CASE"
+  },
+  {
+    "PROMPT NUMBER": "/17G",
+    "PROMPT TITLE": "ENGLISH_NO UPDATE AND PARCEL WITH OTHER CASE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely regret that your package has not had any updates. We kindly recommend that you contact your seller to request a refund. Please accept our deepest apologies for the inconvenience caused, and thank you very much for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/18G",
+    "PROMPT TITLE": "SPANISH_NO UPDATE AND PARCEL WITH OTHER CASE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente que su paquete no haya tenido actualizaciones. Le recomendamos amablemente ponerse en contacto con su vendedor para solicitar un reembolso. Le ofrecemos nuestras más sinceras disculpas por los inconvenientes ocasionados y agradecemos profundamente su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED BAD ADDRESS / UNDELIVERABLE ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/17H",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED BAD ADDRESS / UNDELIVERABLE ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re sorry to inform you that the delivery of your parcel was unsuccessful. To help us resolve this smoothly, please take a moment to verify your address— it’s possible the courier had trouble locating it.\r\nOnce your parcel is returned to our sorting center, redelivery will take about three (3) business days. Please note that the courier will contact you to coordinate the new delivery.\r\n\r\nThanks so much for your understanding and cooperation! We’re here if you need anything."
+  },
+  {
+    "PROMPT NUMBER": "/18H",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED BAD ADDRESS / UNDELIVERABLE ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos informarte que la entrega de tu paquete no fue exitosa. Para ayudarte a resolverlo rápidamente, te pedimos que verifiques tu dirección, ya que es posible que el repartidor haya tenido dificultades para encontrarla.\r\nUna vez el paquete regrese a nuestro centro de clasificación, la reentrega tomará aproximadamente tres (3) días hábiles. Ten en cuenta que el repartidor se comunicará contigo para coordinar la entrega.\r\n\r\n¡Gracias por tu comprensión y colaboración! Estamos aquí para ayudarte en lo que necesites."
+  },
+  {
+    "PROMPT TITLE": "DELIVERY FAILED CUSTOMER REFUSAL"
+  },
+  {
+    "PROMPT NUMBER": "/17II",
+    "PROMPT TITLE": "ENGLISH_DELIVERY FAILED RECIPIENT REFUSAL",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We regret to inform you that, according to the driver’s report, the delivery could not be completed because the package was rejected. Could you please let us know what happened?\r\nIf this information is not correct, we will be happy to arrange a redelivery. Once the package returns to our sorting center, the redelivery will take approximately three (3) business days. Please note that the courier will contact you to coordinate the delivery.\r\nThank you very much for your help and patience."
+  },
+  {
+    "PROMPT NUMBER": "/18II",
+    "PROMPT TITLE": "SPANISH_DELIVERY FAILED RECIPIENT REFUSAL",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos informarle que, según el reporte del conductor, la entrega no se pudo completar debido a que el paquete fue rechazado. ¿Podría, por favor, indicarnos qué sucedió?\r\nSi esta información no es correcta, con gusto podemos programar una reentrega. Una vez que el paquete regrese a nuestro centro de clasificación, la reentrega tomará aproximadamente tres (3) días hábiles. Tenga en cuenta que el repartidor se comunicará con usted para coordinar la entrega.\r\nMuchas gracias por su ayuda y paciencia."
+  },
+  {
+    "PROMPT TITLE": "NO EXPEDITED DELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/17J",
+    "PROMPT TITLE": "ENGLISH_NO EXPEDITED DELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re sorry to inform you that GoFo currently does not offer expedited or express delivery services.\r\nYour package will continue its journey through our standard shipping process.\r\nWe kindly ask for your patience while we work to ensure your package gets to you as soon as possible.\r\n\r\nThank you sincerely for your understanding and for placing your trust in us."
+  },
+  {
+    "PROMPT NUMBER": "/18J",
+    "PROMPT TITLE": "SPANISH_NO EXPEDITED DELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos informarte que en GoFo no contamos con servicios de aceleración o entrega exprés en este momento.\r\nTu paquete continuará su curso según el proceso estándar de envío. Te pedimos amablemente un poco de paciencia mientras avanzamos con la gestión. Ten por seguro que estamos trabajando para que tu paquete llegue a tus manos lo antes posible.\r\n\r\nGracias de corazón por tu comprensión y por confiar en nosotros."
+  },
+  {
+    "PROMPT TITLE": "PREPARED FOR REDELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/17K",
+    "PROMPT TITLE": "ENGLISH_PREPARED FOR REDELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this moment, your package is being prepared for re-delivery. Please note that it may take up to three business days to arrive. Thank you for your time, and thank you for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/18K",
+    "PROMPT TITLE": "SPANISH_PREPARED FOR REDELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, su paquete está siendo preparado para reentrega. Tenga en cuenta que puede tardar hasta tres días hábiles en llegar. Gracias por su tiempo y gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "REDELIVERY TICKET CREATION"
+  },
+  {
+    "PROMPT NUMBER": "/17L",
+    "PROMPT TITLE": "ENGLISH_REDELIVERY TICKET CREATION",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "At this time, a re-delivery ticket will be created for your package. Once the request has been approved, the delivery may take approximately three days to be completed. Thank you very much for your time, and we sincerely appreciate your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/18L",
+    "PROMPT TITLE": "SPANISH_REDELIVERY TICKET CREATION",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "En este momento, se creará un ticket para el reenvío de su paquete. Una vez que la solicitud haya sido aprobada, la entrega podrá demorar aproximadamente tres días en completarse. Muchas gracias por su tiempo; apreciamos sinceramente su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "SUCCESSFUL MODIFY INFORMATION-DELIVERRY FAILED-BACK"
+  },
+  {
+    "PROMPT NUMBER": "/19",
+    "PROMPT TITLE": "ENGLISH_SUCCESSFUL MODIFY INFORMATION-DELIVERRY FAILED-BACK",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for your patience. We’ve successfully updated your information, and notified the driver of the updates. Once the package returns to the warehouse, we’ll deliver it within 3 days."
+  },
+  {
+    "PROMPT NUMBER": "/20",
+    "PROMPT TITLE": "SPANISH_SUCCESSFUL MODIFY INFORMATION-DELIVERRY FAILED-BACK",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Gracias por su paciencia. Hemos actualizado su información correctamente, y notificado al conductor sobre las actualizaciones. Una vez que el paquete regrese al almacén, lo entregaremos en un plazo de 3 días."
+  },
+  {
+    "PROMPT TITLE": "SUCCESSFUL MODIFY INFORMATION-NORMAL"
+  },
+  {
+    "PROMPT NUMBER": "/19B",
+    "PROMPT TITLE": "ENGLISH_SUCCESSFUL MODIFY INFORMATION-NORMAL",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for your patience. We’ve successfully updated your information, and notified the driver of the updates. Once the package arrives in our warehouse, we’ll deliver it within 3 days."
+  },
+  {
+    "PROMPT NUMBER": "/20B",
+    "PROMPT TITLE": "SPANISH_SUCCESSFUL MODIFY INFORMATION-NORMAL",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Gracias por su paciencia. Hemos actualizado correctamente su información y hemos notificado al conductor de los cambios. Una vez que el paquete llegue a nuestro almacén, se lo entregaremos en un plazo de 3 días.\r\n"
+  },
+  {
+    "PROMPT TITLE": "4PX TN MODIFY INFO"
+  },
+  {
+    "PROMPT NUMBER": "/19C",
+    "PROMPT TITLE": "ENGLISH_4PX TN MODIFY INFO",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for the inconvenience. At this time, it is not possible to change the delivery address for this package, as your tracking number starts with \"4PX\" and we cannot modify the information in the system.\r\nWe recommend contacting the seller, who can provide further assistance and guide you on the next steps.\r\nThank you very much for your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/20C",
+    "PROMPT TITLE": "SPANISH_4PX TN MODIFY INFO",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos las molestias. En este momento no es posible realizar cambios en la dirección de entrega de este paquete, ya que su número de rastreo comienza con \"4PX\" y no podemos modificar la información en el sistema.\r\nLe recomendamos comunicarse con el vendedor, quien podrá brindarle asistencia adicional y orientarlo sobre los siguientes pasos.\r\nMuchas gracias por su comprensión."
+  },
+  {
+    "PROMPT TITLE": "RETURN TO SELLER(2 OR MORE FAILED DELIVERY ATTEMPTS )"
+  },
+  {
+    "PROMPT NUMBER": "/21",
+    "PROMPT TITLE": "ENGLISH RETURN TO OVERSEAS(2 OR MORE FAILED DELIVERY ATTEMPTS )",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Unfortunately, the delivery attempts for your parcel were unsuccessful, and it has been returned to the seller. We’re very sorry about this. Please contact the seller directly for more information .\r\nWe truly appreciate your patience and understanding throughout this process."
+  },
+  {
+    "PROMPT NUMBER": "/22",
+    "PROMPT TITLE": "SPANISH RETURN TO OVERSEAS(2 OR MORE FAILED DELIVERY ATTEMPTS )",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentablemente, los intentos de entrega de su paquete no tuvieron éxito y ha sido devuelto al vendedor. Lamentamos mucho esta situación. Por favor, comuníquese directamente con el vendedor para solicitar mas informacion o para mas consultas. Agradecemos sinceramente su paciencia y comprensión durante este proceso"
+  },
+  {
+    "PROMPT TITLE": "RETURN TO SELLER(0-1 FAILED DELIVERY ATTEMPTS )"
+  },
+  {
+    "PROMPT NUMBER": "/21B",
+    "PROMPT TITLE": "ENGLISH RETURN TO OVERSEAS( 0-1 FAILED DELIVERY ATTEMPTS )",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Unfortunately, the delivery attempts for your parcel were unsuccessful, and it has been returned to the seller. For a refund, please contact the seller directly.\r\nThanks so much for your patience and understanding throughout this process!"
+  },
+  {
+    "PROMPT NUMBER": "/22B",
+    "PROMPT TITLE": "SPANISH RETURN TO OVERSEAS(0-1 FAILED DELIVERY ATTEMPTS )",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentablemente, los intentos de entrega de su paquete no han tenido éxito y ha sido devuelto al vendedor. Para obtener un reembolso, póngase en contacto directamente con el vendedor.\r\n¡Muchas gracias por su paciencia y comprensión durante todo este proceso!"
+  },
+  {
+    "PROMPT TITLE": "ROBBED/STOLEN PARCEL"
+  },
+  {
+    "PROMPT NUMBER": "/23",
+    "PROMPT TITLE": "ENGLISH_LOST PARCEL",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the issue with your package. Our investigation has determined that the package has been lost. We will reimburse the seller, and we kindly ask that you contact the seller directly for a refund.We truly appreciate your patience and are very sorry for the inconvenience."
+  },
+  {
+    "PROMPT NUMBER": "/24",
+    "PROMPT TITLE": "SPANISH_LOST PARCEL",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente el problema con su paquete. Nuestra investigación nos determina que el paquete muestra como perdido. Se enviara un reembolso al vendedor y le pedimos amablemente que se comunique directamente con él para solicitar su devolución . Agradecemos mucho su paciencia y lamentamos profundamente los inconvenientes."
+  },
+  {
+    "PROMPT TITLE": "PARCEL DAMAGE IN THE TRACKING QUERY"
+  },
+  {
+    "PROMPT NUMBER": "/23B",
+    "PROMPT TITLE": "ENGLISH_PARCEL DAMAGE IN THE TRACKING QUERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We are sorry to inform you that your package arrived at the warehouse already damaged. We are currently waiting for the seller’s response regarding the next steps. May we kindly ask you to also reach out to the seller for further instructions. Thank you for your understanding, we truly appreciate your patience."
+  },
+  {
+    "PROMPT NUMBER": "/24B",
+    "PROMPT TITLE": "SPANISH_PARCEL DAMAGE IN THE TRACKING QUERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos informarle que su paquete llegó al almacén dañado. Actualmente estamos a la espera de la respuesta del vendedor sobre los siguientes pasos. Le agradeceríamos que también pudiera comunicarse con el vendedor para recibir más instrucciones. Gracias por su comprensión, valoramos sinceramente su paciencia."
+  },
+  {
+    "PROMPT NUMBER": "/25",
+    "LANGUAGE": "ENGLISH"
+  },
+  {
+    "PROMPT NUMBER": "/26",
+    "LANGUAGE": "SPANISH"
+  },
+  {
+    "PROMPT TITLE": "RECIVED PARCEL DAMAGES REPOET OVER 48 HOURS"
+  },
+  {
+    "PROMPT NUMBER": "/25B",
+    "PROMPT TITLE": "ENGLISH_RECEIVED PARCEL DAMAGES REPORT OVER 48 HOURS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We completely understand your concern and are very sorry for the inconvenience. According to our system, the parcel was delivered and no damage was reported within 48 hours. Following our standard procedure, as we did not receive any report during that time, this case is outside our supervision and we are unable to confirm whether it is related to our handling. We sincerely apologize for the inconvenience and may we kindly suggest contacting the seller for further information. Thank you for your understanding, we truly appreciate your patience"
+  },
+  {
+    "PROMPT NUMBER": "/26B",
+    "PROMPT TITLE": "SPANISH_RECEIVED PARCEL DAMAGES REPORT OVER 48 HOURS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Comprendemos completamente su preocupación y lamentamos mucho el inconveniente. Según nuestro sistema, el paquete fue entregado y no se reportó ningún daño dentro de las 48 horas posteriores. De acuerdo con nuestro procedimiento estándar, al no haber recibido un reporte en ese plazo, este caso queda fuera de nuestra supervisión y no podemos confirmar si está relacionado con nuestro manejo. Lamentamos sinceramente el inconveniente y ¿podemos pedirle amablemente que se comunique con el vendedor para obtener más información? Gracias por su comprensión, apreciamos sinceramente su paciencia"
+  },
+  {
+    "PROMPT TITLE": "DEMAND REPORT DAMAGED OVER 48 HOURS"
+  },
+  {
+    "PROMPT NUMBER": "/25C",
+    "PROMPT TITLE": "ENGLISH_DEMAND REPORT DAMAGED OVER 48 HOURS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "May we kindly ask you to let us know the reason why the damage was not reported within the first 48 hours? Once we receive this information, we can create a special case to assist you further. Thank you for your cooperation and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/26C",
+    "PROMPT TITLE": "SPANISH_DEMAND REPORT DAMAGED OVER 48 HOURS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¿Podemos pedirle amablemente que nos indique la razón por la cual el daño no fue reportado dentro de las primeras 48 horas? Una vez que recibamos esta información, podremos crear un caso especial para brindarle mayor asistencia. Gracias por su cooperación y comprensión."
+  },
+  {
+    "PROMPT TITLE": "RECIVED PARCEL DAMAGES -PRODECT NOT BROKEN/ONLY BOX BROKEN"
+  },
+  {
+    "PROMPT NUMBER": "/25D",
+    "PROMPT TITLE": "ENGLISH_NO DAMAGE OR MISSING PRODUCT OF SELLER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you very much for your feedback, we truly appreciate it. We will forward this to our investigation team to review with the driver, and the driver’s manager will also provide additional training. If something like this happens again, the necessary action will be taken to prevent it. We are very sorry for your experience, and may we kindly ask you to let us know if there is anything else we can assist you with."
+  },
+  {
+    "PROMPT NUMBER": "/26D",
+    "PROMPT TITLE": "SPANISH_NO DAMAGE OR MISSING PRODUCT OF SELLER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Muchas gracias por sus comentarios, los apreciamos sinceramente. Remitiremos esta información a nuestro equipo de investigación para que la revisen con el conductor, y el gerente del conductor también brindará capacitación adicional. Si algo así vuelve a ocurrir, tomaremos las medidas necesarias para evitarlo. Lamentamos mucho su experiencia y ¿podemos pedirle amablemente que nos informe si hay algo más en lo que podamos asistirle?"
+  },
+  {
+    "PROMPT TITLE": "PRODUCT HAVE DAMAGE OR MISSING"
+  },
+  {
+    "PROMPT NUMBER": "/25E",
+    "PROMPT TITLE": "ENGLISH_PRODUCT HAVE DAMAGE OR MISSING",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "For investigation purposes, may we kindly ask you to provide a detailed description of what happened? For example, which part of the product is damaged or missing. Your help will allow us to resolve this issue as quickly as possible. Thank you for your cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/26E",
+    "PROMPT TITLE": "SPANISH_PRODUCT HAVE DAMAGE OR MISSING",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Para fines de investigación, ¿podemos pedirle amablemente que nos proporcione una descripción detallada de lo ocurrido? Por ejemplo, qué parte del producto está dañada o falta. Su ayuda nos permitirá resolver este problema lo más rápido posible. Gracias por su cooperación."
+  },
+  {
+    "PROMPT TITLE": "All PRODUCTS DAMAGED/PART OF PRODUCTS DAMAGED"
+  },
+  {
+    "PROMPT NUMBER": "/25F",
+    "PROMPT TITLE": "ENGLISH_All PRODUCTS DAMAGED/PART OF PRODUCTS DAMAGED",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\n\r\nWE totally understand how you feel. Please provide the following evidence along with the tracking number and sent everything to ：cs@mail.gofo.com\r\nImportant for filing the case with the courier: May we kindly have the following information to proceed with the report?\r\n1. Outer packaging (at least 2 photos) – clear photos/videos showing all 6 sides of the box.\r\n2. Inner packaging – photos of the fillers (foam, sponge, paper, etc.) with the inside visible.\r\n3. Damaged item (at least 2 photos) – a full photo of the item and a close-up of the damage.\r\n\r\nOptional — These can help speed up the investigation (please provide as much as possible): \r\n1. Condition of the box when first received (intact or damaged, with a short description).\r\n2. Confirmation if you were the first to notice the damage.\r\n3. If reported after 48 hours, a brief explanation for the delay.\r\n4. Any unboxing video.\r\n5. A short description of the extent of the damage (e.g., “screen cracked, can’t use”). \r\n\r\nOnce we receive all the required evidence, our team will proceed with the case evaluation and notify you of the investigation results via email within 5–10 business days.\r\n\r\nThank you very much for your cooperation and patience."
+  },
+  {
+    "PROMPT NUMBER": "/26F",
+    "PROMPT TITLE": "SPANISH_All PRODUCTS DAMAGED/PART OF PRODUCTS DAMAGED",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\n\r\nEntendemos completamente cómo se siente. Por favor proporcione la siguiente evidencia junto con el número de rastreo y envíe todo a: cs@mail.gofo.com \r\n1. Empaque exterior (al menos 2 fotos) – fotos o videos claros mostrando los 6 lados de la caja.\r\n2. Empaque interior – fotos del material de relleno (espuma, esponja, papel, etc.) con el interior visible.\r\n3. Artículo dañado (al menos 2 fotos) – una foto completa del artículo y una foto de cerca del daño.\r\n\r\nOpcional — Esto puede ayudar a agilizar la investigación (proporcione tanto como sea posible):\r\n1. Condición de la caja al recibirla por primera vez (intacta o dañada, con una breve descripción).\r\n2. Confirmación de si fue usted la primera persona en notar el daño.\r\n3. Si se reporta después de 48 horas, una breve explicación de la demora.\r\n4. Cualquier video de desempaque.\r\n5. Una breve descripción de la magnitud del daño (por ejemplo: “pantalla rota, no se puede usar”). \r\n\r\nUna vez que recibamos todas las pruebas requeridas, nuestro equipo procederá con la evaluación del caso y le notificará los resultados de la investigación por correo electrónico dentro de 5 a 10 días hábiles. \r\nMuchas gracias por su cooperación y paciencia."
+  },
+  {
+    "PROMPT TITLE": "PART OF PRODUCTS LOSS AND PART OF PRODUCTS DAMAGED"
+  },
+  {
+    "PROMPT NUMBER": "/25G",
+    "PROMPT TITLE": "ENGLISH_PART OF PRODUCTS LOSS AND PART OF PRODUCTS DAMAGED",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\n\r\nWe totally understand how you feel. Please provide the following evidence along with the tracking number and send everything to: cs@mail.gofo.com\r\n1. Outer packaging（at least 2 photos） – clear photos/videos showing all 6 sides of the box.\r\n2. Inner packaging – photos of the fillers (foam, sponge, paper, etc.), with the inside visible.\r\n3. Damaged item（at least 2 photos） – full photo of the item + close-up of the damage.\r\n4.Delivery item - the full photo of the items that were delivered.\r\n5.An screenshot of order conformation(which list all items inclouding missing ites)\r\n\r\nAnother option can help us speed up the investigation process(Please provideas much as possible):\r\n1.Condition of the box when you first received it (intact or damaged, with a short description).\r\n2.Confirmation if you were the first to notice the damage.\r\n3.If reported after 48h, a quick explanation for the delay.\r\n4.Any unboxing video.\r\n5.A short description extent of the damage (e.g. “screen cracked, can’t use”).\r\nOnce we receive all the required evidence, our team will proceed with the case evaluation. Our team will notify you of the investigation results via email within 5–10 business days after you send us the evidence. May I have your email address, please?"
+  },
+  {
+    "PROMPT NUMBER": "/26G",
+    "PROMPT TITLE": "SPANISH_PART OF PRODUCTS LOSS AND PART OF PRODUCTS DAMAGED",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\n\r\nComprendemos totalmente cómo se siente. Por favor proporcione la siguiente evidencia junto con el número de rastreo y envíe todo a: cs@mail.gofo.com\r\nObligatorio:\r\n1. Embalaje externo (al menos 2 fotos): fotos o videos claros mostrando los 6 lados de la caja.\r\n2.Embalaje interno: fotos del material de relleno (espuma, esponja, papel, etc.), con el interior visible.\r\n3. Artículo dañado (al menos 2 fotos): una foto completa del artículo + un acercamiento del daño.\r\n4. Artículos entregados: una foto completa de todos los artículos recibidos.\r\n5. Captura de pantalla de la confirmación del pedido (donde se muestren todos los artículos, incluidos los faltantes).\r\n\r\nAdicionalmente (puede ayudarnos a acelerar la investigación, si proporcionas lo máximo posible):\r\n1. Estado de la caja al recibirla (intacta o dañada, con una breve descripción).\r\n2. Confirmación de si fuiste la primera persona en notar el daño.\r\n3. En caso de reportar después de 48 horas, una breve explicación de la demora.\r\n4. Algún video del desempaque.\r\n5. Una breve descripción del alcance del daño (ejemplo: “pantalla rota, no funciona”).\r\nUna vez que recibamos todas las evidencias requeridas, nuestro equipo procederá con la evaluación del caso. Te notificaremos los resultados de la investigación por correo electrónico dentro de los 5 a 10 días hábiles posteriores al envío de la información.\r\n"
+  },
+  {
+    "PROMPT TITLE": "PART OF PRODUCTS LOSS/ All PRODUCT LOSS"
+  },
+  {
+    "PROMPT NUMBER": "/25H",
+    "PROMPT TITLE": "ENGLISH_PART OF PRODUCTS LOSS/ All PRODUCT LOSS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\n\r\nI totally understand how you feel. Please provide the following evidence along with the tracking number and sent everything to ：cs@mail.gofo.com\r\nImportant for filing the case with the courier:\r\n1. Outer packaging (at least 2 photos) – clear photos/videos showing all 6 sides of the box.\r\n2. Inner packaging – photos of the fillers (foam, sponge, paper, etc.) with the inside visible.\r\n3. Delivered item – a full photo of the items that were delivered.\r\n\r\nAdditional information that can help speed up the investigation (please provide as much as possible):\r\n1. Condition of the box when first received (intact or damaged, with a short description).\r\n2. Confirmation if you were the first to notice this delivery.\r\n3. If reported after 48 hours, a brief explanation for the delay.\r\n4. Any unboxing video.\r\n5. A short description of the issue (e.g., “10 dolls expected, only 3 received, 7 missing”). \r\n6. Order confirmation\r\n\r\nOnce we receive this information, our team will proceed with the case evaluation. Please note that we cannot begin the review process until the evidence is submitted. Our team will notify you of the investigation results via email within 5–10 business days after receiving everything. \r\nThank you very much for your cooperation and patience"
+  },
+  {
+    "PROMPT NUMBER": "/26H",
+    "PROMPT TITLE": "SPANISH_PART OF PRODUCTS LOSS/ All PRODUCT LOSS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "(COPY AND PASTE)\r\n\r\nComprendemos totalmente cómo se siente. Por favor proporcione la siguiente evidencia junto con el número de rastreo y envíe todo a: cs@mail.gofo.com\r\nImportante para presentar el caso con la empresa de mensajería:\r\n1. Empaque exterior (al menos 2 fotos) – fotos o videos claros mostrando los 6 lados de la caja.\r\n2. Empaque interior – fotos del material de relleno (espuma, esponja, papel, etc.) con el interior visible.\r\n3. Artículo entregado – una foto completa de los artículos recibidos.\r\n\r\nInformación adicional que puede ayudar a agilizar la investigación (proporcione tanto como sea posible):\r\n1. Condición de la caja al recibirla por primera vez (intacta o dañada, con una breve descripción).\r\n2. Confirmación de si fue usted la primera persona en notar esta entrega.\r\n3. Si se reporta después de 48 horas, una breve explicación de la demora.\r\n4. Cualquier video de desempaque.\r\n5. Una breve descripción del problema (por ejemplo: “se esperaban 10 muñecas, solo llegaron 3, faltan 7”). 6. Confirmación de la orden\r\n\r\n\r\nUna vez que recibamos esta información, nuestro equipo procederá con la evaluación del caso. Tenga en cuenta que no podremos iniciar el proceso de revisión hasta que se envíen las pruebas. Nuestro equipo le notificará los resultados de la investigación por correo electrónico dentro de 5 a 10 días hábiles después de recibir todo. \r\nMuchas gracias por su cooperación y paciencia."
+  },
+  {
+    "PROMPT TITLE": "FAKE POD ON TRACKING UPDATE"
+  },
+  {
+    "PROMPT NUMBER": "/27",
+    "PROMPT TITLE": "ENGLISH_FAKE POD",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We regret to inform you that this delivery did not meet our standards. Our investigation team has already contacted the seller, and the package has been confirmed as refundable. We kindly ask you to contact the seller directly to request your refund. We sincerely apologize for the inconvenience and greatly appreciate your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/28",
+    "PROMPT TITLE": "SPANISH_FAKE POD",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos informarle que esta entrega no cumplió con nuestros estándares. Nuestro equipo de investigación ya se ha comunicado con el vendedor y el paquete ha sido confirmado como reembolsable. ¿Podemos pedirle amablemente que se comunique directamente con el vendedor para solicitar su reembolso? Lamentamos sinceramente el inconveniente y apreciamos mucho su comprensión."
+  },
+  {
+    "PROMPT TITLE": "REQUESTED PROOF OF LOSS"
+  },
+  {
+    "PROMPT NUMBER": "/29",
+    "PROMPT TITLE": "ENGLISH_REQUESTED PROOF OF LOSS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the inconvenience. We’ve already created a ticket for you in our system and requested the proof of loss from the investigation team. The investigation team will send it to you within 3 business days. May I kindly have your email address so we can send it directly to you?\r\nThank you very much for your patience and understanding — we truly appreciate it!"
+  },
+  {
+    "PROMPT NUMBER": "/30",
+    "PROMPT TITLE": "SPANISH_REQUESTED PROOF OF LOSS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente los inconvenientes. Ya hemos creado un ticket en nuestro sistema y solicitado al equipo de investigación la constancia de pérdida. Ellos se la enviarán dentro de los próximos 3 días hábiles. ¿Podría proporcionarnos amablemente su dirección de correo electrónico para poder enviársela directamente?\r\nMuchas gracias por su paciencia y comprensión, realmente lo valoramos."
+  },
+  {
+    "PROMPT TITLE": "MODIFY INFORMATION BEFORE THE DELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/31",
+    "PROMPT TITLE": "ENGLISH_CALL FOR MODIFY INFORMATION BEFORE THE DELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’ve updated your information. Once the package arrives at our warehouse, it will be delivered to you within 3 days.\r\nThank you so much for your patience — we truly appreciate it!"
+  },
+  {
+    "PROMPT NUMBER": "/32",
+    "PROMPT TITLE": "SPANISH_CALL FOR MODIFY INFORMATION BEFORE THE DELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hemos actualizado su información. Una vez que el paquete llegue a nuestro almacén, será entregado en un plazo de 3 días.\r\nMuchas gracias por su paciencia, lo apreciamos de verdad."
+  },
+  {
+    "PROMPT TITLE": "MODIFY INFORMATION DURING THE DELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/31B",
+    "PROMPT TITLE": "ENGLISH_CALL FOR MODIFY INFORMATION DURING THE DELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We have processed your request; however, since the package is already out for delivery, the driver may not see the changes in time. We can leave a note with the updated information; however, please be aware that the package may still be delivered to the original address or that the driver may not see the new instructions in time.\r\nPlease let us know if you would like us to proceed. We greatly appreciate your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/32B",
+    "PROMPT TITLE": "SPANIISH_CALL FOR MODIFY INFORMATION DURING THE DELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hemos atendido su solicitud; sin embargo, dado que el paquete ya se encuentra en ruta de entrega, es posible que el conductor no visualice los cambios a tiempo. Podemos dejar una nota con la información actualizada; no obstante, tenga en cuenta que el paquete aún podría entregarse en la dirección original o que el conductor no llegue a ver las nuevas instrucciones a tiempo.\r\nPor favor, indíquenos si desea que procedamos. Agradecemos mucho su comprensión."
+  },
+  {
+    "PROMPT TITLE": "EMAIL REQUEST"
+  },
+  {
+    "PROMPT NUMBER": "/31C",
+    "PROMPT TITLE": "ENGLISH_EMAIL REQUEST",
+    "PROMPT CONTENT IN YCLOUD": "Could you please provide us with your email address? 📧\r\n\r\nThank you so much!"
+  },
+  {
+    "PROMPT NUMBER": "/32C",
+    "PROMPT TITLE": "SPANISH_EMAIL REQUEST",
+    "PROMPT CONTENT IN YCLOUD": "¿Nos podría facilitarnos su correo electrónico (email), porfavor? Gracias.\r\n\r\nhttps://www.gofoexpress.com"
+  },
+  {
+    "PROMPT TITLE": "MODIFY TO AN UNDELIVERYABLE ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/33",
+    "PROMPT TITLE": "ENGLISH_MODIFY TO AN UNDELIVERABLE ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "📢 Important Notice\r\nPlease be advised that, in accordance with GOFO’s delivery policy, we are unable to deliver to the following locations:\r\n🚫 Military bases\r\n🚫 HC-Boxes\r\n🚫 Community mailboxes\r\n🚫 University addresses (on-campus delivery)\r\n🚫 Any addresses associated with the USPS mail service\r\n🚫 Any address related to public institutions (schools, universities, museums, etc.). Additionally, please note that we are unable to change the delivery address to another state. Based on this, would you like to keep the current address or provide a new valid address within the same state for delivery?\r\nIf you share an alternative address, we will gladly update the information in our system.\r\nThank you very much for your cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/34",
+    "PROMPT TITLE": "SPANISH_MODIFY TO AN UNDELIVERABLE ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "📢 Aviso importante\r\nTenga en cuenta que, de acuerdo con la política de entrega de GOFO Express, no podemos entregar a las siguientes ubicaciones:\r\n🚫 Bases militares\r\n🚫 HC-Boxes\r\n🚫 Buzones comunitarios\r\n🚫 Direcciones universitarias (entrega en campus)\r\n🚫 Cualquier dirección asociada al servicio postal USPS \r\n🚫 Cualquier direccion relacionada a instituciones publicas (escuelas, universidades, museos, etc) Asimismo, le informamos que no es posible realizar cambios de dirección hacia otro estado. Con base en esto, ¿desea mantener la dirección actual o proporcionarnos una nueva dirección válida dentro del mismo estado para la entrega?\r\nSi nos facilita una dirección alternativa, con gusto actualizaremos la información en nuestro sistema.\r\nMuchas gracias por su colaboración."
+  },
+  {
+    "PROMPT TITLE": "ADDRESS CHANGE TO ANOTHER STATE"
+  },
+  {
+    "PROMPT NUMBER": "/33B",
+    "PROMPT TITLE": "ENGLISH_ADDRESS CHANGE TO ANOTHER STATE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "📍 Address Change Notice\r\nUnfortunately, we are unable to process address changes across different states. If you wish to change your address, please note that it must remain within the same state. Base on that would you like to keep your current address?"
+  },
+  {
+    "PROMPT NUMBER": "/34B",
+    "PROMPT TITLE": "SPANISH_ADDRESS CHANGE TO ANOTHER STATE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "📍 Aviso de cambio de dirección\r\nLamentablemente, no podemos procesar cambios de dirección entre diferentes estados. Si desea cambiar su dirección, esta debe permanecer dentro del mismo estado. Con base en esto, ¿quiere mantener su dirección actual?"
+  },
+  {
+    "PROMPT TITLE": "ZIP CODE NOT SERVICE AREA"
+  },
+  {
+    "PROMPT NUMBER": "/33C",
+    "PROMPT TITLE": "ENGLISH_ZIP CODE NOT SERVICE AREA",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for your request. The postal code provided is outside our delivery area. Could you please provide another address within the same state? Otherwise, the package will be delivered to the originally registered address.\r\nWe greatly appreciate your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/34C",
+    "PROMPT TITLE": "SPANISH_ZIP CODE NOT SERVICE AREA",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Gracias por su solicitud. El código postal proporcionado se encuentra fuera de nuestra zona de entrega. ¿Podría facilitarnos otra dirección dentro del mismo estado? De lo contrario, el paquete se entregará en la dirección originalmente registrada.\r\nAgradecemos mucho su comprensión."
+  },
+  {
+    "PROMPT TITLE": "CALLING FOR MODIFY INFORMATION SUCCESSFUL"
+  },
+  {
+    "PROMPT NUMBER": "/35",
+    "PROMPT TITLE": "ENGLISH_SUCCESSFUL MODIFY INFORMATION",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for your patience. We’ve successfully updated your information in our system. Once the parcel arrives at our local warehouse, it will be delivered within 3 days."
+  },
+  {
+    "PROMPT NUMBER": "/36",
+    "PROMPT TITLE": "SPANISH_SUCCESSFUL MODIFY INFORMATION",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Gracias por su paciencia. Hemos actualizado correctamente su información en nuestro sistema. Una vez que el paquete llegue a nuestro almacén local, se entregará en un plazo de 3 días.\r\n"
+  },
+  {
+    "PROMPT TITLE": "CUSTOMER REFUSES PARCEL"
+  },
+  {
+    "PROMPT NUMBER": "/37",
+    "PROMPT TITLE": "ENGLISH_CUSTOMER REFUSES PARCEL-OTHER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for the inconvenience and understand your concern. We will attempt to intercept your package; however, there is a possibility that this action may not be successful, and your shipment could continue through the normal process to its destination.\r\nWe recommend tracking your package through this channel. We remain available for any further questions and appreciate your understanding."
+  },
+  {
+    "PROMPT NUMBER": "/38",
+    "PROMPT TITLE": "SPANISH_CUSTOMER REFUSES PARCEL-OTHER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos los inconvenientes y comprendemos su preocupación. Intentaremos interceptar su paquete; sin embargo, existe la posibilidad de que esta acción no sea exitosa y su envío continúe con el proceso normal hasta su destino.\r\nLe recomendamos realizar el seguimiento de su paquete por este medio. Quedamos atentos a cualquier consulta adicional y agradecemos su comprensión."
+  },
+  {
+    "PROMPT TITLE": "CUSTOMER REFUSES PARCEL / UNDELIVERABLE ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/37B",
+    "PROMPT TITLE": "ENGLISH_CUSTOMER REFUSES PARCEL / UNDELIVERABLE ADDRESS",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for the inconvenience. Your request has been processed and the package has been intercepted. We recommend contacting your seller to manage the corresponding refund. However, please note that there is still a possibility that the package may be delivered to the originally registered address.\r\nWe truly appreciate your understanding and patience."
+  },
+  {
+    "PROMPT NUMBER": "/38B",
+    "PROMPT TITLE": "SPANISH_CUSTOMER REFUSES PARCEL / UNDELIVERABLE ADDRESS",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos los inconvenientes ocasionados. Su solicitud ha sido atendida y el paquete ha sido interceptado. Le recomendamos comunicarse con su vendedor para gestionar el reembolso correspondiente. No obstante, le informamos que aún existe la posibilidad de que el paquete sea entregado en la dirección originalmente registrada.\r\nAgradecemos mucho su comprensión y paciencia."
+  },
+  {
+    "PROMPT TITLE": "DON'T RECIVED THE PARCEL CAN SEE THE POD"
+  },
+  {
+    "PROMPT NUMBER": "/39",
+    "PROMPT TITLE": "ENGLISH_DON'T RECIVED THE PARCEL CAN SEE THE POD",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re very sorry to hear that you haven’t received your package, even though our system shows it was delivered. Could you please confirm whether the delivery address shown in the tracking details is correct? Your confirmation will help us proceed with the verification process. Thank you for your patience and cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/40",
+    "PROMPT TITLE": "SPANISH_DON'T RECIVED THE PARCEL CAN SEE THE POD",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos mucho saber que no has recibido tu paquete, aunque nuestro sistema indica que fue entregado. ¿Podrías por favor confirmar si la dirección donde aparece entregado tu paquete es la correcta? Tu ayuda nos permitirá continuar con el proceso de verificación. Muchas gracias por tu paciencia y colaboración."
+  },
+  {
+    "PROMPT TITLE": "DON'T RECIVED THE PARCEL WITH POD-INCORRECT ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/39B",
+    "PROMPT TITLE": "ENGLISH_DON'T RECIVED THE PARCEL WITH POD-CORRECT ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the inconvenience. A new ticket has been submitted to our investigation team.\r\nMay we kindly ask you to provide your email address so they can get back to you? The team will respond within 5–10 business days.\r\nThank you very much for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/40B",
+    "PROMPT TITLE": "SPANISH_DON'T RECIVED THE PARCEL WITH POD-CORRECT ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente los inconvenientes. Se ha creado un nuevo ticket para nuestro equipo de investigación.\r\n¿Podemos pedirle amablemente que nos proporcione su dirección de correo electrónico para que puedan comunicarse con usted? El equipo responderá dentro de 5 a 10 días hábiles.\r\nMuchas gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "DON'T RECIVED THE PARCEL WITH POD-CORRECT ADDRESS"
+  },
+  {
+    "PROMPT NUMBER": "/39C",
+    "PROMPT TITLE": "ENGLISH_DON'T RECIVED THE PARCEL WITH POD-INCORRECT ADDRESS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for the inconvenience and understand your concern. According to our records, the package was delivered to the originally registered address. For further details or additional assistance, we kindly recommend contacting your seller directly.\r\nThank you for your understanding. We remain available to assist you."
+  },
+  {
+    "PROMPT NUMBER": "/40C",
+    "PROMPT TITLE": "SPANISH_DON'T RECIVED THE PARCEL WITH POD-INCORRECT ADDRESS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente los inconvenientes y comprendemos su preocupación. De acuerdo con nuestros registros, el paquete fue entregado en la dirección originalmente registrada. Para obtener más detalles o asistencia adicional, le recomendamos amablemente comunicarse directamente con su vendedor.\r\nAgradecemos su comprensión y quedamos a su disposición para apoyarle en lo que necesite."
+  },
+  {
+    "PROMPT TITLE": "DON'T RECIVED THE PARCEL WITH POD-ONLY PARCEL/BLACK/NO POD"
+  },
+  {
+    "PROMPT NUMBER": "/39D",
+    "PROMPT TITLE": "ENGLISH_DON'T RECIVED THE PARCEL WITH POD-ONLY PARCEL",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize again for the inconvenience. A new ticket has been submitted to our investigation team, and the review should be completed within 5–10 business days. Could you please provide your email address so our team can reach out if necessary? Thank you very much for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/40D",
+    "PROMPT TITLE": "SPANISH_DON'T RECIVED THE PARCEL WITH POD-ONLY PARCEL",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos nuevamente los inconvenientes. Se ha enviado un nuevo ticket a nuestro equipo de investigación y la revisión debería completarse en un plazo de 5 a 10 días hábiles. ¿Podría proporcionarnos su correo electrónico para que nuestro equipo pueda contactarlo si es necesario? Muchas gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "HAVE YOU RECEIVED OR VIEWED IMAGES OF POD"
+  },
+  {
+    "PROMPT NUMBER": "/39E",
+    "PROMPT TITLE": "ENGLISH_HAVE YOU RECEIVED OR VIEWED IMAGES OF POD",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We apologize for any inconvenience. Have you received or viewed any images of your delivery showing where it was dropped off? Thank you for your patience and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/40E",
+    "PROMPT TITLE": "SPANISH_HAVE YOU RECEIVED OR VIEWED IMAGES OF POD",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos cualquier inconveniente. ¿Ha recibido o visto alguna imagen de su entrega que muestre dónde fue dejada? Gracias por su paciencia y comprensión."
+  },
+  {
+    "PROMPT TITLE": "DON'T RECIVED THE PARCEL NO REMARKS"
+  },
+  {
+    "PROMPT NUMBER": "/39F",
+    "PROMPT TITLE": "ENGLISH_DON'T RECIVED THE PARCEL NO REMARKS",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize for any inconvenience and fully understand your concern. According to our records, the package was delivered to the correct address, and the order did not include any delivery instructions. For more details, we kindly suggest contacting your seller.\r\nWe remain available and happy to assist you with any further support you may need."
+  },
+  {
+    "PROMPT NUMBER": "/40F",
+    "PROMPT TITLE": "SPANISH_DON'T RECIVED THE PARCEL NO REMARKS",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente los inconvenientes y comprendemos completamente su preocupación. Según nuestros registros, el paquete fue entregado en la dirección correcta y la orden no incluía instrucciones de entrega. Para más detalles, le sugerimos amablemente que se comunique con su vendedor.\r\nQuedamos a su disposición y con gusto le brindaremos cualquier apoyo adicional que necesite."
+  },
+  {
+    "PROMPT TITLE": "DELIVERED BUT NOT RECEIVED - LOCKER WITH NO ACCESS TO THE CUSTOMER"
+  },
+  {
+    "PROMPT NUMBER": "/41",
+    "PROMPT TITLE": "ENGLISH_DELIVERED BUT NOT RECEIVED - LOCKER WITH NO ACCESS TO THE CUSTOMER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re very sorry your parcel was delivered to an automated locker, which is not part of our delivery procedure. Could you please check with your building’s front desk to see if they can help you retrieve it? If not, let us know and we’ll contact the driver. Thank you for your patience."
+  },
+  {
+    "PROMPT NUMBER": "/42",
+    "PROMPT TITLE": "SPANISH_DELIVERED BUT NOT RECEIVED - LOCKER WITH NO ACCESS TO THE CUSTOMER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos que su paquete haya sido entregado en un casillero automático, lo cual no corresponde a nuestro procedimiento de entrega. ¿Podría revisar con la recepción de su edificio si pueden ayudarle a recogerlo? Si no, por favor avísenos y contactaremos al conductor. Gracias por su paciencia."
+  },
+  {
+    "PROMPT TITLE": "DELIVERED NOT RECEIVED - OVER 30 DAYS"
+  },
+  {
+    "PROMPT NUMBER": "/41B",
+    "PROMPT TITLE": "ENGLISH_DELIVERED NOT RECEIVED - OVER 30 DAYS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We deeply regret any inconvenience this may have caused. Unfortunately, investigations must be initiated within 30 days of delivery, and according to our records, this period has expired. We sincerely apologize and recommend contacting the seller for further assistance."
+  },
+  {
+    "PROMPT NUMBER": "/42B",
+    "PROMPT TITLE": "SPANISH_DELIVERED NOT RECEIVED - OVER 30 DAYS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos profundamente los inconvenientes ocasionados. Desafortunadamente, las investigaciones solo pueden iniciarse dentro de los 30 días posteriores a la entrega, y según nuestros registros, este plazo ya ha expirado.\r\nLe ofrecemos nuestras más sinceras disculpas y le recomendamos contactar al vendedor para mayor información."
+  },
+  {
+    "PROMPT TITLE": "COMPLAINTS ABOUT DRIVER"
+  },
+  {
+    "PROMPT NUMBER": "/43",
+    "PROMPT TITLE": "ENGLISH_COMPLAINTS ABOUT COURIER / SEND EVIDENCE VIDEO AND FOTOS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We apologize that the courier did not adhere to GOFO’s delivery standards. We will initiate an investigation to evaluate the driver’s actions. Could you please share any relevant evidence, such as photos or videos, to assist us?\r\nThank you for your patience and cooperation."
+  },
+  {
+    "PROMPT NUMBER": "/44",
+    "PROMPT TITLE": "SPANISH_COMPLAINTS ABOUT COURIER / SEND EVIDENCE VIDEO AND FOTOS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente los inconvenientes ocasionados. Esta entrega no cumplió con el estándar de entrega de GOFO, por lo que se enviará un ticket a nuestro equipo de investigación, y el conductor recibirá capacitación adicional, tomando medidas adicionales si una situación similar vuelve a ocurrir. ¿Tiene alguna evidencia? Muchas gracias por su comprensión y colaboración."
+  },
+  {
+    "PROMPT TITLE": "HAVE EVIDENCE"
+  },
+  {
+    "PROMPT NUMBER": "/43B",
+    "PROMPT TITLE": "ENGLISH_HAVE EVIDENCE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We take this matter very seriously and want to resolve it as quickly as possible. We kindly ask you to send the following to cs@mail.gofo.com: \r\n- Photos, screenshots, or recordings (if available)\r\n- A brief description (including the date, time, tracking number, and what occurred)\r\n\r\nPlease note that we are unable to initiate the investigation without photo or video evidence. Once we receive your materials, our team will begin the internal investigation. You will receive the results via email within 5–10 business days.\r\nMay you also provide your best email address so our team can contact you if necessary?\r\nThank you very much for your cooperation and patience."
+  },
+  {
+    "PROMPT NUMBER": "/44B",
+    "PROMPT TITLE": "SPANISH_HAVE EVIDENCE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Tomamos este asunto muy en serio y queremos resolverlo lo más rápido posible. ¿Podemos pedirle amablemente que envíe lo siguiente a cs@mail.gofo.com \r\n- Fotos, capturas de pantalla o grabaciones (si están disponibles)\r\n- Una breve descripción (incluyendo la fecha, hora, número de seguimiento y lo que sucedió)\r\n\r\nTenga en cuenta que no podemos iniciar la investigación sin evidencia en fotos o videos. Una vez que recibamos su material, nuestro equipo comenzará la investigación interna. Recibirá los resultados por correo electrónico dentro de 5 a 10 días hábiles. \r\nLe pedimos amablemente que nos proporcione un correo electrónico activo para que nuestro equipo pueda contactarlo si es necesario. \r\nMuchas gracias por su cooperación y paciencia."
+  },
+  {
+    "PROMPT TITLE": "NO EVIDENCE"
+  },
+  {
+    "PROMPT NUMBER": "/43C",
+    "PROMPT TITLE": "ENGLISH_NO EVIDENCE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We take this matter very seriously and strongly recommend that you gather all available evidence, including:\r\n- Photos, screenshots, or recordings (if available)\r\n- A brief description (including the date, time, tracking number, and what occurred)\r\n- Please send everything to: cs@mail.gofo.com\r\nThis will help us expedite the investigation process, and we will also use this information to provide additional training to the driver.\r\nOnce we receive your evidence, our team will begin the internal investigation, and you will receive the results via email within 5–10 business days.\r\nMay we also kindly have your best email address so our team can contact you if necessary?\r\nThank you very much for your cooperation and patience."
+  },
+  {
+    "PROMPT NUMBER": "/44C",
+    "PROMPT TITLE": "SPANISH_NO EVIDENCE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Tomamos este asunto muy en serio y le recomendamos amablemente que pueda reunir toda la evidencia disponible, incluyendo: \r\n- Fotos, capturas de pantalla o grabaciones (si están disponibles)\r\n- Una breve descripción (incluyendo la fecha, hora, número de seguimiento y lo que ocurrió)\r\n- Por favor, envíe todo a: cs@mail.gofo.com\r\nEsto nos ayudará a agilizar el proceso de investigación, y también utilizaremos esta información para brindar capacitación adicional al conductor.\r\nUna vez que recibamos su evidencia, nuestro equipo comenzará la investigación interna y recibirá los resultados por correo electrónico dentro de 5 a 10 días hábiles.\r\n¿Podemos pedirle también su mejor dirección de correo electrónico para que nuestro equipo pueda contactarlo si es necesario?\r\nMuchas gracias por su cooperación y paciencia"
+  },
+  {
+    "PROMPT TITLE": "DELIVERY TO INTERNATIONAL COURIERS"
+  },
+  {
+    "PROMPT NUMBER": "/45",
+    "PROMPT TITLE": "ENGLISH_DELIVERY TO INTERNATIONAL COURIERS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "According to our system, your order has been marked as delivered. At this stage, the parcel was handed over to a third-party courier that manages international deliveries outside of the GOFO service area. Once the parcel has been transferred, GOFO is no longer responsible for its handling or final delivery.\r\nWe kindly recommend contacting the international courier directly for the most up-to-date tracking information. You may also confirm the courier details with your supplier for further assistance.\r\nThank you for choosing GOFO — we sincerely appreciate your trust in our services."
+  },
+  {
+    "PROMPT NUMBER": "/46",
+    "PROMPT TITLE": "SPANISH_DELIVERY TO INTERNATIONAL COURIERS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Según nuestro sistema, su pedido figura como entregado. En esta etapa, el paquete fue transferido a un servicio de mensajería externo que gestiona las entregas internacionales fuera del área de cobertura de GOFO. Una vez transferido, GOFO deja de ser responsable de su manipulación o entrega final.\r\nLe recomendamos amablemente contactar directamente con la mensajería internacional para obtener la información de seguimiento más actualizada. También puede confirmar los datos del courier con su proveedor para recibir mayor asistencia.\r\nGracias por elegir GOFO — valoramos sinceramente la confianza que deposita en nuestros servicios."
+  },
+  {
+    "PROMPT TITLE": "INFO FOR INTERNATIONAL COURIER"
+  },
+  {
+    "PROMPT NUMBER": "/47",
+    "PROMPT TITLE": "ENGLISH_INFO FOR INTERNATIONAL COURIER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Please note that GOFO does not deliver directly to international destinations outside of the U.S. or outside Puerto Rico. Our responsibility typically ends once we deliver your parcel to an independent international shipping company within the U.S. From there, the final delivery to your international destination is managed by that company. \r\nThe address and shipping company details must be provided either by you or your supplier, as GOFO is not involved in managing this part of the process. Please also keep in mind that many of these companies may use two different addresses within the same building (e.g., a main office and a warehouse), which can sometimes cause confusion. Additionally, delivery signatures are not required, which is why we provide photo proof of delivery for your reference.\r\nFor more detailed information or further assistance, we kindly recommend reaching out to your supplier directly.\r\nThank you for your understanding and for choosing GOFO — we truly appreciate your trust!"
+  },
+  {
+    "PROMPT NUMBER": "/48",
+    "PROMPT TITLE": "SPANISH_INFO FOR INTERNATIONAL COURIER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Tenga en cuenta que GOFO no realiza entregas directas a destinos internacionales fuera de los EE. UU. y Puerto Rico. Nuestra responsabilidad generalmente finaliza una vez que entregamos su paquete a una empresa independiente de envíos internacionales dentro de los EE. UU. A partir de ese momento, la entrega final a su destino internacional es gestionada por dicha empresa. \r\nLa dirección y los datos de la compañía de envíos deben ser proporcionados por usted o por su proveedor, ya que GOFO no participa en la gestión de esta parte del proceso. Asimismo, tenga presente que muchas de estas compañías pueden utilizar dos direcciones diferentes dentro del mismo edificio (por ejemplo, una oficina principal y un almacén), lo cual en ocasiones puede generar confusión. Además, no se requiere firma de entrega, razón por la cual le proporcionamos pruebas fotográficas de entrega para su referencia. \r\nPara obtener información más detallada o asistencia adicional, le recomendamos amablemente comunicarse directamente con su proveedor.\r\nGracias por su comprensión y por elegir GOFO — valoramos sinceramente la confianza que deposita en nuestros servicios"
+  },
+  {
+    "PROMPT TITLE": "NO PICK UP SERVICE"
+  },
+  {
+    "PROMPT NUMBER": "/49",
+    "PROMPT TITLE": "ENGLISH_NO PICK UP SERVICE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "GOFO currently operates only as a delivery service and does not offer parcel pick-up. We apologize for any inconvenience and recommend contacting your seller directly for more details. Thank you for choosing GOFO — we truly value your trust!"
+  },
+  {
+    "PROMPT NUMBER": "/50",
+    "PROMPT TITLE": "SPANISH_NO PICK UP SERVICE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Actualmente, GOFO funciona solo como servicio de entrega y no ofrece recolección de paquetes. Lamentamos los inconvenientes y le recomendamos contactar directamente a su vendedor para más detalles. Gracias por elegir GOFO — valoramos mucho su confianza"
+  },
+  {
+    "PROMPT TITLE": "USPS TRACKING NUMBER"
+  },
+  {
+    "PROMPT NUMBER": "/51",
+    "PROMPT TITLE": "ENGLISH_USPS TRACKING NUMBER",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "🔍 Tracking Info\r\nThe tracking number you provided belongs to USPS.\r\nYou can check your tracking status on their official website: 🌐 www.usps.com\r\n"
+  },
+  {
+    "PROMPT NUMBER": "/52",
+    "PROMPT TITLE": "SPANISH_USPS TRACKING NUMBER",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "🔍 Información de rastreo\r\nEl número de rastreo que proporcionó pertenece a USPS.\r\nPuede verificar el estado de su envío en su sitio web oficial: 🌐 www.usps.com"
+  },
+  {
+    "PROMPT TITLE": "GPS COORDINATES VERIFICATION FOR PACKAGE DELIVERY"
+  },
+  {
+    "PROMPT NUMBER": "/53",
+    "PROMPT TITLE": "ENGLISH_GPS COORDINATES VERIFICATION FOR PACKAGE DELIVERY",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We have checked the location on Google Maps and noticed that the registered GPS point is currently showing in an empty or open area, which may cause difficulties in accurately locating the address for your package delivery. To ensure a precise and smooth delivery, we kindly ask you to confirm your exact location or provide a nearby physical reference (for example, a building name, street number, or landmark). With this information, we will be able to update the coordinates in our system.\r\nWe greatly appreciate your cooperation and understanding as we work to provide you with the best possible service."
+  },
+  {
+    "PROMPT NUMBER": "/54",
+    "PROMPT TITLE": "SPANISH_GPS COORDINATES VERIFICATION FOR PACKAGE DELIVERY",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Hemos realizado la verificación en Google Maps y observamos que el punto GPS actualmente registrado aparece en un área vacía o abierta, lo que podría dificultar la correcta localización para la entrega de su paquete. Para poder garantizar una entrega precisa y sin inconvenientes, le solicitamos amablemente que nos confirme su ubicación exacta o una referencia física cercana (por ejemplo, nombre de edificio, número de calle o punto de referencia). Con esta información podremos proceder a la actualización de las coordenadas en nuestro sistema.\r\nAgradecemos mucho su apoyo y comprensión para poder brindarle un mejor servicio."
+  },
+  {
+    "PROMPT TITLE": "QUESTION ABOUT THE PRODUCT"
+  },
+  {
+    "PROMPT NUMBER": "/55",
+    "PROMPT TITLE": "ENGLISH_QUESTION ABOUT THE PRODUCT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We’re sorry to hear that. However, as a shipping courier, we are unable to address product-related questions. We kindly ask that you contact the seller directly for assistance.\r\nThank you very much for your understanding, and we truly appreciate you choosing GOFO!"
+  },
+  {
+    "PROMPT NUMBER": "/56",
+    "PROMPT TITLE": "SPANISH_QUESTION ABOUT THE PRODUCT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos escuchar eso. Sin embargo, como empresa de mensajería, no podemos atender consultas relacionadas con el producto o su contenido. Le pedimos amablemente que se comunique con el vendedor para recibir asistencia.\r\nMuchas gracias por su comprensión y por elegir GOFO — realmente valoramos su confianza."
+  },
+  {
+    "PROMPT TITLE": "“RESOLVED\" CLAIM"
+  },
+  {
+    "PROMPT NUMBER": "/57",
+    "PROMPT TITLE": "ENGLISH_“RESOLVED\" CLAIM",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize again that you didn’t receive your parcel. A reimbursement will be sent to the seller, and we kindly ask that you contact them directly to request your refund. We truly appreciate your understanding and are very sorry for the inconvenience this has caused. Thank you for choosing GOFO — we truly value your trust!"
+  },
+  {
+    "PROMPT NUMBER": "/58",
+    "PROMPT TITLE": "SPANISH_“RESOLVED\" CLAIM",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente nuevamente que no haya recibido su paquete. El reembolso será enviado al vendedor, y le pedimos amablemente que lo contacte directamente para solicitar su devolución. Agradecemos mucho su comprensión y sentimos los inconvenientes ocasionados. Gracias por elegir GOFO — valoramos sinceramente su confianza."
+  },
+  {
+    "PROMPT TITLE": "“RESOLVED\" NOT CLAIMABLE"
+  },
+  {
+    "PROMPT NUMBER": "/59",
+    "PROMPT TITLE": "ENGLISH_“RESOLVED\" NOT CLAIMABLE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Upon investigation, we confirmed that our driver followed the delivery procedures for this package, so we are not able to issue a refund. For any other questions or concerns regarding your order, we kindly recommend contacting your seller directly, as they can provide the most accurate details and solutions related to your purchase. Thank you for choosing GOFO, we greatly value your trust and understanding."
+  },
+  {
+    "PROMPT NUMBER": "/60",
+    "PROMPT TITLE": "SPANISH_““RESOLVED\" NOT CLAIMABLE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Tras la investigación, confirmamos que nuestro conductor siguió los procedimientos de entrega para este paquete, por lo que no es posible emitir un reembolso. Para cualquier otra pregunta o inquietud relacionada con su pedido, le recomendamos amablemente contactar directamente a su vendedor, ya que podrá brindarle la información y soluciones más precisas sobre su compra. Gracias por elegir GOFO, valoramos enormemente su confianza y comprensión."
+  },
+  {
+    "PROMPT TITLE": "“PENDING PROCESS\" - “IN PROCESS\" MORE THAN 14 DAYS"
+  },
+  {
+    "PROMPT NUMBER": "/61",
+    "PROMPT TITLE": "ENGLISH_“PENDING PROCESS\" MORE THAN 14 DAYS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize that the investigation process has taken longer than usual. We will be sending the reimbursement to the seller, and you may now contact the seller directly to request your refund.\r\nWe apologize again for any inconvenience this may have caused. Thank you for choosing GOFO — we’re here to support you every step of the way!"
+  },
+  {
+    "PROMPT NUMBER": "/62",
+    "PROMPT TITLE": "SPANISH_“PENDING PROCESS\" MORE THAN 14 DAYS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Ofrecemos nuestras más sinceras disculpas porque el proceso de investigación ha tomado más tiempo de lo habitual. Estaremos enviando el reembolso al vendedor, y ahora puede comunicarse directamente con él para solicitar su devolución.\r\nNuevamente nos disculpamos por cualquier inconveniente que esto haya podido causar. Gracias por elegir GOFO Express — estamos aquí para apoyarle en todo momento."
+  },
+  {
+    "PROMPT TITLE": "“PENDING PROCESS\" LESS THAN 14 DAYS"
+  },
+  {
+    "PROMPT NUMBER": "/63",
+    "PROMPT TITLE": "ENGLISH_“PENDING PROCESS\" LESS THAN 14 DAYS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We apologize that the previous ticket for this parcel is still under investigation. Our team is working to provide the results within 5–10 business days.\r\nThank you for choosing GOFO Express — we are here to support you every step of the way!"
+  },
+  {
+    "PROMPT NUMBER": "/64",
+    "PROMPT TITLE": "SPANISH_“PENDING PROCESS\" LESS THAN 14 DAYS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos que el ticket anterior de este paquete aún se encuentre en investigación. Nuestro equipo está trabajando para proporcionarle los resultados en un plazo de 5 a 10 días hábiles.\r\nGracias por elegir GOFO — estamos aquí para apoyarle en todo momento."
+  },
+  {
+    "PROMPT TITLE": "“IN PROCESS\" LESS THAN 14 DAYS"
+  },
+  {
+    "PROMPT NUMBER": "/65",
+    "PROMPT TITLE": "ENGLISH_“IN PROCESS\" MORE THAN 14 DAYS",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize that the investigation process has taken longer than usual. The reimbursement will be sent to the seller, and you may now contact them directly to request your refund.\r\nWe apologize again for any inconvenience this may have caused. Thank you for choosing GOFO Express — we are here to support you every step of the way!"
+  },
+  {
+    "PROMPT NUMBER": "/66",
+    "PROMPT TITLE": "SPANISH_“IN PROCESS\" MORE THAN 14 DAYS",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente que el proceso de investigación haya tomado más tiempo de lo habitual. El reembolso se enviará al vendedor, y ahora puede comunicarse directamente con él para solicitar su devolución.\r\nNuevamente nos disculpamos por cualquier inconveniente que esto haya podido causar. Gracias por elegir GOFO Express — estamos aquí para apoyarle en todo momento."
+  },
+  {
+    "PROMPT TITLE": "GOFO GOFO GET ORDER INFORMATION"
+  },
+  {
+    "PROMPT NUMBER": "/69",
+    "PROMPT TITLE": "ENGLISH_GOFO GOFO GET ORDER INFORMATION",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "We sincerely apologize, but at this moment we have only received this order in our system. The package has not yet arrived at our facility.\r\nFor more information and updates, we kindly recommend contacting the seller directly.\r\nThank you for your understanding and for choosing GOFO Express — we truly appreciate your trust!"
+  },
+  {
+    "PROMPT NUMBER": "/70",
+    "PROMPT TITLE": "SPANISH_GOFO GOFO GET ORDER INFORMATION",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Lamentamos sinceramente que, por el momento, solo tenemos registrado este pedido en nuestro sistema. El paquete aún no ha llegado a nuestra instalación.\r\nPara más información y actualizaciones, le recomendamos amablemente contactar directamente con el vendedor.\r\nGracias por su comprensión y por elegir GOFO Express — valoramos sinceramente su confianza."
+  },
+  {
+    "PROMPT TITLE": "ANY HELP QUESTION"
+  },
+  {
+    "PROMPT NUMBER": "/71",
+    "PROMPT TITLE": "ENGLISH_ANY HELP QUESTION",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Is there anything else I can assist you with today? I want to make sure all your questions are answered and that you feel fully supported."
+  },
+  {
+    "PROMPT NUMBER": "/72",
+    "PROMPT TITLE": "SPANISH_ANY HELP QUESTION",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¿Hay algo más en lo que pueda ayudarle hoy? Quiero asegurarme de que todas sus preguntas queden respondidas y que se sienta plenamente atendido y respaldado."
+  },
+  {
+    "PROMPT TITLE": "SURVEY EVALUATION-CSAT"
+  },
+  {
+    "PROMPT NUMBER": "/71B",
+    "PROMPT TITLE": "ENGLISH_SURVEY EVALUATION-CSAT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Before we close, a short survey may appear once this chat ends. Please take a moment to rate the assistance I provided today.\r\n\r\nYour feedback should reflect customer service only—not the driver, system, or warehouse.\r\n\r\nWe truly appreciate your feedback. Thank you, and have a great day!"
+  },
+  {
+    "PROMPT NUMBER": "/72B",
+    "PROMPT TITLE": "SPANISH_SURVEY EVALUATION-CSAT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Antes de cerrar, es posible que aparezca una breve encuesta al finalizar este chat. Por favor, tómate un momento para calificar la asistencia que le brindé hoy.\r\n\r\nTu evaluación debe reflejar únicamente el servicio al cliente, no al conductor, el sistema ni el almacén.\r\n\r\nAgradecemos mucho tu opinión. ¡Gracias y que tengas un excelente día!"
+  },
+  {
+    "PROMPT TITLE": "CLOSING CHAT"
+  },
+  {
+    "PROMPT NUMBER": "/73",
+    "PROMPT TITLE": "ENGLISH_CLOSING CHAT",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "Thank you for choosing us!\r\n\r\nAt GOFO, we appreciate your business and wish you a wonderful day.\r\nThank you for contacting us."
+  },
+  {
+    "PROMPT NUMBER": "/74",
+    "PROMPT TITLE": "SPANISH_CLOSING CHAT",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "¡Gracias por elegirnos!\r\n\r\nEn GOFO apreciamos tu preferencia y te deseamos un excelente día.\r\nGracias por contactarnos."
+  },
+  {
+    "PROMPT TITLE": "CALL FOR THE POLICE"
+  },
+  {
+    "PROMPT NUMBER": "/75",
+    "PROMPT TITLE": "ENGLISH_CALL FOR THE POLICE",
+    "LANGUAGE": "ENGLISH",
+    "PROMPT CONTENT IN YCLOUD": "First of all, we would like to express our deepest concern regarding the situation you just mentioned. We fully understand your worry, and we assure you that we will handle this matter with the utmost seriousness.\r\nTo immediately launch an investigation and escalate the case to the relevant department, may we kindly ask you to provide the following key details: \r\n1. The driver’s full name (if known)\r\n2. The vehicle’s license plate number\r\n3. The exact date and time of the incident\r\n4. The specific location of the incident (address or landmark)\r\n5. A brief description of what happened\r\n6. Were there any injuries? If yes, please provide a brief description of the condition and confirm if emergency services or the police were contacted\r\n7. Has the incident been reported to the police? If yes, please provide the report number (if available)\r\n8. Your full name\r\n9. Your phone number\r\n10. Your email address\r\n\r\nAdditionally, if you have any supporting evidence (such as photos, videos, police reports, or witness information), please share it with us. This will help expedite the investigation.\r\nWe will escalate this case immediately to our investigation and insurance teams. Please keep an eye on your phone calls or emails in case our team needs to contact you.\r\nThank you very much for your cooperation — we truly appreciate your patience during this process."
+  },
+  {
+    "PROMPT NUMBER": "/76",
+    "PROMPT TITLE": "SPANISH_CALL FOR THE POLICE",
+    "LANGUAGE": "SPANISH",
+    "PROMPT CONTENT IN YCLOUD": "Antes que nada, queremos expresar nuestra más profunda preocupación por la situación que nos ha mencionado. Entendemos completamente su inquietud y le aseguramos que trataremos este asunto con la máxima seriedad.\r\nPara iniciar de inmediato una investigación y escalar el caso al departamento correspondiente, le pedimos amablemente que nos proporcione los siguientes datos clave: \r\n1.Nombre completo del conductor (si se conoce)\r\n2. Número de placa del vehículo\r\n3. Fecha y hora exacta del incidente\r\n4. Ubicación específica del incidente (dirección o referencia)\r\n5. Breve descripción de lo ocurrido\r\n6. ¿Hubo lesiones? En caso afirmativo, por favor proporcione una breve descripción del estado y confirme si se contactaron los servicios de emergencia o la policía\r\n7. ¿Se ha reportado el incidente a la policía? En caso afirmativo, proporcione el número de informe (si está disponible)\r\n8. Su nombre completo\r\n9. Su número de teléfono\r\n10. Su correo electrónico\r\n\r\nAdicionalmente, si cuenta con alguna evidencia de apoyo (como fotos, videos, informes policiales o información de testigos), por favor compártala con nosotros. Esto ayudará a agilizar la investigación.\r\nEscalaremos este caso de inmediato a nuestros equipos de investigación y seguros. Por favor, esté atento a sus llamadas o correos electrónicos en caso de que nuestro equipo necesite contactarlo.\r\nMuchas gracias por su cooperación — realmente apreciamos su paciencia durante este proceso."
+  },
+  {
+    "PROMPT TITLE": "AGGRESSIVE CUSTOMER HANDLING"
+  },
+  {
+    "PROMPT NUMBER": "/77",
+    "PROMPT TITLE": "ENGLISH_AGGRESSIVE CUSTOMER HANDLING",
+    "PROMPT CONTENT IN YCLOUD": "We understand that this situation may be frustrating, and we are here to assist you. However, we kindly ask that you maintain respectful communication. The use of offensive or aggressive language will prevent us from continuing to provide support.\r\nWe will be happy to review your request and assist you further, as long as we can maintain a professional and respectful dialogue."
+  },
+  {
+    "PROMPT NUMBER": "/78",
+    "PROMPT TITLE": "ESPANISH_AGGRESSIVE CUSTOMER HANDLING",
+    "PROMPT CONTENT IN YCLOUD": "Entendemos que esta situación puede resultar frustrante y estamos aquí para ayudarle. No obstante, le solicitamos mantener una comunicación respetuosa. El uso de lenguaje ofensivo o agresivo nos impedirá continuar brindando asistencia.\r\nCon gusto revisaremos su solicitud y le apoyaremos en lo necesario, siempre que podamos mantener un diálogo cordial y profesional."
+  },
+  {
+    "PROMPT TITLE": "AUDIO MESSAGE RECEIVED"
+  },
+  {
+    "PROMPT NUMBER": "/79",
+    "PROMPT TITLE": "ENGLISH_AUDIO MESSAGE RECEIVED",
+    "PROMPT CONTENT IN YCLOUD": "Thank you very much for your message. \r\nTo assist you in the best possible way, we kindly ask you to write your inquiry or describe in detail the situation you’d like to report through this channel.\r\nAs this is our official WhatsApp support line, we must keep all communication in writing. We’ll be happy to assist you as soon as we receive your message."
+  },
+  {
+    "PROMPT NUMBER": "/80",
+    "PROMPT TITLE": "SPANISH_AUDIO MESSAGE RECEIVED",
+    "PROMPT CONTENT IN YCLOUD": "Muchas gracias por su mensaje. \r\nPara poder ayudarle de la mejor manera posible, le pedimos amablemente que nos escriba su consulta o describa con detalle la situación que desea informar por este medio.\r\nComo canal oficial de atención por WhatsApp, debemos mantener toda la comunicación por escrito. Con gusto le asistiremos apenas recibamos su mensaje."
+  }
+]

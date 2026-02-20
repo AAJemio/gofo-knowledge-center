@@ -2,10 +2,13 @@
 
 import React, { useState, useEffect } from 'react';
 import { Search, Copy, Check, Truck, Zap, CornerUpLeft, Edit3, AlertTriangle, Shield, CheckCircle2, MessageCircle, List, Grid, Share2 } from 'lucide-react';
-import Link from 'next/link';
+
 import { useSearchParams } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
 import { api } from '@/services/api';
+import ContentRestoreWizard from '../admin/components/ContentRestoreWizard';
+import ExportModal from '../admin/components/ExportModal';
+import { downloadFileFromUrl } from '@/utils/downloadHelpers';
 
 // Category definitions unified with MQA
 const CATEGORIES: any = {
@@ -85,7 +88,7 @@ const CATEGORIES: any = {
 
 const UI_TEXT = {
     es: {
-        subtitle: 'Centro de Conocimiento Gofo',
+        subtitle: 'Centro de Conocimiento GOFO',
         searchPlaceholder: 'Buscar prompts, códigos o contenido...',
         allCategories: 'Todos',
         listView: 'Vista de Lista',
@@ -97,7 +100,7 @@ const UI_TEXT = {
         noPromptsDesc: 'Intenta ajustar tu búsqueda o filtro de categoría'
     },
     en: {
-        subtitle: 'Gofo Knowledge Center',
+        subtitle: 'GOFO Knowledge Center',
         searchPlaceholder: 'Search prompts, codes, or content...',
         allCategories: 'All',
         listView: 'List View',
@@ -117,9 +120,12 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
     const [category, setCategory] = useState('all');
     const [viewMode, setViewMode] = useState(currentUser?.wapViewMode || 'grid');
     const [expandedId, setExpandedId] = useState<string | null>(null);
+    const [sortConfig, setSortConfig] = useState<{ key: 'title' | 'english' | 'spanish' | null, direction: 'asc' | 'desc' }>({ key: null, direction: 'asc' });
     const searchParams = useSearchParams();
     const promptId = searchParams.get('id');
     const highlightId = searchParams.get('highlight');
+    const [showRestoreWizard, setShowRestoreWizard] = useState(false);
+    const [isExportModalOpen, setIsExportModalOpen] = useState(false);
 
     // Handle initial highlight/scroll
     useEffect(() => {
@@ -142,8 +148,24 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
         setExpandedId(null); // Reset expansion when switching views
     };
 
+    const handleSort = (key: 'title' | 'english' | 'spanish') => {
+        setSortConfig(current => ({
+            key,
+            direction: current.key === key && current.direction === 'asc' ? 'desc' : 'asc'
+        }));
+    };
+
     const toggleExpand = (id: string) => {
         setExpandedId(prev => prev === id ? null : id);
+    };
+
+    const handleExportClick = () => {
+        setIsExportModalOpen(true);
+    };
+
+    const handleExportConfirm = (filename: string) => {
+        setIsExportModalOpen(false);
+        downloadFileFromUrl(`/api/admin/content/backup?scope=prompts`, filename);
     };
 
     const darkMode = theme === 'dark';
@@ -169,17 +191,39 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
 
     });
 
-    // Sort by Highlight
-    // Sort by Highlight (Active)
-    filteredPrompts.sort((a, b) => {
-        const now = new Date();
-        const isA = a.highlightExpiresAt && new Date(a.highlightExpiresAt) > now && (!a.highlightStartsAt || new Date(a.highlightStartsAt) <= now);
-        const isB = b.highlightExpiresAt && new Date(b.highlightExpiresAt) > now && (!b.highlightStartsAt || new Date(b.highlightStartsAt) <= now);
+    // Sort Logic
+    if (sortConfig.key) {
+        filteredPrompts.sort((a, b) => {
+            let valA = '';
+            let valB = '';
 
-        if (isA && !isB) return -1;
-        if (!isA && isB) return 1;
-        return 0;
-    });
+            if (sortConfig.key === 'title') {
+                valA = lang === 'en' ? a.title : (a.titleEs || a.title);
+                valB = lang === 'en' ? b.title : (b.titleEs || b.title);
+            } else if (sortConfig.key === 'english') {
+                valA = a.codeEn || '';
+                valB = b.codeEn || '';
+            } else if (sortConfig.key === 'spanish') {
+                valA = a.codeEs || '';
+                valB = b.codeEs || '';
+            }
+
+            return sortConfig.direction === 'asc'
+                ? valA.localeCompare(valB, undefined, { numeric: true, sensitivity: 'base' })
+                : valB.localeCompare(valA, undefined, { numeric: true, sensitivity: 'base' });
+        });
+    } else {
+        // Default Sort by Highlight (Active)
+        filteredPrompts.sort((a, b) => {
+            const now = new Date();
+            const isA = a.highlightExpiresAt && new Date(a.highlightExpiresAt) > now && (!a.highlightStartsAt || new Date(a.highlightStartsAt) <= now);
+            const isB = b.highlightExpiresAt && new Date(b.highlightExpiresAt) > now && (!b.highlightStartsAt || new Date(b.highlightStartsAt) <= now);
+
+            if (isA && !isB) return -1;
+            if (!isA && isB) return 1;
+            return 0;
+        });
+    }
 
     const scrollToCard = (id: string) => {
         // If in list mode, expand the target
@@ -199,8 +243,15 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
         }, 100);
     };
 
+    const getSortIcon = (key: 'title' | 'english' | 'spanish') => {
+        if (sortConfig.key === key) {
+            return sortConfig.direction === 'asc' ? '↑' : '↓';
+        }
+        return null;
+    };
+
     return (
-        <div className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-[#0a0a0a] text-slate-100' : 'bg-[#FFFBF0] text-slate-800'}`}>
+        <div suppressHydrationWarning className={`min-h-screen transition-colors duration-300 ${darkMode ? 'bg-[#0a0a0a] text-slate-100' : 'bg-[#FFFBF0] text-slate-800'}`}>
             {/* Toolbar (Simplified: Search & Filters only) */}
             <div className={`sticky top-16 z-40 border-b backdrop-blur-md transition-colors duration-300 ${darkMode ? 'bg-[#1B1F22]/90 border-gray-800' : 'bg-white/90 border-slate-200'}`}>
                 <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
@@ -208,11 +259,31 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
                         {/* Title */}
                         <div>
                             <h1 className="text-xl font-black tracking-tight">WhatsApp Prompts <span className="text-[#EF4D23]">2025</span></h1>
-                            <p className={`text-xs font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>{t.subtitle}</p>
+                            <p suppressHydrationWarning className={`text-xs font-medium ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>{t.subtitle}</p>
                         </div>
 
                         {/* Search & View Controls */}
                         <div className="flex items-center gap-3 w-full md:w-auto">
+                            {/* Admin Controls */}
+                            {currentUser?.role === 'admin' && (
+                                <div className="flex items-center gap-2 mr-2 border-r border-gray-200 dark:border-gray-700 pr-4">
+                                    <button
+                                        onClick={handleExportClick}
+                                        className="p-2 text-gray-500 hover:text-blue-600 dark:text-gray-400 dark:hover:text-blue-400 transition-colors"
+                                        title="Export Prompts"
+                                    >
+                                        <Share2 size={18} className="rotate-180" /> {/* Simulate Download/Export icon */}
+                                    </button>
+                                    <button
+                                        onClick={() => setShowRestoreWizard(true)}
+                                        className="p-2 text-gray-500 hover:text-green-600 dark:text-gray-400 dark:hover:text-green-400 transition-colors"
+                                        title="Import Prompts"
+                                    >
+                                        <Share2 size={18} /> {/* Simulate Upload/Import icon */}
+                                    </button>
+                                </div>
+                            )}
+
                             <div className="relative flex-1 md:w-96">
                                 <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${darkMode ? 'text-slate-500' : 'text-slate-400'}`} size={18} />
                                 <input
@@ -267,10 +338,28 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
             <main className="max-w-7xl mx-auto px-4 py-8">
                 {viewMode === 'list' && filteredPrompts.length > 0 && (
                     <div className={`hidden md:flex items-center justify-between px-6 py-2 mb-2 text-xs font-bold uppercase tracking-wider ${darkMode ? 'text-slate-500' : 'text-slate-400'}`}>
-                        <div>{t.titleHeader}</div>
+                        <div
+                            onClick={() => handleSort('title')}
+                            className="cursor-pointer hover:text-[#EF4D23] transition-colors flex items-center gap-1 select-none"
+                        >
+                            {t.titleHeader}
+                            {getSortIcon('title')}
+                        </div>
                         <div className="flex gap-16 pr-4">
-                            <span>{t.english}</span>
-                            <span>{t.spanish}</span>
+                            <span
+                                onClick={() => handleSort('english')}
+                                className="cursor-pointer hover:text-[#EF4D23] transition-colors flex items-center gap-1 select-none"
+                            >
+                                {t.english}
+                                {getSortIcon('english')}
+                            </span>
+                            <span
+                                onClick={() => handleSort('spanish')}
+                                className="cursor-pointer hover:text-[#EF4D23] transition-colors flex items-center gap-1 select-none"
+                            >
+                                {t.spanish}
+                                {getSortIcon('spanish')}
+                            </span>
                         </div>
                     </div>
                 )}
@@ -280,11 +369,12 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
                         <PromptCard
                             key={prompt.id}
                             prompt={prompt}
-                            darkMode={darkMode}
                             viewMode={viewMode}
                             lang={lang}
                             isExpanded={expandedId === prompt.id}
                             onToggle={() => toggleExpand(prompt.id)}
+                            t={t}
+                            darkMode={darkMode}
                         />
                     ))}
                 </div>
@@ -299,6 +389,22 @@ export default function PromptsViewer({ initialPrompts }: { initialPrompts: any[
                     </div>
                 )}
             </main>
+
+            <ExportModal
+                isOpen={isExportModalOpen}
+                onClose={() => setIsExportModalOpen(false)}
+                onConfirm={handleExportConfirm}
+                defaultFilename={`backup_prompts_${new Date().toISOString().slice(0, 10)}`}
+                title={language === 'es' ? 'Exportar Prompts' : 'Export Prompts'}
+            />
+
+            {showRestoreWizard && (
+                <ContentRestoreWizard
+                    scope="prompts"
+                    onSuccess={() => setShowRestoreWizard(false)}
+                    onClose={() => setShowRestoreWizard(false)}
+                />
+            )}
         </div>
     );
 }
@@ -347,7 +453,7 @@ const ClickableCode = ({ code, text, lang, darkMode, promptId }: { code: string,
 
 
 
-function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: { prompt: any, darkMode: boolean, viewMode: string, lang: 'en' | 'es', isExpanded?: boolean, onToggle?: () => void }) {
+function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle, t }: { prompt: any, darkMode: boolean, viewMode: string, lang: 'en' | 'es', isExpanded?: boolean, onToggle?: () => void, t: any }) {
     const catStyle = CATEGORIES[prompt.category] || CATEGORIES['General'];
     const now = new Date();
     const isHighlighted = prompt.highlightExpiresAt && new Date(prompt.highlightExpiresAt) > now && (!prompt.highlightStartsAt || new Date(prompt.highlightStartsAt) <= now);
@@ -430,18 +536,24 @@ function PromptCard({ prompt, darkMode, viewMode, lang, isExpanded, onToggle }: 
                                 <span className="text-lg">🇺🇸</span>
                                 <span className={`text-xs font-bold uppercase ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>English</span>
                             </div>
-                            <div className={`p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap ${darkMode ? 'bg-gray-800 text-slate-300' : 'bg-white text-slate-700 border border-slate-200'}`}>
-                                {prompt.english}
-                            </div>
+                            <CopyableExpandedContent
+                                text={prompt.english}
+                                lang="en"
+                                promptId={prompt.id}
+                                darkMode={darkMode}
+                            />
                         </div>
                         <div className="space-y-2">
                             <div className="flex items-center gap-2 mb-2">
                                 <span className="text-lg">🇪🇸</span>
                                 <span className={`text-xs font-bold uppercase ${darkMode ? 'text-slate-400' : 'text-slate-500'}`}>Español</span>
                             </div>
-                            <div className={`p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap ${darkMode ? 'bg-gray-800 text-slate-300' : 'bg-white text-slate-700 border border-slate-200'}`}>
-                                {prompt.spanish}
-                            </div>
+                            <CopyableExpandedContent
+                                text={prompt.spanish}
+                                lang="es"
+                                promptId={prompt.id}
+                                darkMode={darkMode}
+                            />
                         </div>
                     </div>
                 )}
@@ -557,6 +669,42 @@ function CopyBlock({ text, code, lang, darkMode, promptId }: { text: string, cod
             {copied && (
                 <div className="absolute inset-0 bg-green-500/5 rounded-xl animate-pulse pointer-events-none border-2 border-green-500" />
             )}
+        </div>
+    );
+}
+
+function CopyableExpandedContent({ text, lang, promptId, darkMode }: { text: string, lang: string, promptId: string, darkMode: boolean }) {
+    const [copied, setCopied] = useState(false);
+
+    const handleCopy = async (e: React.MouseEvent) => {
+        e.stopPropagation();
+        navigator.clipboard.writeText(text);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 1500);
+
+        // Track usage
+        try {
+            await api.usage.track('prompt', promptId, lang);
+        } catch (error) {
+            console.error('Failed to track usage', error);
+        }
+    };
+
+    return (
+        <div
+            onClick={handleCopy}
+            className={`p-4 rounded-xl text-sm leading-relaxed whitespace-pre-wrap cursor-pointer relative group transition-all
+                ${darkMode
+                    ? 'bg-gray-800 text-slate-300 hover:bg-gray-700'
+                    : 'bg-white text-slate-700 border border-slate-200 hover:border-indigo-300 hover:shadow-sm'
+                }
+            `}
+            title="Clic para copiar"
+        >
+            {text}
+            <div className={`absolute top-2 right-2 p-1.5 rounded-md transition-all duration-200 ${copied ? 'opacity-100 bg-green-500 text-white' : 'opacity-0 group-hover:opacity-100 bg-gray-100 dark:bg-gray-600 text-gray-400 dark:text-gray-300'}`}>
+                {copied ? <Check size={14} /> : <Copy size={14} />}
+            </div>
         </div>
     );
 }

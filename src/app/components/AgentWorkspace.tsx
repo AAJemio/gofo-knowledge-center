@@ -1,8 +1,8 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
-import { Search, MessageCircle, Truck, Zap, CornerUpLeft, AlertTriangle, Shield, Edit3, CheckCircle2, Copy, X, Globe, MessageSquare, Share2 } from 'lucide-react';
-import Link from 'next/link';
+import { Search, MessageCircle, Truck, Zap, CornerUpLeft, AlertTriangle, Shield, Edit3, CheckCircle2, Copy, X, Globe, MessageSquare, Share2, MapPin } from 'lucide-react';
+
 import { useRouter, useSearchParams } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
 import { api } from '@/services/api';
@@ -83,6 +83,10 @@ const CATEGORIES: any = {
     },
 };
 
+import PudoList from '../pudo/PudoList';
+
+// ... existing code ...
+
 export default function AgentWorkspace({ initialCases }: { initialCases: any[] }) {
     const router = useRouter();
     const { language, theme } = useAKC();
@@ -91,6 +95,30 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
     const [selectedCase, setSelectedCase] = useState<any>(null);
     const [copiedShareLink, setCopiedShareLink] = useState(false);
     const searchParams = useSearchParams();
+
+    // New view state for PUDO
+    const [viewMode, setViewMode] = useState<'cases' | 'pudo'>('cases');
+
+    // ... existing interactions ...
+
+    // When category changes, if it's not PUDO, ensure we are in cases view
+    const handleCategoryChange = (cat: string) => {
+        setCategory(cat);
+        setViewMode('cases');
+    };
+
+    const togglePudo = () => {
+        if (viewMode === 'pudo') {
+            setViewMode('cases');
+            setCategory('all');
+        } else {
+            setViewMode('pudo');
+            setCategory('pudo'); // Optional, just to highlight button if we treat it as cat
+        }
+    };
+
+    // ... existing useEffects/Memo ...
+
 
     // Check for highlight param on mount
     React.useEffect(() => {
@@ -105,7 +133,7 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
                 // But the user requested to remove the notification alert.
                 // We keep the param reading in case we want to use it for a non-intrusive UI later.
                 if (reason) {
-                    // console.log('Highlight reason:', reason);
+
                 }
             }
         }
@@ -156,110 +184,124 @@ export default function AgentWorkspace({ initialCases }: { initialCases: any[] }
     return (
         <div className="min-h-screen bg-[#FFFBF0] dark:bg-[#0a0a0a] font-sans pb-20 transition-colors duration-300">
             {/* Sticky Header (Unified with PromptsViewer) */}
-            <div className={`sticky top-16 z-40 border-b backdrop-blur-md transition-colors duration-300 ${theme === 'dark' ? 'bg-[#1B1F22]/90 border-gray-800' : 'bg-white/90 border-slate-200'}`}>
-                <div className="max-w-7xl mx-auto px-4 py-4 space-y-4">
-                    <div className="flex flex-col md:flex-row gap-4 items-center justify-between">
+            <div className={`sticky top-[57px] z-40 border-b backdrop-blur-md transition-colors duration-300 ${theme === 'dark' ? 'bg-[#1B1F22] border-gray-800' : 'bg-white border-slate-200'}`}>
+                <div className="max-w-7xl mx-auto px-4 py-3 md:py-4 space-y-3 md:space-y-4">
+                    <div className="flex flex-col md:flex-row gap-3 md:gap-4 items-center justify-between">
                         {/* Title */}
-                        <div>
-                            <h1 className="text-xl font-black tracking-tight text-slate-900 dark:text-white">
+                        <div className="text-center md:text-left">
+                            <h1 className="text-lg md:text-xl font-black tracking-tight text-slate-900 dark:text-white leading-tight">
                                 Mind Map Quick Answer <span className="text-[#EF4D23]">MQA</span>
                             </h1>
-                            <p className="text-xs font-medium text-slate-500 dark:text-slate-400">Gofo Knowledge Center</p>
+                            <p className="text-[10px] md:text-xs font-medium text-slate-500 dark:text-slate-400">GOFO Knowledge Center</p>
                         </div>
 
                         {/* Search */}
-                        <div className="flex items-center gap-3 w-full md:w-auto">
+                        <div className="flex items-center gap-2 w-full md:w-auto">
                             <div className="relative flex-1 md:w-96">
-                                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`} size={18} />
+                                <Search className={`absolute left-3 top-1/2 -translate-y-1/2 ${theme === 'dark' ? 'text-slate-500' : 'text-slate-400'}`} size={16} suppressHydrationWarning />
                                 <input
                                     value={query}
                                     onChange={(e) => setQuery(e.target.value)}
-                                    placeholder={language === 'es' ? "Buscar por palabra clave, título o escenario..." : "Search by keyword, title, or scenario..."}
-                                    className={`w-full pl-10 pr-4 py-2.5 rounded-xl text-sm font-medium transition-all border outline-none focus:ring-2 focus:ring-[#EF4D23]/50 ${theme === 'dark'
+                                    placeholder={language === 'es' ? "Buscar..." : "Search..."}
+                                    className={`w-full pl-9 pr-4 py-2 rounded-xl text-sm font-medium transition-all border outline-none focus:ring-2 focus:ring-[#EF4D23]/50 ${theme === 'dark'
                                         ? 'bg-gray-800 border-gray-700 text-white placeholder-slate-500'
                                         : 'bg-slate-50 border-slate-200 text-slate-900 placeholder-slate-400 focus:bg-white'
                                         }`}
+                                    suppressHydrationWarning
                                 />
                             </div>
                         </div>
                     </div>
 
                     {/* Categories */}
-                    <div className="flex gap-2 justify-start md:justify-center overflow-x-auto pb-2 hide-scrollbar">
+                    <div className="flex gap-2 justify-start md:justify-center overflow-x-auto pb-1 hide-scrollbar">
                         <button
                             onClick={() => setCategory('all')}
-                            className={`px-5 py-2 rounded-full text-sm font-bold transition shadow-sm border ${category === 'all' ? 'bg-[#EF4D23] border-[#EF4D23] text-white ring-2 ring-[#EF4D23]/30' : 'bg-white dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
+                            className={`px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-bold transition shadow-sm border whitespace-nowrap ${category === 'all' && viewMode === 'cases' ? 'bg-[#EF4D23] border-[#EF4D23] text-white ring-2 ring-[#EF4D23]/30' : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700 hover:border-gray-300 dark:hover:border-gray-600'}`}
                         >
                             {language === 'es' ? 'Todos' : 'All'}
                         </button>
                         {Object.keys(CATEGORIES).map(cat => {
                             const style = CATEGORIES[cat];
-                            const isActive = category === cat;
+                            const isActive = category === cat && viewMode === 'cases';
                             return (
                                 <button
                                     key={cat}
-                                    onClick={() => setCategory(cat)}
-                                    className={`px-5 py-2 rounded-full text-sm font-bold transition shadow-sm border ${isActive ? `${style.bg} ${style.color} ${style.text} ring-2 ring-opacity-50` : 'bg-white dark:bg-gray-800 border-transparent text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
+                                    onClick={() => handleCategoryChange(cat)}
+                                    className={`px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-bold transition shadow-sm border whitespace-nowrap ${isActive ? `${style.bg} ${style.color} ${style.text} ring-2 ring-opacity-50` : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700'}`}
                                 >
                                     {language === 'es' ? style.labelEs : style.labelEn}
                                 </button>
                             );
                         })}
+                        {/* PUDO Button */}
+                        <button
+                            onClick={togglePudo}
+                            className={`flex items-center gap-2 px-4 py-1.5 md:px-5 md:py-2 rounded-full text-xs md:text-sm font-bold transition shadow-sm border whitespace-nowrap ${viewMode === 'pudo' ? 'bg-[#EF4D23] border-[#EF4D23] text-white ring-2 ring-[#EF4D23]/30' : 'bg-white dark:bg-gray-800 border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-[#EF4D23] dark:hover:text-[#EF4D23] hover:bg-gray-50 dark:hover:bg-gray-700'}`}
+                        >
+                            <MapPin size={14} /> P.U.D.O.
+                        </button>
                     </div>
                 </div>
             </div>
 
-            {/* Grid */}
-            <div className="max-w-7xl mx-auto px-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
-                {filteredCases.map(c => {
-                    const style = CATEGORIES[c.category as keyof typeof CATEGORIES] || CATEGORIES['General'];
-                    const now = new Date();
-                    const isHighlighted = c.highlightExpiresAt && new Date(c.highlightExpiresAt) > now && (!c.highlightStartsAt || new Date(c.highlightStartsAt) <= now);
-                    const highlightStyle = isHighlighted ? {
-                        borderColor: c.highlightColor || '#EF4D23',
-                        borderWidth: '2px',
-                        backgroundColor: c.highlightColor ? `${c.highlightColor}10` : undefined
-                    } : {};
+            {/* Content Switch */}
+            {viewMode === 'pudo' ? (
+                <div className="max-w-7xl mx-auto px-4 pt-8">
+                    <PudoList embed />
+                </div>
+            ) : (
+                <div className="max-w-7xl mx-auto px-4 pt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+                    {filteredCases.map(c => {
+                        const style = CATEGORIES[c.category as keyof typeof CATEGORIES] || CATEGORIES['General'];
+                        const now = new Date();
+                        const isHighlighted = c.highlightExpiresAt && new Date(c.highlightExpiresAt) > now && (!c.highlightStartsAt || new Date(c.highlightStartsAt) <= now);
+                        const highlightStyle = isHighlighted ? {
+                            borderColor: c.highlightColor || '#EF4D23',
+                            borderWidth: '2px',
+                            backgroundColor: c.highlightColor ? `${c.highlightColor}10` : undefined
+                        } : {};
 
-                    return (
-                        <div
-                            key={c.id}
-                            onClick={() => handleCardClick(c)}
-                            style={highlightStyle}
-                            className={`bg-white dark:bg-[#1B1F22] rounded-xl p-5 cursor-pointer hover:shadow-md hover:ring-2 hover:ring-[#EF4D23] transition group border border-gray-200 dark:border-gray-800 flex flex-col h-full relative overflow-hidden`}
-                        >
-                            {isHighlighted && (
-                                <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg z-10">
-                                    UPDATED
+                        return (
+                            <div
+                                key={c.id}
+                                onClick={() => handleCardClick(c)}
+                                style={highlightStyle}
+                                className={`bg-white dark:bg-[#1B1F22] rounded-xl p-5 cursor-pointer hover:shadow-md hover:ring-2 hover:ring-[#EF4D23] transition group border border-gray-200 dark:border-gray-800 flex flex-col h-full relative overflow-hidden`}
+                            >
+                                {isHighlighted && (
+                                    <div className="absolute top-0 right-0 bg-red-500 text-white text-[10px] font-bold px-2 py-0.5 rounded-bl-lg z-10">
+                                        UPDATED
+                                    </div>
+                                )}
+                                <div className="flex justify-between items-start mb-2">
+                                    <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${style.text} ${style.bg} border ${style.color}`}>
+                                        {language === 'es' ? style.labelEs : style.labelEn}
+                                    </span>
                                 </div>
-                            )}
-                            <div className="flex justify-between items-start mb-2">
-                                <span className={`inline-flex items-center gap-1.5 px-2 py-0.5 rounded text-[10px] font-bold uppercase tracking-wider ${style.text} ${style.bg} border ${style.color}`}>
-                                    {language === 'es' ? style.labelEs : style.labelEn}
-                                </span>
-                            </div>
 
-                            {/* Title Logic */}
-                            {language === 'es' ? (
-                                <>
-                                    <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-1 leading-snug group-hover:text-[#EF4D23] transition-colors">
-                                        {c.title_es}
+                                {/* Title Logic */}
+                                {language === 'es' ? (
+                                    <>
+                                        <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-1 leading-snug group-hover:text-[#EF4D23] transition-colors">
+                                            {c.title_es}
+                                        </h3>
+                                        <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{c.title_en}</p>
+                                    </>
+                                ) : (
+                                    <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-3 leading-snug group-hover:text-[#EF4D23] transition-colors">
+                                        {c.title_en}
                                     </h3>
-                                    <p className="text-xs text-gray-500 dark:text-gray-400 mb-3">{c.title_en}</p>
-                                </>
-                            ) : (
-                                <h3 className="text-base font-bold text-gray-900 dark:text-gray-100 mb-3 leading-snug group-hover:text-[#EF4D23] transition-colors">
-                                    {c.title_en}
-                                </h3>
-                            )}
+                                )}
 
-                            <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-3 mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
-                                {language === 'es' ? c.condition : (c.condition_en || c.condition)}
-                            </p>
-                        </div>
-                    );
-                })}
-            </div>
+                                <p className="text-xs text-gray-500 dark:text-gray-400 line-clamp-3 mt-auto pt-3 border-t border-gray-100 dark:border-gray-800">
+                                    {language === 'es' ? c.condition : (c.condition_en || c.condition)}
+                                </p>
+                            </div>
+                        );
+                    })}
+                </div>
+            )}
 
             {/* Modal */}
             {selectedCase && (

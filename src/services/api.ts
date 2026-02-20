@@ -126,5 +126,15 @@ export const api = {
     // Analytics
     analytics: {
         getUserStats: (userId: string) => fetcher<any>(`/api/admin/analytics/${userId}`), // Assuming this endpoint exists or will exist
+    },
+
+    // PUDO
+    pudo: {
+        list: () => fetcher<any[]>('/api/pudo'),
+        getContent: () => fetcher<Record<string, { en: string, es: string }>>('/api/pudo/content'),
+        create: (data: any) => fetcher('/api/pudo', { method: 'POST', body: JSON.stringify(data) }),
+        update: (id: string, data: any) => fetcher(`/api/pudo/${id}`, { method: 'PUT', body: JSON.stringify(data) }),
+        delete: (id: string) => fetcher(`/api/pudo/${id}`, { method: 'DELETE' }),
+        updateContent: (data: any) => fetcher('/api/pudo/content', { method: 'PUT', body: JSON.stringify(data) }),
     }
 };

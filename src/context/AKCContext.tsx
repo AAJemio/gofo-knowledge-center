@@ -62,7 +62,7 @@ export function AKCProvider({ children }: { children: React.ReactNode }) {
                 setCurrentUser(data.user);
             } catch (error) {
                 // Silent fail (not logged in)
-                console.log('Session check: No active session');
+
             }
         };
         checkSession();

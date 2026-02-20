@@ -1,0 +1,139 @@
+erDiagram
+    %% User and Auth
+    User {
+        String id PK
+        String email UK
+        String role "admin|agent"
+        String firstName
+        String lastName
+        Int usageCount
+        Boolean mustChangePassword
+        String theme
+        String language
+        DateTime lastLogin
+    }
+
+    %% KPI System
+    DailyKPI {
+        String id PK
+        String userId FK
+        DateTime date
+        Int conversations
+        Int outboundMessages
+        Int onlineTimeSeconds
+        Int firstResponseTimeSeconds
+        Int resolutionTimeSeconds
+        Float csat
+    }
+
+    KpiActivityLog {
+        String id PK
+        String adminId FK
+        String action "UPLOAD|DELETE|REVERT|LOCK"
+        DateTime targetDate
+        String details
+    }
+
+    KpiSourceFile {
+        String id PK
+        String adminId FK
+        String filename
+        DateTime targetDate
+        Bytes fileData "Excel Evidence"
+    }
+
+    KpiSettings {
+        String id PK "default"
+        DateTime lockDate
+    }
+
+    %% Knowledge Base Content
+    WhatsappPrompt {
+        String id PK
+        String title
+        String category
+        String code_impar_en
+        String code_par_es
+        String content_en
+        String content_es
+        Int usage_count
+        DateTime highlightExpiresAt
+    }
+
+    SupportCase {
+        String id PK
+        String title_en
+        String title_es
+        String category
+        String keywords
+        String script_official_en
+        String script_official_es
+        Int usage_count
+    }
+
+    PudoLocation {
+        String id PK
+        String name
+        String address
+        String status "ACTIVE|INACTIVE"
+        String whatsappPromptId FK
+    }
+
+    PudoContent {
+        Int id PK
+        String key UK
+        String contentEn
+        String contentEs
+    }
+
+    %% System & Logs
+    AuditLog {
+        String id PK
+        String userId FK
+        String action "CREATE|UPDATE|DELETE"
+        String entity "CASE|PROMPT"
+        String entityId
+        String details
+        String previousState
+        String newState
+        Boolean isReverted
+    }
+
+    Interaction {
+        String id PK
+        String userId FK
+        String type "case|prompt"
+        String caseId FK
+        String promptId FK
+    }
+
+    Notification {
+        String id PK
+        String type
+        String entityId
+        String title
+        String message
+        DateTime expiresAt
+    }
+
+    SystemTempStorage {
+        String id PK
+        String dataType "RESTORE_PAYLOAD"
+        String data "JSON Content"
+        DateTime expiresAt
+    }
+
+    %% Relationships
+    User ||--o{ DailyKPI : "has records"
+    User ||--o{ KpiActivityLog : "admin performs"
+    User ||--o{ KpiSourceFile : "admin uploads"
+    User ||--o{ AuditLog : "generates"
+    User ||--o{ Interaction : "records usage"
+    User ||--o{ SupportCase : "authors/edits"
+    User ||--o{ WhatsappPrompt : "authors/edits"
+
+    WhatsappPrompt ||--o{ Interaction : "used in"
+    WhatsappPrompt ||--o{ PudoLocation : "linked to"
+    
+    SupportCase ||--o{ Interaction : "used in"
+    SupportCase }|--|{ WhatsappPrompt : "recommends"

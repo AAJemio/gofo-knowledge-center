@@ -5,6 +5,7 @@ import Link from 'next/link';
 import { ArrowLeft, FileText, MessageSquare } from 'lucide-react';
 import { useAKC } from '@/context/AKCContext';
 
+
 interface AgentAnalyticsViewProps {
     user: any;
     caseInteractions: any[];
@@ -28,6 +29,8 @@ export default function AgentAnalyticsView({ user, caseInteractions, promptInter
         other: language === 'es' ? 'Otro' : 'Other',
         dashboard: language === 'es' ? 'Panel de Estadísticas' : 'Analytics Dashboard',
         welcome: language === 'es' ? 'Bienvenido de nuevo,' : 'Welcome back,',
+        statsTab: language === 'es' ? 'Estadísticas Generales' : 'General Stats',
+        kpiTab: language === 'es' ? 'Mis KPIs' : 'My KPIs',
     };
 
     const preferredLang = languageStats.es >= languageStats.en ? (language === 'es' ? 'Español' : 'Spanish') : (language === 'es' ? 'Inglés' : 'English');
@@ -40,18 +43,20 @@ export default function AgentAnalyticsView({ user, caseInteractions, promptInter
             {/* Header Section */}
             <div className="bg-white dark:bg-[#1B1F22] rounded-2xl p-6 shadow-sm border border-gray-200 dark:border-gray-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
                 <div className="flex items-center gap-4">
-                    <Link
-                        href="/admin/analytics"
-                        className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition"
-                    >
-                        <ArrowLeft size={24} />
-                    </Link>
+                    {user.role === 'admin' && (
+                        <Link
+                            href="/admin/analytics"
+                            className="p-3 bg-gray-100 dark:bg-gray-800 text-gray-600 dark:text-gray-300 rounded-xl hover:bg-gray-200 dark:hover:bg-gray-700 transition"
+                        >
+                            <ArrowLeft size={24} />
+                        </Link>
+                    )}
                     <div className="h-16 w-16 rounded-full bg-gradient-to-br from-[#EF4D23] to-orange-600 flex items-center justify-center text-white font-bold text-2xl shadow-lg shadow-orange-500/20">
-                        {user.firstName[0]}{user.lastName[0]}
+                        {(user.firstName?.[0] || '').toUpperCase()}{(user.lastName?.[0] || '').toUpperCase()}
                     </div>
                     <div>
                         <h1 className="text-2xl font-black text-gray-900 dark:text-white tracking-tight">
-                            {t.welcome} <span className="text-[#EF4D23]">{user.firstName}</span>
+                            {t.welcome} <span className="text-[#EF4D23]">{user.firstName || 'User'}</span>
                         </h1>
                         <p className="text-sm text-gray-500 dark:text-gray-400 font-medium">
                             {user.email} • <span className="uppercase tracking-wider text-xs font-bold bg-gray-100 dark:bg-gray-800 px-2 py-0.5 rounded text-gray-600 dark:text-gray-300">{user.role}</span>
@@ -78,6 +83,7 @@ export default function AgentAnalyticsView({ user, caseInteractions, promptInter
             </div>
 
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+
                 {/* Cases Usage */}
                 <div className="bg-white dark:bg-[#1B1F22] border border-gray-200 dark:border-gray-800 rounded-2xl overflow-hidden shadow-sm flex flex-col h-full">
                     <div className="p-5 border-b border-gray-100 dark:border-gray-800 flex items-center justify-between bg-gradient-to-r from-blue-50/50 to-transparent dark:from-blue-900/10">

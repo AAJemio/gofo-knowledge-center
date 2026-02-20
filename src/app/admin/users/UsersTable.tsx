@@ -5,12 +5,22 @@ import { Search, Plus, Trash2, Edit2, Shield, User, X, Check } from 'lucide-reac
 import { useRouter } from 'next/navigation';
 import { useAKC } from '@/context/AKCContext';
 
-export default function UsersTable({ users }: { users: any[] }) {
+interface User {
+    id: string;
+    firstName: string;
+    lastName: string;
+    email: string;
+    role: 'admin' | 'agent';
+    usageCount?: number;
+    password?: string;
+}
+
+export default function UsersTable({ users }: { users: User[] }) {
     const router = useRouter();
     const { currentUser, language } = useAKC(); // Only used for displaying "You" badge if needed
     const [search, setSearch] = useState('');
     const [isModalOpen, setIsModalOpen] = useState(false);
-    const [editingUser, setEditingUser] = useState<any>(null);
+    const [editingUser, setEditingUser] = useState<User | null>(null);
     const [formData, setFormData] = useState({ firstName: '', lastName: '', email: '', password: '', role: 'agent' });
     const [loading, setLoading] = useState(false);
 
@@ -52,21 +62,27 @@ export default function UsersTable({ users }: { users: any[] }) {
         e.stopPropagation();
         if (!confirm('Are you sure you want to delete this user?')) return;
         try {
-            await fetch(`/api/users/${id}`, { method: 'DELETE' });
-            router.refresh();
+            const res = await fetch(`/api/users/${id}`, { method: 'DELETE' });
+            if (res.ok) {
+                router.refresh();
+            } else {
+                const data = await res.json();
+                alert(`Failed to delete user: ${data.message || 'Unknown error'}`);
+            }
         } catch (error) {
             console.error(error);
+            alert('An error occurred while deleting the user.');
         }
     };
 
-    const openModal = (user: any = null) => {
+    const openModal = (user: User | null = null) => {
         if (user) {
             setEditingUser(user);
             setFormData({
                 firstName: user.firstName,
                 lastName: user.lastName,
                 email: user.email,
-                password: user.password,
+                password: user.password || '',
                 role: user.role
             });
         } else {
@@ -127,7 +143,7 @@ export default function UsersTable({ users }: { users: any[] }) {
                                 <td className="px-6 py-4">
                                     <div className="flex items-center gap-3">
                                         <div className="w-10 h-10 rounded-full bg-gray-100 dark:bg-gray-800 flex items-center justify-center text-[#EF4D23] font-bold">
-                                            {user.firstName ? user.firstName[0] : user.email[0].toUpperCase()}
+                                            {user.firstName ? user.firstName[0] : (user.email?.[0] || '').toUpperCase()}
                                         </div>
                                         <div>
                                             <div className="font-bold text-gray-900 dark:text-white">
@@ -147,7 +163,7 @@ export default function UsersTable({ users }: { users: any[] }) {
                                     </span>
                                 </td>
                                 <td className="px-6 py-4 text-sm font-bold text-gray-700 dark:text-gray-300">
-                                    {(user as any).usageCount || 0}
+                                    {user.usageCount || 0}
                                 </td>
                                 <td className="px-6 py-4">
                                     <span className="text-xs font-medium text-green-600 dark:text-green-400 bg-green-50 dark:bg-green-900/20 px-2 py-0.5 rounded border border-green-100 dark:border-green-900/30">

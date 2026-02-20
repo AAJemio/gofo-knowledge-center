@@ -55,24 +55,26 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-[#FFFBF0] relative overflow-hidden">
+    <div className="min-h-screen flex items-center justify-center bg-[#EF4D23] relative overflow-hidden">
       {/* Background Decor */}
       {/* Background Decor / Banner */}
       <div className="absolute top-0 left-0 w-full h-full z-0">
         <div className="absolute top-0 left-0 w-full h-[40vh] md:h-[50vh] overflow-hidden">
           <img
             src="/banner.jpg"
-            alt="Gofo Knowledge Center Banner"
+            alt="GOFO Knowledge Center Banner"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-[#FFFBF0]"></div>
+
         </div>
       </div>
 
-      <div className="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-xl p-8 border border-gray-100">
+      <div className="relative z-10 w-full max-w-md bg-white rounded-2xl shadow-2xl p-8 border border-white/10">
         <div className="text-center mb-8">
           <div className="flex justify-center mb-6">
-            <img src="/gofo-logo.png" alt="Gofo Logo" className="h-12 object-contain" />
+            <div className="flex justify-center mb-6">
+              <img src="/Gofo logo 2.png" alt="GOFO Logo" className="h-20 object-contain" />
+            </div>
           </div>
           <h1 className="text-2xl font-bold text-gray-900">Agent <span className="text-[#EF4D23]">Knowledge Center</span></h1>
           <p className="text-sm text-gray-500 font-medium tracking-wide">MQA & WAP SYSTEM</p>
@@ -119,15 +121,15 @@ export default function LoginPage() {
           <button
             type="submit"
             disabled={loading}
-            className="block w-full text-center bg-[#EF4D23] hover:bg-[#d63f1a] text-white font-bold py-3.5 rounded-lg shadow-lg shadow-orange-900/10 transition mt-6 disabled:opacity-50"
+            className="block w-full text-center bg-[#EF4D23] hover:bg-[#d63f1a] text-white font-bold py-3.5 rounded-lg shadow-lg shadow-orange-900/20 transition mt-6 disabled:opacity-50"
           >
             {loading ? 'Logging in...' : 'Log In'}
           </button>
         </form>
       </div>
 
-      <div className="absolute bottom-6 text-center text-xs text-gray-400 font-medium">
-        © 2025 Gofo Agent Knowledge Center. MQA & WAP System.
+      <div className="absolute bottom-6 text-center text-xs text-white/80 font-medium">
+        © 2025 GOFO Agent Knowledge Center. MQA & WAP System.
       </div>
     </div>
   );

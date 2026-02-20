@@ -33,6 +33,46 @@ model User {
   auditLogs    AuditLog[]
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
+  lastLogin DateTime?
+  
+  // Relations
+  authoredCases     SupportCase[] @relation("AuthoredCases")
+  editedCases       SupportCase[] @relation("EditedCases")
+  authoredPrompts   WhatsappPrompt[] @relation("AuthoredPrompts")
+  editedPrompts     WhatsappPrompt[] @relation("EditedPrompts")
+  kpiRecords        DailyKPI[]
+  
+  // KPI Admin Relations
+  kpiActivityLogs   KpiActivityLog[]
+  kpiSourceFiles    KpiSourceFile[]
+}
+
+model PudoLocation {
+  id              String   @id @default(uuid())
+  name            String
+  address         String
+  businessDaysEn  String
+  businessDaysEs  String
+  businessHours   String
+  contact         String
+  zipCode         String
+  imageUrl        String?
+  status          String   @default("ACTIVE") // ACTIVE, INACTIVE
+  
+  // Relation to Prompt (optional)
+  whatsappPromptId String?
+  whatsappPrompt   WhatsappPrompt? @relation(fields: [whatsappPromptId], references: [id])
+
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+}
+
+model PudoContent {
+  id        Int      @id @default(autoincrement())
+  key       String   @unique // e.g., 'intro', 'footer', 'pdf_info'
+  contentEn String   @db.Text
+  contentEs String   @db.Text
+  updatedAt DateTime @updatedAt
 }
 
 model AuditLog {
@@ -73,6 +113,13 @@ model WhatsappPrompt {
   
   supportCases          SupportCase[] // Relation to cases that recommend this prompt
   interactions          Interaction[]
+  pudoLocations         PudoLocation[]
+
+  // Relations to User
+  authorId      String?
+  author        User?   @relation("AuthoredPrompts", fields: [authorId], references: [id])
+  editorId      String?
+  editor        User?   @relation("EditedPrompts", fields: [editorId], references: [id])
 }
 
 model SupportCase {
@@ -103,6 +150,12 @@ model SupportCase {
   highlightColor     String?
   highlightReason    String?
   highlightStartsAt  DateTime?
+
+  // Relations to User
+  authorId      String?
+  author        User?   @relation("AuthoredCases", fields: [authorId], references: [id])
+  editorId      String?
+  editor        User?   @relation("EditedCases", fields: [editorId], references: [id])
 }
 
 model Interaction {
@@ -130,5 +183,69 @@ model Notification {
   message   String
   createdAt DateTime @default(now())
   expiresAt DateTime?
+
+  @@index([createdAt])
 }
 
+
+model DailyKPI {
+  id              String   @id @default(uuid())
+  userId          String
+  user            User     @relation(fields: [userId], references: [id])
+  
+  date            DateTime // Normalized date (midnight)
+  
+  // Metrics from Excel
+  conversations           Int      @default(0)
+  outboundMessages        Int      @default(0)
+  onlineTimeSeconds       Int      @default(0) // Parsed from "7h 35m"
+  availableTimeSeconds    Int      @default(0) // Parsed from "6h 51m"
+  firstResponseTimeSeconds Int     @default(0) // Parsed from "31s"
+  resolutionTimeSeconds   Int      @default(0) // Parsed from "33m 28s"
+  csat                    Float    @default(0.0) // Parsed from "82%"
+  
+  createdAt       DateTime @default(now())
+  updatedAt       DateTime @updatedAt
+
+  @@unique([userId, date])
+  @@index([date])
+}
+
+model KpiActivityLog {
+  id        String   @id @default(uuid())
+  adminId   String
+  admin     User     @relation(fields: [adminId], references: [id])
+  action    String   // 'UPLOAD' | 'DELETE' | 'REVERT' | 'LOCK'
+  targetDate DateTime? // For date-specific actions
+  details   String   @db.Text
+  createdAt DateTime @default(now())
+
+  @@index([createdAt])
+}
+
+model KpiSettings {
+  id          String   @id @default("default") // Singleton
+  lockDate    DateTime?
+  dailyConversationTarget Int @default(100)
+  updatedAt   DateTime @updatedAt
+}
+
+model KpiSourceFile {
+  id          String   @id @default(uuid())
+  adminId     String
+  admin       User     @relation(fields: [adminId], references: [id])
+  filename    String
+  uploadDate  DateTime @default(now())
+  targetDate  DateTime // The KPI date this file belongs to
+  fileData    Bytes    // Storing file directly for simplicity as per requirements (Evidence)
+  
+  @@index([targetDate])
+}
+
+model SystemTempStorage {
+  id        String   @id @default(uuid())
+  dataType  String   // 'RESTORE_PAYLOAD'
+  data      String   @db.Text
+  expiresAt DateTime
+  createdAt DateTime @default(now())
+}

@@ -1,4 +1,5 @@
 import { NextResponse } from 'next/server';
+import { Prisma } from '@prisma/client';
 import { prisma } from '@/lib/prisma';
 import { apiHandler } from '@/lib/api-handler';
 
@@ -7,7 +8,7 @@ export const GET = apiHandler(async (request: Request) => {
     const category = searchParams.get('category');
     const search = searchParams.get('search');
 
-    const where: any = {};
+    const where: Prisma.WhatsappPromptWhereInput = {};
 
     if (category && category !== 'all') {
         where.category = category;

@@ -24,7 +24,7 @@ export default async function AgentAnalyticsPage() {
     const userId = user.id;
     let caseInteractions: any[] = [];
     let promptInteractions: any[] = [];
-    let languageStats = { en: 0, es: 0, total: 0 };
+    const languageStats = { en: 0, es: 0, total: 0 };
 
     try {
         // Refresh user data from DB to get latest counts

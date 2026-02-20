@@ -10,7 +10,7 @@ export default async function AgentAnalyticsPage({ params }: { params: Promise<{
     let user = null;
     let caseInteractions: any[] = [];
     let promptInteractions: any[] = [];
-    let languageStats = { en: 0, es: 0, total: 0 };
+    const languageStats = { en: 0, es: 0, total: 0 };
 
     try {
         user = await prisma.user.findUnique({
